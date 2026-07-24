@@ -1,37 +1,34 @@
 # Gainers Spotting
 
-Research software for identifying US stocks that may be developing into the
-day's exceptional gainers.
+Research software for identifying U.S.-traded stocks during premarket that may be developing into significant gainers during the upcoming regular session.
 
-The project focuses on detecting abnormal behaviour early—particularly during
-premarket—rather than reproducing a list of stocks that have already completed
-most of their move.
+The project focuses on detecting abnormal behaviour early enough that meaningful upside may still remain, rather than reproducing a list of stocks that have already completed most of their move. Historical research also compares when a candidate becomes actionable, including premarket-entry versus opening-entry approaches, without assuming an entry method in advance.
 
 ## Status
 
-The project is in its research and architecture phase. It does not place live
-orders and is not integrated with `battersea-dynamics/trading-agent`.
+The project is in its research and architecture phase. It does not place live orders and is not integrated with `battersea-dynamics/trading-agent`.
 
 Initial work will:
 
 - collect reproducible premarket observations;
-- reconstruct historical one-minute market behaviour;
-- compare eventual top gainers with candidates that faded;
+- reconstruct historical one-minute premarket and post-open behaviour;
+- compare eventual significant gainers, missed runners and candidates that faded;
 - investigate price, volume, acceleration, structure, liquidity and catalysts;
-- measure detection time, remaining move, recall, precision and API usage;
-- derive scanner rules from evidence rather than preset weights.
+- compare plausible premarket and opening entry assumptions without look-ahead bias;
+- measure detection time, remaining move, recall, precision, post-entry opportunity and API usage;
+- derive scanner and entry rules from evidence rather than preset weights or thresholds.
 
 ## Principles
 
-- US equities and premarket discovery are the initial focus.
+- U.S. equities and premarket discovery are the initial focus.
 - Discovery eligibility is separate from trading eligibility.
 - Historical evaluation must avoid look-ahead bias.
 - Market-data delays must be represented at the simulated decision time.
+- Post-open data is used to evaluate premarket selections, not to build selling logic in this phase.
 - Alpaca requests should be batched and reusable data cached locally.
 - Deterministic calculations belong in Python, not an LLM.
 - News enrichment should occur only after quantitative candidate reduction.
-- `trading-agent` must remain untouched unless future integration is explicitly
-  approved.
+- `trading-agent` must remain untouched unless future integration is explicitly approved.
 
 ## Documentation
 
@@ -43,5 +40,4 @@ Initial work will:
 
 ## Repository
 
-This is a standalone project. Generated datasets, screenshots, API credentials
-and caches should not be committed to Git.
+This is a standalone project. Generated datasets, screenshots, API credentials and caches should not be committed to Git.
