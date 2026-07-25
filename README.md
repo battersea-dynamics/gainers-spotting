@@ -41,3 +41,17 @@ Initial work will:
 ## Repository
 
 This is a standalone project. Generated datasets, screenshots, API credentials and caches should not be committed to Git.
+
+## Historical Alpaca collector
+
+The research-only collector downloads paginated one-minute SIP bars for the
+documented candidate and control universes. It reads credentials only from
+`APCA_API_KEY_ID` / `APCA_API_SECRET_KEY` or the compatible
+`ALPACA_API_KEY` / `ALPACA_SECRET_KEY` environment variables.
+
+```bash
+python scripts/collect_alpaca_bars.py --date 2026-07-24
+```
+
+Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
+written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
