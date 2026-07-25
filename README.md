@@ -55,3 +55,21 @@ python scripts/collect_alpaca_bars.py --date 2026-07-24
 
 Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
 written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
+
+## Historical session analysis
+
+Run the reproducible research analysis after placing a collected dataset under
+its date directory:
+
+```bash
+python scripts/analyze_historical_session.py --date 2026-07-24
+```
+
+The analysis validates the bars, calculates continuous premarket and
+regular-session behaviour measurements, compares the documented cohorts,
+performs exploratory clustering, and generates a self-contained HTML report
+with candlestick and volume charts. Generated outputs are written under
+`data/research/YYYY-MM-DD/analysis/` and remain excluded from Git.
+
+The analysis is descriptive. It does not create scanner thresholds, trading
+rules, entries, exits or orders.
