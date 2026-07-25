@@ -1,0 +1,44 @@
+name: Collect historical Alpaca bars
+
+on:
+  workflow_dispatch:
+    inputs:
+      research_date:
+        description: U.S. market date (YYYY-MM-DD)
+        required: true
+        default: "2026-07-24"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/collect-historical-alpaca.yml"
+      - "scripts/collect_alpaca_bars.py"
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
+      RESEARCH_DATE: ${{ inputs.research_date || '2026-07-24' }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run collector
+        id: collect
+        run: python scripts/collect_alpaca_bars.py --date "$RESEARCH_DATE"
+
+      - name: Upload research dataset
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpaca-research-${{ env.RESEARCH_DATE }}
+          path: data/research/${{ env.RESEARCH_DATE }}/
+          if-no-files-found: error
+          retention-days: 30
