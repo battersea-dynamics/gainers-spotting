@@ -1,0 +1,43 @@
+name: Collect observed research week
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      matrix:
+        research_date:
+          - "2026-07-27"
+          - "2026-07-28"
+          - "2026-07-29"
+          - "2026-07-30"
+          - "2026-07-31"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Collect SIP minute bars
+        run: |
+          python scripts/collect_alpaca_bars.py \
+            --date "${{ matrix.research_date }}" \
+            --universe-file "config/research-universes/${{ matrix.research_date }}.json"
+
+      - name: Upload research dataset
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpaca-research-${{ matrix.research_date }}
+          path: data/research/${{ matrix.research_date }}/
+          if-no-files-found: error
+          retention-days: 30

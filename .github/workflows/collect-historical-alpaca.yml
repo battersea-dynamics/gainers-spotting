@@ -7,12 +7,17 @@ on:
         description: U.S. market date (YYYY-MM-DD)
         required: true
         default: "2026-07-24"
+      universe_file:
+        description: Optional tracked universe JSON; auto-detected by date when blank
+        required: false
+        default: ""
   push:
     branches:
       - main
     paths:
       - ".github/workflows/collect-historical-alpaca.yml"
       - "scripts/collect_alpaca_bars.py"
+      - "config/research-universes/**"
 
 permissions:
   contents: read
@@ -25,6 +30,7 @@ jobs:
       APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
       APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
       RESEARCH_DATE: ${{ inputs.research_date || '2026-07-24' }}
+      INPUT_UNIVERSE_FILE: ${{ inputs.universe_file || '' }}
 
     steps:
       - name: Check out repository
@@ -32,7 +38,17 @@ jobs:
 
       - name: Run collector
         id: collect
-        run: python scripts/collect_alpaca_bars.py --date "$RESEARCH_DATE"
+        shell: bash
+        run: |
+          universe_file="$INPUT_UNIVERSE_FILE"
+          if [[ -z "$universe_file" && -f "config/research-universes/$RESEARCH_DATE.json" ]]; then
+            universe_file="config/research-universes/$RESEARCH_DATE.json"
+          fi
+          args=(--date "$RESEARCH_DATE")
+          if [[ -n "$universe_file" ]]; then
+            args+=(--universe-file "$universe_file")
+          fi
+          python scripts/collect_alpaca_bars.py "${args[@]}"
 
       - name: Upload research dataset
         if: always()

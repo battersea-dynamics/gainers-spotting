@@ -1,0 +1,9 @@
+{
+  "research_date": "2026-07-30",
+  "source": "Timestamped Revolut Top Movers checkpoint observations; U.S.-research instruments only",
+  "symbol_groups": {
+    "premarket_observed": ["ALVO", "AVTR", "BAX", "BLKB", "BOOM", "BXBL", "CBZ", "CLW", "CORT", "DGICB", "EDU", "EXLS", "GKOS", "GRMN", "HUHU", "HURN", "LAD", "LUNG", "LVWR", "MANH", "MKTX", "MPLT", "NEO", "NNNN", "PHOE", "PRCH", "RCKY", "SCL", "SMTI", "TAL", "TRDA", "VRRM", "XRX"],
+    "post_open_only_observed": ["AAOI", "ACMR", "ALAB", "APLD", "AXTI", "BCAR", "BE", "BHC", "BRUN", "BTDR", "CIFR", "CLSK", "CMCO", "COHU", "CORZ", "CRWV", "DAAQ", "FCEL", "FORM", "FRVO", "FUFU", "HUT", "ICHR", "IDCC", "IREN", "KEEL", "LRCX", "NBIS", "PLPC", "PWR", "RIOT", "SIMO", "SMHI", "SNDK", "STX", "WYFI"]
+  },
+  "excluded_non_us_symbols": ["AUS", "CLRN", "MNDI"]
+}

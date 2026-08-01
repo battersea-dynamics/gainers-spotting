@@ -1,5 +1,7 @@
 import importlib.util
+import json
 import sys
+import tempfile
 import unittest
 from datetime import timezone
 from pathlib import Path
@@ -71,6 +73,51 @@ class CollectorTests(unittest.TestCase):
             set(collector.PREMARKET_CANDIDATES)
             & set(collector.MISSED_RUNNERS_CONTROLS)
         )
+
+    def test_loads_date_specific_universe(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "universe.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "research_date": "2026-07-27",
+                        "symbol_groups": {
+                            "premarket_observed": ["lvwr", "SAFT"],
+                            "post_open_only_observed": ["GOSS"],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels, groups, source = collector.load_universe(
+                "2026-07-27", path
+            )
+
+        self.assertEqual(
+            {
+                "LVWR": "premarket_observed",
+                "SAFT": "premarket_observed",
+                "GOSS": "post_open_only_observed",
+            },
+            labels,
+        )
+        self.assertEqual(["LVWR", "SAFT"], groups["premarket_observed"])
+        self.assertEqual(str(path), source)
+
+    def test_rejects_duplicate_symbol_across_groups(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "universe.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "research_date": "2026-07-27",
+                        "symbol_groups": {"a": ["LVWR"], "b": ["lvwr"]},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate"):
+                collector.load_universe("2026-07-27", path)
 
 
 if __name__ == "__main__":

@@ -180,8 +180,10 @@ def write_raw_page(
 
 
 def normalise_bars(
-    bars_by_symbol: dict[str, list[dict[str, Any]]]
+    bars_by_symbol: dict[str, list[dict[str, Any]]],
+    group_by_symbol: dict[str, str] | None = None,
 ) -> list[dict[str, Any]]:
+    labels = group_by_symbol or GROUP_BY_SYMBOL
     rows: list[dict[str, Any]] = []
     for symbol, bars in bars_by_symbol.items():
         for bar in bars:
@@ -190,7 +192,7 @@ def normalise_bars(
             ).astimezone(UTC)
             rows.append(
                 {
-                    "group": GROUP_BY_SYMBOL[symbol],
+                    "group": labels[symbol],
                     "symbol": symbol,
                     "timestamp_utc": iso_z(timestamp_utc),
                     "timestamp_et": timestamp_utc.astimezone(
@@ -236,7 +238,58 @@ def write_clean_files(output_dir: Path, rows: list[dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
-def base_metadata(window: Window, symbols: Iterable[str]) -> dict[str, Any]:
+def load_universe(
+    requested_date: str, universe_file: Path | None
+) -> tuple[dict[str, str], dict[str, list[str]], str]:
+    if universe_file is None:
+        groups = {
+            "premarket_candidates": PREMARKET_CANDIDATES,
+            "missed_runners_controls": MISSED_RUNNERS_CONTROLS,
+        }
+        return GROUP_BY_SYMBOL.copy(), groups, "built_in_2026-07-24_universe"
+
+    try:
+        payload = json.loads(universe_file.read_text(encoding="utf-8"))
+    except OSError as exc:
+        raise ValueError(f"Could not read universe file: {universe_file}") from exc
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Universe file is not valid JSON: {universe_file}") from exc
+
+    if payload.get("research_date") != requested_date:
+        raise ValueError(
+            "Universe research_date does not match --date: "
+            f"{payload.get('research_date')!r}"
+        )
+    raw_groups = payload.get("symbol_groups")
+    if not isinstance(raw_groups, dict) or not raw_groups:
+        raise ValueError("Universe file must contain non-empty symbol_groups")
+
+    groups: dict[str, list[str]] = {}
+    group_by_symbol: dict[str, str] = {}
+    for group, raw_symbols in raw_groups.items():
+        if not isinstance(group, str) or not isinstance(raw_symbols, list):
+            raise ValueError("Universe groups must map names to symbol lists")
+        symbols = []
+        for raw_symbol in raw_symbols:
+            symbol = str(raw_symbol).strip().upper()
+            if not symbol or symbol in group_by_symbol:
+                raise ValueError(
+                    f"Universe contains a blank or duplicate symbol: {raw_symbol!r}"
+                )
+            group_by_symbol[symbol] = group
+            symbols.append(symbol)
+        groups[group] = symbols
+    if not group_by_symbol:
+        raise ValueError("Universe file contains no symbols")
+    return group_by_symbol, groups, str(universe_file)
+
+
+def base_metadata(
+    window: Window,
+    symbols: Iterable[str],
+    symbol_groups: dict[str, list[str]],
+    universe_source: str,
+) -> dict[str, Any]:
     requested_symbols = list(symbols)
     return {
         "collector": "scripts/collect_alpaca_bars.py",
@@ -244,10 +297,8 @@ def base_metadata(window: Window, symbols: Iterable[str]) -> dict[str, Any]:
         "research_only": True,
         "orders_supported": False,
         "requested_symbols": requested_symbols,
-        "symbol_groups": {
-            "premarket_candidates": PREMARKET_CANDIDATES,
-            "missed_runners_controls": MISSED_RUNNERS_CONTROLS,
-        },
+        "symbol_groups": symbol_groups,
+        "universe_source": universe_source,
         "successful_symbols": [],
         "failures": {},
         "requested_time_window": {
@@ -291,13 +342,19 @@ def collect(
     limit: int,
     timeout: int,
     max_attempts: int,
+    universe_file: Path | None = None,
 ) -> tuple[Path, dict[str, Any]]:
     window = parse_window(requested_date)
-    symbols = list(GROUP_BY_SYMBOL)
+    group_by_symbol, symbol_groups, universe_source = load_universe(
+        requested_date, universe_file
+    )
+    symbols = list(group_by_symbol)
     output_dir = output_root / requested_date
     raw_dir = output_dir / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
-    metadata = base_metadata(window, symbols)
+    metadata = base_metadata(
+        window, symbols, symbol_groups, universe_source
+    )
 
     try:
         key, secret = get_credentials()
@@ -363,7 +420,7 @@ def collect(
             seen_tokens.add(new_token)
             next_page_token = new_token
 
-        rows = normalise_bars(all_bars)
+        rows = normalise_bars(all_bars, group_by_symbol)
         write_clean_files(output_dir, rows)
         counts = {
             symbol: len(all_bars[symbol])
@@ -411,6 +468,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output root (default: data/research)",
     )
     parser.add_argument(
+        "--universe-file",
+        type=Path,
+        help=(
+            "JSON file containing research_date and symbol_groups. If omitted, "
+            "the built-in 2026-07-24 supplied universe is used."
+        ),
+    )
+    parser.add_argument(
         "--limit",
         type=int,
         default=10_000,
@@ -442,6 +507,7 @@ def main() -> int:
         limit=args.limit,
         timeout=args.timeout,
         max_attempts=args.max_attempts,
+        universe_file=args.universe_file,
     )
     print(
         json.dumps(

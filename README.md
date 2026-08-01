@@ -1,8 +1,14 @@
 # Gainers Spotting
 
-Research software for identifying U.S.-traded stocks during premarket that may be developing into significant gainers during the upcoming regular session.
+Research software for identifying U.S.-traded stocks during premarket that may
+offer a useful long entry at the regular-session open, 15 minutes after open or
+30 minutes after open.
 
-The project focuses on detecting abnormal behaviour early enough that meaningful upside may still remain, rather than reproducing a list of stocks that have already completed most of their move. Historical research also compares when a candidate becomes actionable, including premarket-entry versus opening-entry approaches, without assuming an entry method in advance.
+The project focuses on detecting abnormal behaviour early enough that
+meaningful upside may still remain, rather than reproducing a list of stocks
+that have already completed most of their move. It compares fixed 09:30, 09:45
+and 10:00 ET entry benchmarks. It does not develop later day-trading decisions,
+exits, position management or order submission.
 
 ## Status
 
@@ -37,6 +43,7 @@ Initial work will:
 - [Data and API constraints](docs/data-and-api-constraints.md)
 - [Decision log](docs/decisions.md)
 - [Open questions](docs/open-questions.md)
+- [Premarket and opening-entry research plan](docs/premarket-open-research-plan.md)
 
 ## Repository
 
@@ -52,6 +59,18 @@ documented candidate and control universes. It reads credentials only from
 ```bash
 python scripts/collect_alpaca_bars.py --date 2026-07-24
 ```
+
+For an observed date, pass its tracked, timestamp-derived research universe:
+
+```bash
+python scripts/collect_alpaca_bars.py \
+  --date 2026-07-27 \
+  --universe-file config/research-universes/2026-07-27.json
+```
+
+The manual GitHub Actions workflow `Collect observed research week` collects
+27–31 July in parallel using the repository's existing Alpaca secrets. It does
+not submit orders and does not expose secret values.
 
 Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
 written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
