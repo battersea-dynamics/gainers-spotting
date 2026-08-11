@@ -1,5 +1,9 @@
 # Gainers Spotting
 
+> **Continuing this project in a new chat?** Start with
+> [`docs/research-handoff.md`](docs/research-handoff.md) for the current scope,
+> constraints, data status, methodology, next actions, and bootstrap prompt.
+
 Research software for identifying U.S.-traded stocks during premarket that may
 offer a useful long entry at the regular-session open, 15 minutes after open or
 30 minutes after open.
@@ -92,3 +96,23 @@ with candlestick and volume charts. Generated outputs are written under
 
 The analysis is descriptive. It does not create scanner thresholds, trading
 rules, entries, exits or orders.
+
+## Multi-date premarket and opening-entry analysis
+
+After collecting each date, run the leakage-controlled pooled analysis with
+the dates to compare. Features use only bars completed before the 09:30, 09:45
+or 10:00 ET decision, while later bars are reserved for outcomes.
+
+```bash
+python scripts/analyze_premarket_open_week.py \
+  --dates 2026-07-24 2026-07-27 2026-07-28 2026-07-29 2026-07-30 2026-07-31 \
+  --output-dir data/research/collective-2026-07-24_to_2026-07-31/analysis
+```
+
+The command validates all sessions, falls back to intact JSONL if a clean CSV
+gzip is damaged, builds symbol-date feature/outcome data, compares fixed entry
+times and reports rank associations with per-date and leave-one-date-out sign
+checks. Its generated research tables and report remain excluded from Git.
+
+This remains hypothesis-generation research: it does not select production
+thresholds, claim executable fills or submit orders.
