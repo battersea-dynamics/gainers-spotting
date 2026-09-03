@@ -11,14 +11,6 @@ on:
         description: Optional tracked universe JSON; auto-detected by date when blank
         required: false
         default: ""
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/collect-historical-alpaca.yml"
-      - "scripts/collect_alpaca_bars.py"
-      - "config/research-universes/**"
-
 permissions:
   contents: read
 
