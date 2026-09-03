@@ -2,7 +2,7 @@
 
 Read this document first when resuming the project in a new chat. It is the durable source of truth for the research scope, decisions, data status, and next actions. Update it whenever the methodology or project state materially changes.
 
-Last updated: 2026-08-11
+Last updated: 2026-09-03
 
 ## Mission
 
@@ -31,13 +31,31 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `.github/workflows/collect-observed-week.yml`
 - `scripts/collect_alpaca_bars.py`
 - `scripts/analyze_historical_session.py`
+- `scripts/analyze_premarket_open_week.py`
+- `scripts/rank_premarket_candidates.py`
+- `scripts/build_alpaca_universe.py`
 - `tests/test_collect_alpaca_bars.py`
 - `tests/test_analyze_historical_session.py`
+- `tests/test_analyze_premarket_open_week.py`
+- `tests/test_rank_premarket_candidates.py`
+- `tests/test_build_alpaca_universe.py`
 - `docs/premarket-open-research-plan.md`
 - `docs/preliminary-week-findings.md`
 - date-specific universes under `config/research-universes/`
+- frozen evaluation definitions under `config/research-protocol-v1.json`
 
 The multi-date research pipeline was committed as `2cded70` (`Add multi-date premarket research pipeline`). GitHub Actions run `30696226390` completed successfully for 2026-07-27 through 2026-07-31.
+
+The recovered engine implementation adds three strictly point-in-time ranking
+decisions, separates ranking features from future outcome files, preserves
+version identifiers, compares the composite score with simple baselines,
+reports top-5/10/20 utility inside the supplied universe, and performs
+chronological expanding-window model checks. The broad-universe builder uses
+current Alpaca asset metadata without a price or historical-volume floor and
+records the snapshot time and survivorship limitation.
+
+No live scanner is scheduled or running. Existing GitHub workflows are manual
+historical data collectors only.
 
 ## Data status and source quality
 
@@ -127,14 +145,15 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Finish transcribing each screenshot checkpoint into dated machine-readable observation files.
-2. Build the per-date US symbol universe from observed names plus controls, while preserving non-US observations separately.
-3. Collect and validate Alpaca SIP bars for every observed date, not only 2026-07-24.
-4. Inspect every metadata file and resolve or document symbol failures.
-5. Generate one time-safe feature-and-outcome table with rows keyed by date, symbol, and decision time.
-6. Run collective descriptive analysis across dates and compare winners with controls/non-winners.
-7. Propose a small number of candidate ranking models, freeze them, and test on later unseen dates.
-8. Only after validation, design the stock-picker output. Keep it research-only and order-free.
+1. Preserve any new screenshot observations as external labels, without using them to construct the scanner universe.
+2. Before each future observation session, save a dated broad Alpaca asset-universe snapshot.
+3. Design an API-efficient two-stage discovery run so thousands of eligible assets are reduced before deep one-minute-bar analysis.
+4. Add official previous close and corporate-action inputs before calling any feature a true gap.
+5. Add historical, time-normalised RVOL only after comparable prior-session windows are cached.
+6. Expand the historical sample beyond the current six selected sessions and retain independently selected negatives.
+7. Run the frozen v1 protocol without tuning on the first later dates, then review the chronological results.
+8. Add quote-derived spread, catalyst tagging, float data, and regime analysis only when reliable source data is available.
+9. Keep execution/slippage modelling deferred and keep the project order-free.
 
 ## New-chat bootstrap prompt
 

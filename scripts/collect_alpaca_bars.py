@@ -74,6 +74,13 @@ def iso_z(value: datetime) -> str:
     return value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
 
+def chunked(values: list[str], size: int) -> Iterable[list[str]]:
+    if size < 1:
+        raise ValueError("batch size must be positive")
+    for start in range(0, len(values), size):
+        yield values[start:start + size]
+
+
 def parse_window(value: str) -> Window:
     session_date = date.fromisoformat(value)
     start_et = datetime.combine(
@@ -320,6 +327,7 @@ def base_metadata(
             "page_requests": [],
             "completed": False,
         },
+        "batching": {"batch_size": None, "batches": 0, "completed_batches": 0},
         "request_started_at_utc": utc_now_iso(),
         "request_finished_at_utc": None,
         "bar_counts": {},
@@ -343,6 +351,7 @@ def collect(
     timeout: int,
     max_attempts: int,
     universe_file: Path | None = None,
+    batch_size: int = 200,
 ) -> tuple[Path, dict[str, Any]]:
     window = parse_window(requested_date)
     group_by_symbol, symbol_groups, universe_source = load_universe(
@@ -355,70 +364,73 @@ def collect(
     metadata = base_metadata(
         window, symbols, symbol_groups, universe_source
     )
+    metadata["batching"]["batch_size"] = batch_size
+    metadata["batching"]["batches"] = (len(symbols) + batch_size - 1) // batch_size
 
     try:
         key, secret = get_credentials()
-        params: dict[str, str | int] = {
-            "symbols": ",".join(symbols),
-            "timeframe": "1Min",
-            "start": iso_z(window.start_utc),
-            "end": iso_z(window.end_utc),
-            "limit": limit,
-            "adjustment": "raw",
-            "feed": "sip",
-            "sort": "asc",
-        }
         all_bars: dict[str, list[dict[str, Any]]] = {
             symbol: [] for symbol in symbols
         }
-        seen_tokens: set[str] = set()
-        next_page_token: str | None = None
+        for batch_number, batch_symbols in enumerate(chunked(symbols, batch_size), start=1):
+            params: dict[str, str | int] = {
+                "symbols": ",".join(batch_symbols),
+                "timeframe": "1Min",
+                "start": iso_z(window.start_utc),
+                "end": iso_z(window.end_utc),
+                "limit": limit,
+                "adjustment": "raw",
+                "feed": "sip",
+                "sort": "asc",
+            }
+            seen_tokens: set[str] = set()
+            next_page_token: str | None = None
+            while True:
+                page_number = metadata["pagination"]["pages"] + 1
+                if next_page_token:
+                    params["page_token"] = next_page_token
+                else:
+                    params.pop("page_token", None)
 
-        while True:
-            page_number = metadata["pagination"]["pages"] + 1
-            if next_page_token:
-                params["page_token"] = next_page_token
-            else:
-                params.pop("page_token", None)
-
-            started_at = utc_now_iso()
-            payload, status, rate_headers, attempts = request_page_with_retry(
-                params, key, secret, timeout, max_attempts
-            )
-            finished_at = utc_now_iso()
-            page_file = write_raw_page(raw_dir, page_number, payload)
-            metadata["pagination"]["pages"] = page_number
-            metadata["pagination"]["page_files"].append(page_file)
-            metadata["pagination"]["page_requests"].append(
-                {
-                    "page": page_number,
-                    "requested_at_utc": started_at,
-                    "completed_at_utc": finished_at,
-                    "status": status,
-                    "attempts": attempts,
-                    "rate_limit_headers": rate_headers,
-                    "had_request_page_token": bool(next_page_token),
-                    "has_next_page_token": bool(
-                        payload.get("next_page_token")
-                    ),
-                }
-            )
-
-            page_bars = payload.get("bars") or {}
-            for symbol, bars in page_bars.items():
-                if symbol in all_bars:
-                    all_bars[symbol].extend(bars)
-
-            new_token = payload.get("next_page_token")
-            if not new_token:
-                metadata["pagination"]["completed"] = True
-                break
-            if new_token in seen_tokens:
-                raise CollectionError(
-                    "Alpaca repeated a pagination token; collection stopped"
+                started_at = utc_now_iso()
+                payload, status, rate_headers, attempts = request_page_with_retry(
+                    params, key, secret, timeout, max_attempts
                 )
-            seen_tokens.add(new_token)
-            next_page_token = new_token
+                finished_at = utc_now_iso()
+                page_file = write_raw_page(raw_dir, page_number, payload)
+                metadata["pagination"]["pages"] = page_number
+                metadata["pagination"]["page_files"].append(page_file)
+                metadata["pagination"]["page_requests"].append(
+                    {
+                        "page": page_number,
+                        "batch": batch_number,
+                        "batch_symbol_count": len(batch_symbols),
+                        "requested_at_utc": started_at,
+                        "completed_at_utc": finished_at,
+                        "status": status,
+                        "attempts": attempts,
+                        "rate_limit_headers": rate_headers,
+                        "had_request_page_token": bool(next_page_token),
+                        "has_next_page_token": bool(payload.get("next_page_token")),
+                    }
+                )
+
+                page_bars = payload.get("bars") or {}
+                for symbol, bars in page_bars.items():
+                    if symbol in all_bars:
+                        all_bars[symbol].extend(bars)
+
+                new_token = payload.get("next_page_token")
+                if not new_token:
+                    metadata["batching"]["completed_batches"] = batch_number
+                    break
+                if new_token in seen_tokens:
+                    raise CollectionError(
+                        "Alpaca repeated a pagination token; collection stopped"
+                    )
+                seen_tokens.add(new_token)
+                next_page_token = new_token
+        metadata["pagination"]["completed"] = True
 
         rows = normalise_bars(all_bars, group_by_symbol)
         write_clean_files(output_dir, rows)
@@ -476,6 +488,12 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=200,
+        help="Symbols per Alpaca request batch (default: 200)",
+    )
+    parser.add_argument(
         "--limit",
         type=int,
         default=10_000,
@@ -501,6 +519,9 @@ def main() -> int:
     if not 1 <= args.limit <= 10_000:
         print("--limit must be between 1 and 10000", file=sys.stderr)
         return 2
+    if not 1 <= args.batch_size <= 1_000:
+        print("--batch-size must be between 1 and 1000", file=sys.stderr)
+        return 2
     output_dir, metadata = collect(
         requested_date=args.date,
         output_root=args.output_root,
@@ -508,6 +529,7 @@ def main() -> int:
         timeout=args.timeout,
         max_attempts=args.max_attempts,
         universe_file=args.universe_file,
+        batch_size=args.batch_size,
     )
     print(
         json.dumps(

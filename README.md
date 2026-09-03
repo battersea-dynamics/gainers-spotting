@@ -16,7 +16,10 @@ exits, position management or order submission.
 
 ## Status
 
-The project is in its research and architecture phase. It does not place live orders and is not integrated with `battersea-dynamics/trading-agent`.
+The project now has a reproducible historical collector, point-in-time ranking
+engine, multi-date evaluation, and a broad Alpaca asset-universe builder. It is
+still a research system: no live scanner is scheduled, it does not place
+orders, and it is not integrated with `battersea-dynamics/trading-agent`.
 
 Initial work will:
 
@@ -48,6 +51,9 @@ Initial work will:
 - [Decision log](docs/decisions.md)
 - [Open questions](docs/open-questions.md)
 - [Premarket and opening-entry research plan](docs/premarket-open-research-plan.md)
+- [Premarket ranking engine](docs/premarket-ranking-engine.md)
+- [Frozen research protocol v1](config/research-protocol-v1.json)
+- [Evidence-based improvements (external review)](docs/evidence-based-improvements.md)
 
 ## Repository
 
@@ -78,6 +84,19 @@ not submit orders and does not expose secret values.
 
 Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
 written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
+
+For a broad discovery universe captured before a future research session, run:
+
+```bash
+python scripts/build_alpaca_universe.py --date 2026-09-03
+```
+
+This queries Alpaca's active, tradable US-equity assets without a price or
+historical-volume floor and writes a dated, versioned snapshot under
+`data/research/universes/`. It records that the snapshot is not a historically
+complete universe for earlier dates. Use the generated JSON with the collector;
+the collector batches large symbol lists so it does not create one oversized
+request URL.
 
 ## Historical session analysis
 
@@ -116,3 +135,33 @@ checks. Its generated research tables and report remain excluded from Git.
 
 This remains hypothesis-generation research: it does not select production
 thresholds, claim executable fills or submit orders.
+
+The multi-date command also writes versioned candidate rankings, simple
+baselines, top-5/10/20 evaluation, candidate burden, failure labels, and
+chronological walk-forward folds. The MFE thresholds in
+`config/research-protocol-v1.json` are evaluation-only sensitivity labels;
+continuous outcomes remain primary and the thresholds are not buy rules.
+
+## Point-in-time candidate rankings
+
+To rank every symbol present in one collected session at the open, +15 minutes,
+and +30 minutes:
+
+```bash
+python scripts/rank_premarket_candidates.py --date 2026-07-27
+```
+
+The ranker accepts compressed `bars.csv.gz` input, retains low-priced stocks,
+and uses only completed bars available at each decision time. Point-in-time
+ranking files and retrospective outcome files are written separately under
+`data/research/YYYY-MM-DD/analysis/premarket_ranker/`.
+
+This command ranks the supplied bar universe. Market-wide recall and precision
+become measurable only after the independently generated broad universe has
+been collected; screenshot-derived universes cannot support those claims.
+
+## What is not running
+
+The GitHub workflows are manual historical collectors. There is currently no
+scheduled or continuously running live scanner, no paper-trading workflow, and
+no order capability in this repository.

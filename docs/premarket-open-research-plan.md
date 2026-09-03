@@ -217,8 +217,10 @@ slippage model are required before execution-level conclusions.
 5. Validate missing minutes without fabricating zero-volume candles.
 6. Calculate the frozen features and continuous outcomes.
 7. Compare distributions, rank correlations and effect sizes by date.
-8. Use leave-one-date-out checks: discover on four dates and inspect the held
-   out date, rotating through all dates.
+8. Use chronological expanding-window checks: choose or compare rules on
+   earlier dates and inspect only the next later date. Leave-one-date-out may
+   remain a descriptive stability check, but must not substitute for temporal
+   validation.
 9. Report patterns that recur, patterns driven by one outlier and patterns that
    fail on later dates.
 10. Only after more sessions, test candidate cutoffs on dates not used to

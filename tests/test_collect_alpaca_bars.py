@@ -74,6 +74,14 @@ class CollectorTests(unittest.TestCase):
             & set(collector.MISSED_RUNNERS_CONTROLS)
         )
 
+    def test_large_universe_is_split_into_stable_batches(self):
+        self.assertEqual(
+            [["A", "B"], ["C", "D"], ["E"]],
+            list(collector.chunked(["A", "B", "C", "D", "E"], 2)),
+        )
+        with self.assertRaisesRegex(ValueError, "positive"):
+            list(collector.chunked(["A"], 0))
+
     def test_loads_date_specific_universe(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "universe.json"

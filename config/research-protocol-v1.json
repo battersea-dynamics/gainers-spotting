@@ -1,0 +1,59 @@
+{
+  "protocol_version": "premarket-research-v1",
+  "feature_set_version": "point-in-time-bars-v1",
+  "outcome_set_version": "continuous-outcomes-v1",
+  "ranking_models": {
+    "composite_v1": {
+      "open_features": [
+        "pm_return",
+        "pm_range_pct",
+        "pm_close_location",
+        "pm_drawdown_from_high",
+        "pm_dollar_volume",
+        "pm_late_return_0900",
+        "pm_late_volume_share",
+        "pm_last_vs_vwap",
+        "pm_new_high_count",
+        "pm_active_bars_last_60m"
+      ],
+      "delayed_features": [
+        "open_return",
+        "open_close_location",
+        "open_dollar_volume",
+        "open_last_vs_vwap",
+        "open_drawdown_from_high",
+        "open_recovery_from_low",
+        "open_new_high_count",
+        "decision_vs_pm_high"
+      ]
+    },
+    "baseline_pm_return": {"open_features": ["pm_return"], "delayed_features": []},
+    "baseline_pm_volume": {"open_features": ["pm_volume"], "delayed_features": []},
+    "baseline_pm_dollar_volume": {"open_features": ["pm_dollar_volume"], "delayed_features": []},
+    "baseline_pm_high_proximity": {"open_features": ["pm_drawdown_from_high"], "delayed_features": []}
+  },
+  "continuous_primary_outcomes": [
+    "ret_5m",
+    "ret_15m",
+    "ret_30m",
+    "ret_60m",
+    "ret_120m",
+    "ret_noon",
+    "ret_close",
+    "mfe",
+    "mae",
+    "time_to_high_min",
+    "time_to_low_min",
+    "high_to_close_giveback"
+  ],
+  "mfe_sensitivity_thresholds": [0.10, 0.20, 0.30],
+  "top_k": [5, 10, 20],
+  "minimum_training_dates": 3,
+  "failure_modes": {
+    "faded_by_30m": "30-minute forward return is below zero",
+    "closed_below_entry": "regular-session close is below the benchmark entry",
+    "never_above_entry": "maximum favourable excursion is not positive",
+    "no_new_high_after_decision": "the future session high does not exceed the highest price known at the decision time"
+  },
+  "interpretation": "MFE thresholds are evaluation-only sensitivity labels, not scanner filters, buy rules, or production targets. Continuous outcomes remain primary."
+}
