@@ -2,7 +2,7 @@
 
 Read this document first when resuming the project in a new chat. It is the durable source of truth for the research scope, decisions, data status, and next actions. Update it whenever the methodology or project state materially changes.
 
-Last updated: 2026-09-03
+Last updated: 2026-09-09
 
 ## Mission
 
@@ -40,6 +40,7 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `tests/test_rank_premarket_candidates.py`
 - `tests/test_build_alpaca_universe.py`
 - `docs/premarket-open-research-plan.md`
+- `docs/engine-spec-v1.md`
 - `docs/preliminary-week-findings.md`
 - date-specific universes under `config/research-universes/`
 - frozen evaluation definitions under `config/research-protocol-v1.json`
@@ -56,6 +57,18 @@ records the snapshot time and survivorship limitation.
 
 No live scanner is scheduled or running. Existing GitHub workflows are manual
 historical data collectors only.
+
+The approved `engine-spec-v1.md` preserves the user's original screenshot-led
+research strategy as a primary historical track: use Revolut observations to
+identify important top-gainer cases, reconstruct them with authoritative
+Alpaca one-minute bars, compare their patterns with failures and missed
+runners, and then test those hypotheses through an independent market-wide
+discovery engine. The future scanner does not use Revolut as an input.
+
+The specification also adds previous-session after-hours context for retained
+symbols, explicit market-data latency and bar-boundary rules, a two-stage
+market-wide discovery funnel, historical time-normalised baselines, separate
+emergence/momentum/risk profiles, and unambiguous numeric units.
 
 ## Data status and source quality
 
@@ -145,21 +158,22 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Preserve any new screenshot observations as external labels, without using them to construct the scanner universe.
-2. Before each future observation session, save a dated broad Alpaca asset-universe snapshot.
-3. Design an API-efficient two-stage discovery run so thousands of eligible assets are reduced before deep one-minute-bar analysis.
-4. Add official previous close and corporate-action inputs before calling any feature a true gap.
-5. Add historical, time-normalised RVOL only after comparable prior-session windows are cached.
-6. Expand the historical sample beyond the current six selected sessions and retain independently selected negatives.
-7. Run the frozen v1 protocol without tuning on the first later dates, then review the chronological results.
-8. Add quote-derived spread, catalyst tagging, float data, and regime analysis only when reliable source data is available.
-9. Keep execution/slippage modelling deferred and keep the project order-free.
+1. Inventory all existing Revolut screenshot dates and checkpoints, including the later August observations, and identify missing transcriptions.
+2. Verify which screenshot-derived dates already have complete Alpaca one-minute datasets and run the approved behavioural reconstruction across them.
+3. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.
+4. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
+5. Consolidate the duplicated feature calculations before extending the ranking models.
+6. Build historical, time-normalised activity baselines using only earlier sessions.
+7. Implement the independent multi-channel discovery funnel and retain whole-market controls.
+8. Expand historical validation beyond the selected screenshot sessions before choosing thresholds or weights.
+9. Add quote-derived spread, catalyst tagging, float data and regime analysis only when reliable data justify them.
+10. Keep execution/slippage modelling deferred and keep the project order-free.
 
 ## New-chat bootstrap prompt
 
 Copy this into a fresh chat:
 
-> Work only in `battersea-dynamics/gainers-spotting`. First read `docs/research-handoff.md`, `docs/premarket-open-research-plan.md`, `docs/preliminary-week-findings.md`, and inspect Git status before acting. Continue the research-only premarket/open pipeline from the documented state. Do not modify `trading-agent`, place or implement orders, expose credentials, invent thresholds, or use future data in features. Use Revolut screenshots only as observational labels; use Alpaca SIP bars as the authoritative market data. Analyze all dates collectively with date-separated validation. Tell me the verified current status and the next safe action before making material changes.
+> Work only in `battersea-dynamics/gainers-spotting`. First read `docs/research-handoff.md`, `docs/engine-spec-v1.md`, `docs/premarket-open-research-plan.md`, `docs/preliminary-week-findings.md`, and inspect Git status before acting. Continue the research-only premarket/open pipeline from the documented state. Do not modify `trading-agent`, place or implement orders, expose credentials, invent thresholds, or use future data in features. Preserve the Revolut screenshot-led behavioural study as the initial historical pattern-discovery track, while keeping Revolut outside the future scanner's inputs. Use Alpaca SIP bars as the authoritative market data. Analyze all dates collectively with date-separated validation. Tell me the verified current status and the next safe action before making material changes.
 
 ## Maintenance rule
 
