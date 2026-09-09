@@ -59,7 +59,33 @@ Initial work will:
 
 ## Repository
 
-This is a standalone project. Generated datasets, screenshots, API credentials and caches should not be committed to Git.
+This is a standalone project. Raw market datasets, screenshot images, recovery
+archives, API credentials and caches should not be committed to Git. Small,
+reviewable derived observations and dated research-universe manifests may be
+committed when their provenance and limitations are explicit.
+
+## Recovered screenshot observations
+
+The repository contains normalized, date-level observations derived from the
+recovered Revolut OCR archive under `config/research-observations/`. The source
+ZIP and original screenshots remain outside Git. The records retain actual UK
+capture times, per-image visible positions, OCR confidence and conflicting or
+missing values; they never infer a global rank across scrolling captures.
+
+To reproduce the normalization from a local copy of the recovery ZIP:
+
+```bash
+python scripts/normalize_screenshot_recovery.py \
+  --input /path/to/gainers-screenshot-recovery.zip \
+  --write-universes
+```
+
+Existing reviewed universe files are preserved. Missing dated universes are
+created as collection manifests: a symbol shown with a dollar price is marked
+`provisional_usd_displayed`, not verified as an eligible US equity. Pass a
+dated Alpaca asset snapshot with `--asset-file` when one is available, and use
+historical bar success/failure metadata to finish eligibility review before
+analysis.
 
 ## Historical Alpaca collector
 

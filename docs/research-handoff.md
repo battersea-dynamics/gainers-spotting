@@ -34,15 +34,18 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `scripts/analyze_premarket_open_week.py`
 - `scripts/rank_premarket_candidates.py`
 - `scripts/build_alpaca_universe.py`
+- `scripts/normalize_screenshot_recovery.py`
 - `tests/test_collect_alpaca_bars.py`
 - `tests/test_analyze_historical_session.py`
 - `tests/test_analyze_premarket_open_week.py`
 - `tests/test_rank_premarket_candidates.py`
 - `tests/test_build_alpaca_universe.py`
+- `tests/test_normalize_screenshot_recovery.py`
 - `docs/premarket-open-research-plan.md`
 - `docs/engine-spec-v1.md`
 - `docs/preliminary-week-findings.md`
 - date-specific universes under `config/research-universes/`
+- normalized Revolut observations under `config/research-observations/`
 - frozen evaluation definitions under `config/research-protocol-v1.json`
 
 The multi-date research pipeline was committed as `2cded70` (`Add multi-date premarket research pipeline`). GitHub Actions run `30696226390` completed successfully for 2026-07-27 through 2026-07-31.
@@ -83,13 +86,26 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
 
 ### Screenshot observations
 
-- Revolut Top Movers screenshots provide approximate observed rankings, displayed prices, and displayed percentage gains at specific checkpoints.
+- The recovered archive inventory covers 249 captures, 2,314 visible rows, 89
+  grouped checkpoints and 14 dates from 2026-07-27 through 2026-08-14. The
+  committed date-level files preserve 585 readable ticker strings and 552
+  unreadable-field records.
+- The archive contains OCR-derived JSON and inventories, not the original image
+  pixels. The source ZIP remains outside Git.
+- Revolut Top Movers observations provide per-capture visible positions,
+  displayed prices, and displayed percentage gains at specific actual times.
+  Numeric global ranks cannot be reconstructed safely from overlapping
+  scrolling captures and are not inferred.
 - The screenshots include non-US securities and leveraged ETPs. Retain these in raw transcription, but mark them separately and exclude them from US-Alpaca evaluation when appropriate.
-- Always record the actual phone timestamp, intended checkpoint, and delay. Never silently relabel a delayed screenshot as on-time.
+- Actual UK phone timestamps are preserved. Intended checkpoint times were not
+  recoverable from the archive, so they remain null rather than being inferred;
+  consequently, capture delay cannot yet be calculated.
 - Missing checkpoints remain missing; do not interpolate their rankings.
 - Screenshot percentages may use a reference price that differs from the research definition. They are useful labels, not exact market bars.
-
-Latest visible checkpoint at this handoff: Tuesday 2026-08-11 at 09:49 UK, intended for 09:15 UK and therefore 34 minutes late. Its transcription is expected under `data/research/observations/2026-08-11/09-49-uk.json`.
+- Existing reviewed universes for 2026-07-27 through 2026-07-31 were preserved.
+  New August universe manifests are provisional collection inputs. Dollar-price
+  display is not proof of Alpaca eligibility; validate against dated assets and
+  the collector's successful-symbol/failure metadata before analysis.
 
 ## Research question
 
@@ -158,16 +174,19 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Inventory all existing Revolut screenshot dates and checkpoints, including the later August observations, and identify missing transcriptions.
-2. Verify which screenshot-derived dates already have complete Alpaca one-minute datasets and run the approved behavioural reconstruction across them.
-3. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.
-4. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
-5. Consolidate the duplicated feature calculations before extending the ranking models.
-6. Build historical, time-normalised activity baselines using only earlier sessions.
-7. Implement the independent multi-channel discovery funnel and retain whole-market controls.
-8. Expand historical validation beyond the selected screenshot sessions before choosing thresholds or weights.
-9. Add quote-derived spread, catalyst tagging, float data and regime analysis only when reliable data justify them.
-10. Keep execution/slippage modelling deferred and keep the project order-free.
+1. Validate the provisional August symbols with a dated Alpaca asset snapshot
+   where available and historical one-minute bar success/failure metadata.
+2. Collect the missing Alpaca one-minute datasets for 2026-08-03 through
+   2026-08-14 and retain their metadata locally.
+3. Run the approved screenshot-labelled behavioural reconstruction across all
+   dates with usable bars, preserving controls and missing observations.
+4. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.
+5. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
+6. Consolidate the duplicated feature calculations before extending the ranking models.
+7. Build historical, time-normalised activity baselines using only earlier sessions.
+8. Implement the independent multi-channel discovery funnel and retain whole-market controls.
+9. Expand historical validation beyond the selected screenshot sessions before choosing thresholds or weights.
+10. Add quote-derived spread, catalyst tagging, float data and regime analysis only when reliable data justify them; keep the project order-free.
 
 ## New-chat bootstrap prompt
 

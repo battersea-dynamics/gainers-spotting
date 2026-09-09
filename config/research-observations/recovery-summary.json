@@ -1,0 +1,114 @@
+{
+  "normalizer_version": "screenshot-recovery-normalizer-v1",
+  "source_bundle_sha256": "7a512125b99d960250ca9263d8db68e3cca7f578c5cf76a6d60e540c4f30c55c",
+  "source_images": 249,
+  "source_access_status_counts": {
+    "accessible": 244,
+    "partially_accessible": 5
+  },
+  "market_phase_image_counts": {
+    "market_open": 6,
+    "post_open": 108,
+    "premarket": 135
+  },
+  "source_observation_rows": 2314,
+  "source_unreadable_field_records": 552,
+  "unreadable_field_counts": {
+    "all_observation_rows": 1,
+    "company_name": 20,
+    "displayed_percentage_change": 226,
+    "displayed_price": 248,
+    "ticker": 52,
+    "unreadable_image_region": 5
+  },
+  "dates": [
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-03",
+    "2026-08-04",
+    "2026-08-05",
+    "2026-08-06",
+    "2026-08-07",
+    "2026-08-10",
+    "2026-08-11",
+    "2026-08-12",
+    "2026-08-14"
+  ],
+  "date_count": 14,
+  "checkpoint_count": 89,
+  "unique_readable_tickers": 585,
+  "classification_counts": {
+    "unresolved_invalid_ticker_format": 10,
+    "unresolved_no_currency_evidence": 56,
+    "excluded_existing_non_us": 26,
+    "verified_existing_research_universe": 197,
+    "provisional_usd_displayed": 289,
+    "excluded_non_us_currency": 7
+  },
+  "existing_universe_comparisons": {
+    "2026-07-27": {
+      "existing_file_preserved": true,
+      "premarket_missing_from_recovery": [],
+      "premarket_additional_in_recovery": [
+        "S"
+      ],
+      "post_open_missing_from_recovery": [
+        "SSII"
+      ],
+      "post_open_additional_in_recovery": []
+    },
+    "2026-07-28": {
+      "existing_file_preserved": true,
+      "premarket_missing_from_recovery": [],
+      "premarket_additional_in_recovery": [
+        "G",
+        "S"
+      ],
+      "post_open_missing_from_recovery": [
+        "SI"
+      ],
+      "post_open_additional_in_recovery": []
+    },
+    "2026-07-29": {
+      "existing_file_preserved": true,
+      "premarket_missing_from_recovery": [
+        "SI"
+      ],
+      "premarket_additional_in_recovery": [
+        "C",
+        "J",
+        "S"
+      ],
+      "post_open_missing_from_recovery": [],
+      "post_open_additional_in_recovery": [
+        "CBIZ"
+      ]
+    },
+    "2026-07-30": {
+      "existing_file_preserved": true,
+      "premarket_missing_from_recovery": [],
+      "premarket_additional_in_recovery": [],
+      "post_open_missing_from_recovery": [
+        "DAAQ"
+      ],
+      "post_open_additional_in_recovery": [
+        "CORZ-IT",
+        "FCELL",
+        "HY",
+        "S"
+      ]
+    },
+    "2026-07-31": {
+      "existing_file_preserved": true,
+      "premarket_missing_from_recovery": [],
+      "premarket_additional_in_recovery": [],
+      "post_open_missing_from_recovery": [],
+      "post_open_additional_in_recovery": [
+        "ATI"
+      ]
+    }
+  }
+}

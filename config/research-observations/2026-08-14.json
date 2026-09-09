@@ -1,0 +1,4206 @@
+{
+  "schema_version": "revolut-date-observations-v1",
+  "normalizer_version": "screenshot-recovery-normalizer-v1",
+  "research_date": "2026-08-14",
+  "source": "Recovered Revolut Top Movers screenshot OCR",
+  "source_bundle_sha256": "7a512125b99d960250ca9263d8db68e3cca7f578c5cf76a6d60e540c4f30c55c",
+  "research_only": true,
+  "screenshots_are_scanner_inputs": false,
+  "checkpoint_grouping_tolerance_minutes": 2,
+  "checkpoints": [
+    {
+      "checkpoint_id": "2026-08-14_1258_premarket",
+      "market_phase": "premarket",
+      "actual_uk_time_start": "12:58",
+      "actual_uk_time_end": "12:59",
+      "intended_checkpoint_time": null,
+      "source_images": [
+        {
+          "screenshot_id": "2026-08-14_1258_01-1000069800",
+          "source_filename": "01-1000069800.png",
+          "actual_uk_screenshot_time": "12:58",
+          "visible_rows_extracted": 8
+        },
+        {
+          "screenshot_id": "2026-08-14_1258_02-1000069801",
+          "source_filename": "02-1000069801.png",
+          "actual_uk_screenshot_time": "12:58",
+          "visible_rows_extracted": 11
+        },
+        {
+          "screenshot_id": "2026-08-14_1259_03-1000069802",
+          "source_filename": "03-1000069802.png",
+          "actual_uk_screenshot_time": "12:59",
+          "visible_rows_extracted": 8
+        }
+      ],
+      "symbols": [
+        {
+          "ticker": "AIRO",
+          "resolved_company_name": "AIRO Group Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 9.93,
+            "raw": "$9.93"
+          },
+          "resolved_percentage_points": 17.79,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 6,
+              "company_name": "AIRO Group Holdings Inc",
+              "displayed_price": "$9.93",
+              "displayed_percentage_change": "17.79%",
+              "ocr_confidence": {
+                "ticker": 87.64,
+                "price": 95.62,
+                "percentage_change": 58.73
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ARX",
+          "resolved_company_name": "Accelerant Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 19.74,
+            "raw": "$19.74"
+          },
+          "resolved_percentage_points": 57.66,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 1,
+              "company_name": "Accelerant Holdings",
+              "displayed_price": "$19.74",
+              "displayed_percentage_change": "57.66%",
+              "ocr_confidence": {
+                "ticker": 40.82,
+                "price": 96.56,
+                "percentage_change": 85.89
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ATRO",
+          "resolved_company_name": "RSKD - Cybersecurity Astronics Corp",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 4,
+              "company_name": "RSKD - Cybersecurity Astronics Corp",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 76.12,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "BRUN",
+          "resolved_company_name": "Boost Run",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 23.19,
+            "raw": "$23.19"
+          },
+          "resolved_percentage_points": 24.61,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 2,
+              "company_name": "Boost Run",
+              "displayed_price": "$23.19",
+              "displayed_percentage_change": "24.61%",
+              "ocr_confidence": {
+                "ticker": 92.7,
+                "price": 95.53,
+                "percentage_change": 87.18
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CANG",
+          "resolved_company_name": "Cango Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.14,
+            "raw": "$2.14"
+          },
+          "resolved_percentage_points": 24.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 3,
+              "company_name": "Cango Inc",
+              "displayed_price": "$2.14",
+              "displayed_percentage_change": "24.12%",
+              "ocr_confidence": {
+                "ticker": 90.87,
+                "price": 92.61,
+                "percentage_change": 57.94
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CRWV",
+          "resolved_company_name": "CoreWeave Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 106.08,
+            "raw": "$106.08"
+          },
+          "resolved_percentage_points": 17.44,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 8,
+              "company_name": "CoreWeave Inc.",
+              "displayed_price": "$106.08",
+              "displayed_percentage_change": "17.44%",
+              "ocr_confidence": {
+                "ticker": 86.87,
+                "price": 96.84,
+                "percentage_change": 61.64
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CURI",
+          "resolved_company_name": "CuriosityStream",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 2,
+              "company_name": "CuriosityStream",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 53.34,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "EROC",
+          "resolved_company_name": "ERock Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 14.16,
+            "raw": "$14.16"
+          },
+          "resolved_percentage_points": 25.86,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 7,
+              "company_name": "ERock Inc.",
+              "displayed_price": "$14.16",
+              "displayed_percentage_change": "25.86%",
+              "ocr_confidence": {
+                "ticker": 90.11,
+                "price": 93.05,
+                "percentage_change": 71.77
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "GRWG",
+          "resolved_company_name": "GrowGeneration",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.78,
+            "raw": "$1.78"
+          },
+          "resolved_percentage_points": 19.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 10,
+              "company_name": "GrowGeneration",
+              "displayed_price": "$1.78",
+              "displayed_percentage_change": "19.12%",
+              "ocr_confidence": {
+                "ticker": 90.58,
+                "price": 95.81,
+                "percentage_change": 76.05
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HLIT",
+          "resolved_company_name": "Harmonic",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.0,
+            "raw": "$15"
+          },
+          "resolved_percentage_points": 31.0,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 3,
+              "company_name": "Harmonic",
+              "displayed_price": "$15",
+              "displayed_percentage_change": "31.00%",
+              "ocr_confidence": {
+                "ticker": 90.6,
+                "price": 95.77,
+                "percentage_change": 92.17
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HQ",
+          "resolved_company_name": "Horizon Quantum Holdings Ltd.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 14.85,
+            "raw": "$14.85"
+          },
+          "resolved_percentage_points": 18.89,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 11,
+              "company_name": "Horizon Quantum Holdings Ltd.",
+              "displayed_price": "$14.85",
+              "displayed_percentage_change": "18.89%",
+              "ocr_confidence": {
+                "ticker": 89.29,
+                "price": 95.9,
+                "percentage_change": 76.53
+              }
+            },
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 1,
+              "company_name": "Horizon Quantum Holdings Ltd.",
+              "displayed_price": "$14.85",
+              "displayed_percentage_change": "18.89%",
+              "ocr_confidence": {
+                "ticker": 92.7,
+                "price": 95.92,
+                "percentage_change": 83.74
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "JACK",
+          "resolved_company_name": "Jack in the Box",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 21.21,
+            "raw": "$21.21"
+          },
+          "resolved_percentage_points": 18.75,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 2,
+              "company_name": "Jack in the Box",
+              "displayed_price": "$21.21",
+              "displayed_percentage_change": "18.75%",
+              "ocr_confidence": {
+                "ticker": 93.0,
+                "price": 96.62,
+                "percentage_change": 80.65
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LNSR",
+          "resolved_company_name": "LENSAR Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 7.58,
+            "raw": "$7.58"
+          },
+          "resolved_percentage_points": 25.7,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 8,
+              "company_name": "LENSAR Inc",
+              "displayed_price": "$7.58",
+              "displayed_percentage_change": "25.70%",
+              "ocr_confidence": {
+                "ticker": 91.51,
+                "price": 95.95,
+                "percentage_change": 88.51
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "MVIS",
+          "resolved_company_name": "Microvision",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.65,
+            "raw": "$4.65"
+          },
+          "resolved_percentage_points": 27.74,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 5,
+              "company_name": "Microvision",
+              "displayed_price": "$4.65",
+              "displayed_percentage_change": "27.74%",
+              "ocr_confidence": {
+                "ticker": 90.32,
+                "price": 95.25,
+                "percentage_change": 87.77
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NBIS",
+          "resolved_company_name": "Nebius Group N.V.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 249.63,
+            "raw": "$249.63"
+          },
+          "resolved_percentage_points": 29.18,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 4,
+              "company_name": "Nebius Group N.V.",
+              "displayed_price": "$249.63",
+              "displayed_percentage_change": "29.18%",
+              "ocr_confidence": {
+                "ticker": 92.19,
+                "price": 96.43,
+                "percentage_change": 88.41
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "OMER",
+          "resolved_company_name": "Omeros Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.96,
+            "raw": "$15.96"
+          },
+          "resolved_percentage_points": 17.35,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 7,
+              "company_name": "Omeros Corp",
+              "displayed_price": "$15.96",
+              "displayed_percentage_change": "17.35%",
+              "ocr_confidence": {
+                "ticker": 92.02,
+                "price": 96.13,
+                "percentage_change": 70.63
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "PESI",
+          "resolved_company_name": "Perma-Fix Environmental Services Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 20.9,
+            "raw": "$20.90"
+          },
+          "resolved_percentage_points": 19.79,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 8,
+              "company_name": "Perma-Fix Environmental Services Inc",
+              "displayed_price": "$20.90",
+              "displayed_percentage_change": "19.79%",
+              "ocr_confidence": {
+                "ticker": 79.69,
+                "price": 96.52,
+                "percentage_change": 82.26
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "QNT",
+          "resolved_company_name": "Quantinuum",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 71.15,
+            "raw": "$71.15"
+          },
+          "resolved_percentage_points": 26.91,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_01-1000069800",
+              "source_filename": "01-1000069800.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 6,
+              "company_name": "Quantinuum",
+              "displayed_price": "$71.15",
+              "displayed_percentage_change": "26.91%",
+              "ocr_confidence": {
+                "ticker": 69.56,
+                "price": 90.87,
+                "percentage_change": 95.98
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RSKD",
+          "resolved_company_name": "Riskified",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 6.24,
+            "raw": "$6.24"
+          },
+          "resolved_percentage_points": 18.5,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1259_03-1000069802",
+              "source_filename": "03-1000069802.png",
+              "actual_uk_screenshot_time": "12:59",
+              "visible_position": 3,
+              "company_name": "Riskified",
+              "displayed_price": "$6.24",
+              "displayed_percentage_change": "18.50%",
+              "ocr_confidence": {
+                "ticker": 92.64,
+                "price": 95.96,
+                "percentage_change": 82.03
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SION",
+          "resolved_company_name": "Sionna Therapeutics Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 6.37,
+            "raw": "$6.37"
+          },
+          "resolved_percentage_points": 24.9,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 1,
+              "company_name": "Sionna Therapeutics Inc",
+              "displayed_price": "$6.37",
+              "displayed_percentage_change": "24.90%",
+              "ocr_confidence": {
+                "ticker": 95.8,
+                "price": 96.38,
+                "percentage_change": 57.72
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SMCI",
+          "resolved_company_name": "Super Micro Computer Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 21.39,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 6,
+              "company_name": "Super Micro Computer Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "21.39%",
+              "ocr_confidence": {
+                "ticker": 6.41,
+                "price": null,
+                "percentage_change": 82.24
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SMWB",
+          "resolved_company_name": "SimilarWeb",
+          "resolved_price": null,
+          "resolved_percentage_points": 21.5,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 5,
+              "company_name": "SimilarWeb",
+              "displayed_price": null,
+              "displayed_percentage_change": "21.5%",
+              "ocr_confidence": {
+                "ticker": 88.05,
+                "price": null,
+                "percentage_change": 71.2
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SO",
+          "resolved_company_name": "CANG - Car Dealer",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 4,
+              "company_name": "CANG - Car Dealer",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 37.14,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "WYFI",
+          "resolved_company_name": "WhiteFiber Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 29.24,
+            "raw": "$29.24"
+          },
+          "resolved_percentage_points": 20.72,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1258_02-1000069801",
+              "source_filename": "02-1000069801.png",
+              "actual_uk_screenshot_time": "12:58",
+              "visible_position": 7,
+              "company_name": "WhiteFiber Inc.",
+              "displayed_price": "$29.24",
+              "displayed_percentage_change": "20.72%",
+              "ocr_confidence": {
+                "ticker": 67.53,
+                "price": 94.1,
+                "percentage_change": 56.53
+              }
+            }
+          ]
+        }
+      ],
+      "unreadable_ticker_rows": [
+        {
+          "screenshot_id": "2026-08-14_1258_02-1000069801",
+          "source_filename": "02-1000069801.png",
+          "actual_uk_screenshot_time": "12:58",
+          "visible_position": 9,
+          "company_name": "Marex",
+          "displayed_price": "$71.44",
+          "displayed_percentage_change": "19.20%",
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 96.21,
+            "percentage_change": 61.75
+          }
+        },
+        {
+          "screenshot_id": "2026-08-14_1259_03-1000069802",
+          "source_filename": "03-1000069802.png",
+          "actual_uk_screenshot_time": "12:59",
+          "visible_position": 5,
+          "company_name": "Adyen N.V.",
+          "displayed_price": "€1,075.60",
+          "displayed_percentage_change": "18.19%",
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 42.43,
+            "percentage_change": 85.66
+          }
+        }
+      ],
+      "global_rank_policy": "Not inferred. visible_position is preserved per scrolling capture."
+    },
+    {
+      "checkpoint_id": "2026-08-14_1406_premarket",
+      "market_phase": "premarket",
+      "actual_uk_time_start": "14:06",
+      "actual_uk_time_end": "14:07",
+      "intended_checkpoint_time": null,
+      "source_images": [
+        {
+          "screenshot_id": "2026-08-14_1406_01-1000069926",
+          "source_filename": "01-1000069926.png",
+          "actual_uk_screenshot_time": "14:06",
+          "visible_rows_extracted": 8
+        },
+        {
+          "screenshot_id": "2026-08-14_1407_02-1000069927",
+          "source_filename": "02-1000069927.png",
+          "actual_uk_screenshot_time": "14:07",
+          "visible_rows_extracted": 11
+        },
+        {
+          "screenshot_id": "2026-08-14_1407_03-1000069928",
+          "source_filename": "03-1000069928.png",
+          "actual_uk_screenshot_time": "14:07",
+          "visible_rows_extracted": 8
+        }
+      ],
+      "symbols": [
+        {
+          "ticker": "A2Z",
+          "resolved_company_name": "OMER",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 4,
+              "company_name": "OMER",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 91.94,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AIRO",
+          "resolved_company_name": "AIRO Group Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 11.04,
+            "raw": "$11.04"
+          },
+          "resolved_percentage_points": 30.09,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 7,
+              "company_name": "AIRO Group Holdings Inc",
+              "displayed_price": "$11.04",
+              "displayed_percentage_change": "30.09%",
+              "ocr_confidence": {
+                "ticker": 92.79,
+                "price": 96.25,
+                "percentage_change": 94.83
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ANG",
+          "resolved_company_name": "Digital Asset Acquisition Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 10.41,
+            "raw": "$10.41"
+          },
+          "resolved_percentage_points": 42.21,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 5,
+              "company_name": "Digital Asset Acquisition Corp",
+              "displayed_price": "$10.41",
+              "displayed_percentage_change": "42.21%",
+              "ocr_confidence": {
+                "ticker": 0.0,
+                "price": 95.4,
+                "percentage_change": 77.33
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ARX",
+          "resolved_company_name": "Accelerant Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 19.58,
+            "raw": "$19.58"
+          },
+          "resolved_percentage_points": 43.86,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 4,
+              "company_name": "Accelerant Holdings",
+              "displayed_price": "$19.58",
+              "displayed_percentage_change": "43.86%",
+              "ocr_confidence": {
+                "ticker": 34.7,
+                "price": 95.91,
+                "percentage_change": 94.59
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AVAH",
+          "resolved_company_name": "Aveanna Healthcare Holdings Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 11.2,
+            "raw": "$11.20"
+          },
+          "resolved_percentage_points": 23.75,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 6,
+              "company_name": "Aveanna Healthcare Holdings Inc.",
+              "displayed_price": "$11.20",
+              "displayed_percentage_change": "23.75%",
+              "ocr_confidence": {
+                "ticker": 90.42,
+                "price": 96.28,
+                "percentage_change": 88.36
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "BRUN",
+          "resolved_company_name": "Boost Run",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 26.58,
+            "raw": "$26.58"
+          },
+          "resolved_percentage_points": 19.89,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 1,
+              "company_name": "Boost Run",
+              "displayed_price": "$26.58",
+              "displayed_percentage_change": "19.89%",
+              "ocr_confidence": {
+                "ticker": 93.06,
+                "price": 96.26,
+                "percentage_change": 85.66
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CAPR",
+          "resolved_company_name": "Capricor Therapeutics",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 8.0,
+            "raw": "$8"
+          },
+          "resolved_percentage_points": 90.9,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 1,
+              "company_name": "Capricor Therapeutics",
+              "displayed_price": "$8",
+              "displayed_percentage_change": "90.9%",
+              "ocr_confidence": {
+                "ticker": 92.89,
+                "price": 95.57,
+                "percentage_change": 86.04
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CTEV",
+          "resolved_company_name": "Claritev Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 41.26,
+            "raw": "$41.26"
+          },
+          "resolved_percentage_points": 16.81,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 8,
+              "company_name": "Claritev Corp",
+              "displayed_price": "$41.26",
+              "displayed_percentage_change": "16.81%",
+              "ocr_confidence": {
+                "ticker": 91.06,
+                "price": 96.18,
+                "percentage_change": 86.22
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CURI",
+          "resolved_company_name": "CuriosityStream",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.18,
+            "raw": "$4.18"
+          },
+          "resolved_percentage_points": 49.28,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 3,
+              "company_name": "CuriosityStream",
+              "displayed_price": "$4.18",
+              "displayed_percentage_change": "49.28%",
+              "ocr_confidence": {
+                "ticker": 45.74,
+                "price": 90.77,
+                "percentage_change": 75.74
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ETON",
+          "resolved_company_name": "Eton Pharmaceuticals Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 53.5,
+            "raw": "$53.50"
+          },
+          "resolved_percentage_points": 28.66,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 1,
+              "company_name": "Eton Pharmaceuticals Inc",
+              "displayed_price": "$53.50",
+              "displayed_percentage_change": "28.66%",
+              "ocr_confidence": {
+                "ticker": 92.12,
+                "price": 96.09,
+                "percentage_change": 84.18
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HHS",
+          "resolved_company_name": "Harte Hanks Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 84.06,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 2,
+              "company_name": "Harte Hanks Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "84.06%",
+              "ocr_confidence": {
+                "ticker": 93.19,
+                "price": null,
+                "percentage_change": 73.56
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HTFL",
+          "resolved_company_name": "Heartflow, Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 38.65,
+            "raw": "$38.65"
+          },
+          "resolved_percentage_points": 29.48,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 8,
+              "company_name": "Heartflow, Inc.",
+              "displayed_price": "$38.65",
+              "displayed_percentage_change": "29.48%",
+              "ocr_confidence": {
+                "ticker": 85.12,
+                "price": 96.67,
+                "percentage_change": 43.8
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "IMXI",
+          "resolved_company_name": "International Money Express",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 14.25,
+            "raw": "$14.25"
+          },
+          "resolved_percentage_points": 25.55,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 2,
+              "company_name": "International Money Express",
+              "displayed_price": "$14.25",
+              "displayed_percentage_change": "25.55%",
+              "ocr_confidence": {
+                "ticker": 61.2,
+                "price": 94.55,
+                "percentage_change": 79.46
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LNSR",
+          "resolved_company_name": "LENSAR Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 8.78,
+            "raw": "$8.78"
+          },
+          "resolved_percentage_points": 39.58,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1406_01-1000069926",
+              "source_filename": "01-1000069926.png",
+              "actual_uk_screenshot_time": "14:06",
+              "visible_position": 6,
+              "company_name": "LENSAR Inc",
+              "displayed_price": "$8.78",
+              "displayed_percentage_change": "39.58%",
+              "ocr_confidence": {
+                "ticker": 91.72,
+                "price": 96.26,
+                "percentage_change": 91.72
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "MH",
+          "resolved_company_name": "McGraw Hill",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 13.62,
+            "raw": "$13.62"
+          },
+          "resolved_percentage_points": 17.45,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 6,
+              "company_name": "McGraw Hill",
+              "displayed_price": "$13.62",
+              "displayed_percentage_change": "17.45%",
+              "ocr_confidence": {
+                "ticker": 91.02,
+                "price": 96.42,
+                "percentage_change": 40.49
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NCMI",
+          "resolved_company_name": "National CineMedia",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.7,
+            "raw": "$2.70"
+          },
+          "resolved_percentage_points": 21.62,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 9,
+              "company_name": "National CineMedia",
+              "displayed_price": "$2.70",
+              "displayed_percentage_change": "21.62%",
+              "ocr_confidence": {
+                "ticker": 62.54,
+                "price": 95.5,
+                "percentage_change": 89.95
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NU",
+          "resolved_company_name": "Nu Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.99,
+            "raw": "$15.99"
+          },
+          "resolved_percentage_points": 17.92,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 5,
+              "company_name": "Nu Holdings",
+              "displayed_price": "$15.99",
+              "displayed_percentage_change": "17.92%",
+              "ocr_confidence": {
+                "ticker": 93.29,
+                "price": 95.31,
+                "percentage_change": 34.39
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "OMER",
+          "resolved_company_name": "Omeros Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 17.2,
+            "raw": "$17.20"
+          },
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 3,
+              "company_name": "Omeros Corp",
+              "displayed_price": "$17.20",
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 92.87,
+                "price": 96.89,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "OPRX",
+          "resolved_company_name": "OptimizeRx",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 8.66,
+            "raw": "$8.66"
+          },
+          "resolved_percentage_points": 23.08,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 7,
+              "company_name": "OptimizeRx",
+              "displayed_price": "$8.66",
+              "displayed_percentage_change": "23.08%",
+              "ocr_confidence": {
+                "ticker": 86.8,
+                "price": 95.15,
+                "percentage_change": 88.79
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RRGB",
+          "resolved_company_name": "Red Robin Gourmet Burgers",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 9.81,
+            "raw": "$9.81"
+          },
+          "resolved_percentage_points": 20.22,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 10,
+              "company_name": "Red Robin Gourmet Burgers",
+              "displayed_price": "$9.81",
+              "displayed_percentage_change": "20.22%",
+              "ocr_confidence": {
+                "ticker": 80.98,
+                "price": 87.36,
+                "percentage_change": 84.86
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SLGL",
+          "resolved_company_name": "; Sol Gel Technologies Ltd",
+          "resolved_price": null,
+          "resolved_percentage_points": 18.02,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 4,
+              "company_name": "; Sol Gel Technologies Ltd",
+              "displayed_price": null,
+              "displayed_percentage_change": "18.02%",
+              "ocr_confidence": {
+                "ticker": 84.0,
+                "price": null,
+                "percentage_change": 74.44
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SNDK",
+          "resolved_company_name": "SanDisk Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1644.03,
+            "raw": "$1,644.03"
+          },
+          "resolved_percentage_points": 22.29,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 8,
+              "company_name": "SanDisk Corp",
+              "displayed_price": "$1,644.03",
+              "displayed_percentage_change": "22.29%",
+              "ocr_confidence": {
+                "ticker": 92.02,
+                "price": 95.54,
+                "percentage_change": 69.81
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "VWAV",
+          "resolved_company_name": "VisionWave Holdings Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 18.69,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 3,
+              "company_name": "VisionWave Holdings Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "18.69%",
+              "ocr_confidence": {
+                "ticker": 91.61,
+                "price": null,
+                "percentage_change": 95.73
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "WA",
+          "resolved_company_name": "A2Z Cust2Mate Solutions Corp",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_02-1000069927",
+              "source_filename": "02-1000069927.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 5,
+              "company_name": "A2Z Cust2Mate Solutions Corp",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 66.0,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "WDAY",
+          "resolved_company_name": "Workday",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 205.16,
+            "raw": "$205.16"
+          },
+          "resolved_percentage_points": 17.04,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 7,
+              "company_name": "Workday",
+              "displayed_price": "$205.16",
+              "displayed_percentage_change": "17.04%",
+              "ocr_confidence": {
+                "ticker": 92.48,
+                "price": 96.42,
+                "percentage_change": 51.81
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ZENA",
+          "resolved_company_name": "ZenatTech Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 19.47,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1407_03-1000069928",
+              "source_filename": "03-1000069928.png",
+              "actual_uk_screenshot_time": "14:07",
+              "visible_position": 2,
+              "company_name": "ZenatTech Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "19.47%",
+              "ocr_confidence": {
+                "ticker": 96.53,
+                "price": null,
+                "percentage_change": 66.21
+              }
+            }
+          ]
+        }
+      ],
+      "unreadable_ticker_rows": [
+        {
+          "screenshot_id": "2026-08-14_1407_02-1000069927",
+          "source_filename": "02-1000069927.png",
+          "actual_uk_screenshot_time": "14:07",
+          "visible_position": 11,
+          "company_name": "Boost Run",
+          "displayed_price": "$26.58",
+          "displayed_percentage_change": null,
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 96.2,
+            "percentage_change": null
+          }
+        }
+      ],
+      "global_rank_policy": "Not inferred. visible_position is preserved per scrolling capture."
+    },
+    {
+      "checkpoint_id": "2026-08-14_1443_post_open",
+      "market_phase": "post_open",
+      "actual_uk_time_start": "14:43",
+      "actual_uk_time_end": "14:43",
+      "intended_checkpoint_time": null,
+      "source_images": [
+        {
+          "screenshot_id": "2026-08-14_1443_01-1000069929",
+          "source_filename": "01-1000069929.png",
+          "actual_uk_screenshot_time": "14:43",
+          "visible_rows_extracted": 8
+        },
+        {
+          "screenshot_id": "2026-08-14_1443_02-1000069930",
+          "source_filename": "02-1000069930.png",
+          "actual_uk_screenshot_time": "14:43",
+          "visible_rows_extracted": 11
+        },
+        {
+          "screenshot_id": "2026-08-14_1443_03-1000069931",
+          "source_filename": "03-1000069931.png",
+          "actual_uk_screenshot_time": "14:43",
+          "visible_rows_extracted": 9
+        }
+      ],
+      "symbols": [
+        {
+          "ticker": "3LTP",
+          "resolved_company_name": "GraniteShares 3x Long Tesla Daily ETP",
+          "resolved_price": {
+            "currency": "GBP",
+            "value": 0.94,
+            "raw": "£0.94"
+          },
+          "resolved_percentage_points": 10.11,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 2,
+              "company_name": "GraniteShares 3x Long Tesla Daily ETP",
+              "displayed_price": "£0.94",
+              "displayed_percentage_change": "10.11%",
+              "ocr_confidence": {
+                "ticker": 91.03,
+                "price": 79.57,
+                "percentage_change": 54.47
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "3TSL",
+          "resolved_company_name": "Leverage Shares 3x Long Tesla ETP",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "conflict_preserved",
+            "percentage_change": "conflict_preserved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 11,
+              "company_name": "Leverage Shares 3x Long Tesla ETP",
+              "displayed_price": "£4.27",
+              "displayed_percentage_change": "10.71%",
+              "ocr_confidence": {
+                "ticker": 35.24,
+                "price": 88.12,
+                "percentage_change": 65.28
+              }
+            },
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 1,
+              "company_name": "Leverage Shares 3x Long Tesla ETP",
+              "displayed_price": "£4.28",
+              "displayed_percentage_change": "10.93%",
+              "ocr_confidence": {
+                "ticker": 72.91,
+                "price": 92.45,
+                "percentage_change": 75.24
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "7EVB",
+          "resolved_company_name": "Eolus Vind AB",
+          "resolved_price": null,
+          "resolved_percentage_points": 10.29,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 3,
+              "company_name": "Eolus Vind AB",
+              "displayed_price": null,
+              "displayed_percentage_change": "10.29%",
+              "ocr_confidence": {
+                "ticker": 82.93,
+                "price": null,
+                "percentage_change": 28.08
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ABX",
+          "resolved_company_name": "Abacus Life Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 9.36,
+            "raw": "$9.36"
+          },
+          "resolved_percentage_points": 49.85,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 4,
+              "company_name": "Abacus Life Inc",
+              "displayed_price": "$9.36",
+              "displayed_percentage_change": "49.85%",
+              "ocr_confidence": {
+                "ticker": 88.15,
+                "price": 95.69,
+                "percentage_change": 93.78
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AEHR",
+          "resolved_company_name": "Aehr Test Systems",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 139.5,
+            "raw": "$139.50"
+          },
+          "resolved_percentage_points": 13.13,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 7,
+              "company_name": "Aehr Test Systems",
+              "displayed_price": "$139.50",
+              "displayed_percentage_change": "13.13%",
+              "ocr_confidence": {
+                "ticker": 64.38,
+                "price": 96.39,
+                "percentage_change": 89.14
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AEYE",
+          "resolved_company_name": "AudioEye",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 7.0,
+            "raw": "$7"
+          },
+          "resolved_percentage_points": 20.48,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 8,
+              "company_name": "AudioEye",
+              "displayed_price": "$7",
+              "displayed_percentage_change": "20.48%",
+              "ocr_confidence": {
+                "ticker": 91.7,
+                "price": 96.9,
+                "percentage_change": 87.06
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "BW",
+          "resolved_company_name": "Babcock & Wilcox Enterprises Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 10.19,
+            "raw": "$10.19"
+          },
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 8,
+              "company_name": "Babcock & Wilcox Enterprises Inc",
+              "displayed_price": "$10.19",
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 96.82,
+                "price": 87.31,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CAPR",
+          "resolved_company_name": "Capricor Therapeutics",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 6.59,
+            "raw": "$6.59"
+          },
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 1,
+              "company_name": "Capricor Therapeutics",
+              "displayed_price": "$6.59",
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 88.01,
+                "price": 96.7,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ETON",
+          "resolved_company_name": "Eton Pharmaceuticals Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 56.3,
+            "raw": "$56.30"
+          },
+          "resolved_percentage_points": 37.99,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 4,
+              "company_name": "Eton Pharmaceuticals Inc",
+              "displayed_price": "$56.30",
+              "displayed_percentage_change": "37.99%",
+              "ocr_confidence": {
+                "ticker": 93.02,
+                "price": 96.86,
+                "percentage_change": 91.92
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "GRSD",
+          "resolved_company_name": "Grandstand Limited",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.32,
+            "raw": "$2.32"
+          },
+          "resolved_percentage_points": 21.46,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 6,
+              "company_name": "Grandstand Limited",
+              "displayed_price": "$2.32",
+              "displayed_percentage_change": "21.46%",
+              "ocr_confidence": {
+                "ticker": 92.83,
+                "price": 92.97,
+                "percentage_change": 77.69
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HHS",
+          "resolved_company_name": "Harte Hanks Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 50.17,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 2,
+              "company_name": "Harte Hanks Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "50.17%",
+              "ocr_confidence": {
+                "ticker": 90.72,
+                "price": null,
+                "percentage_change": 49.0
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HTFL",
+          "resolved_company_name": "Heartflow, Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 39.4,
+            "raw": "$39.40"
+          },
+          "resolved_percentage_points": 27.05,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 5,
+              "company_name": "Heartflow, Inc.",
+              "displayed_price": "$39.40",
+              "displayed_percentage_change": "27.05%",
+              "ocr_confidence": {
+                "ticker": 88.95,
+                "price": 96.82,
+                "percentage_change": 89.39
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "IMXI",
+          "resolved_company_name": "International Money Express",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 13.98,
+            "raw": "$13.98"
+          },
+          "resolved_percentage_points": 19.48,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 2,
+              "company_name": "International Money Express",
+              "displayed_price": "$13.98",
+              "displayed_percentage_change": "19.48%",
+              "ocr_confidence": {
+                "ticker": 70.02,
+                "price": 96.84,
+                "percentage_change": 44.15
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "KOPN",
+          "resolved_company_name": "Kopin Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 5.28,
+            "raw": "$5.28"
+          },
+          "resolved_percentage_points": 9.31,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 6,
+              "company_name": "Kopin Corp",
+              "displayed_price": "$5.28",
+              "displayed_percentage_change": "9.31%",
+              "ocr_confidence": {
+                "ticker": 96.26,
+                "price": 96.65,
+                "percentage_change": 76.78
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LUNR",
+          "resolved_company_name": "Intuitive Machines Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 19.67,
+            "raw": "$19.67"
+          },
+          "resolved_percentage_points": 12.01,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 8,
+              "company_name": "Intuitive Machines Inc",
+              "displayed_price": "$19.67",
+              "displayed_percentage_change": "12.01%",
+              "ocr_confidence": {
+                "ticker": 85.48,
+                "price": 96.58,
+                "percentage_change": 65.79
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NERV",
+          "resolved_company_name": "Minerva Neurosciences Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.75,
+            "raw": "$4.75"
+          },
+          "resolved_percentage_points": 21.17,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_01-1000069929",
+              "source_filename": "01-1000069929.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 7,
+              "company_name": "Minerva Neurosciences Inc",
+              "displayed_price": "$4.75",
+              "displayed_percentage_change": "21.17%",
+              "ocr_confidence": {
+                "ticker": 93.25,
+                "price": 93.96,
+                "percentage_change": 93.63
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NMAX",
+          "resolved_company_name": "Newsmax Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 11.43,
+            "raw": "$11.43"
+          },
+          "resolved_percentage_points": 20.44,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 1,
+              "company_name": "Newsmax Inc.",
+              "displayed_price": "$11.43",
+              "displayed_percentage_change": "20.44%",
+              "ocr_confidence": {
+                "ticker": 89.05,
+                "price": 96.27,
+                "percentage_change": 72.75
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NU",
+          "resolved_company_name": "Nu Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.76,
+            "raw": "$15.76"
+          },
+          "resolved_percentage_points": 13.17,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 5,
+              "company_name": "Nu Holdings",
+              "displayed_price": "$15.76",
+              "displayed_percentage_change": "13.17%",
+              "ocr_confidence": {
+                "ticker": 88.32,
+                "price": 50.03,
+                "percentage_change": 84.37
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "R",
+          "resolved_company_name": "IMXI - Financial services",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 3,
+              "company_name": "IMXI - Financial services",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 93.18,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RCMT",
+          "resolved_company_name": "R CM Technologies Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 16.54,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 4,
+              "company_name": "R CM Technologies Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "16.54%",
+              "ocr_confidence": {
+                "ticker": 92.17,
+                "price": null,
+                "percentage_change": 73.64
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RDDT",
+          "resolved_company_name": "Reddit",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 178.9,
+            "raw": "$178.90"
+          },
+          "resolved_percentage_points": 13.14,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 6,
+              "company_name": "Reddit",
+              "displayed_price": "$178.90",
+              "displayed_percentage_change": "13.14%",
+              "ocr_confidence": {
+                "ticker": 92.14,
+                "price": 96.51,
+                "percentage_change": 56.26
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "S",
+          "resolved_company_name": "Babcock & Wilcox",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 10.19,
+            "raw": "$10.19"
+          },
+          "resolved_percentage_points": 8.98,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 7,
+              "company_name": "Babcock & Wilcox",
+              "displayed_price": "$10.19",
+              "displayed_percentage_change": "8.98%",
+              "ocr_confidence": {
+                "ticker": 71.96,
+                "price": 87.31,
+                "percentage_change": 85.39
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SPCE",
+          "resolved_company_name": "Virgin Galactic",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 3.42,
+            "raw": "$3.42"
+          },
+          "resolved_percentage_points": 8.91,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 9,
+              "company_name": "Virgin Galactic",
+              "displayed_price": "$3.42",
+              "displayed_percentage_change": "8.91%",
+              "ocr_confidence": {
+                "ticker": 91.53,
+                "price": 96.5,
+                "percentage_change": 75.04
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "STO",
+          "resolved_company_name": "Standard Nuclear Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 13.46,
+            "raw": "$13.46"
+          },
+          "resolved_percentage_points": 11.33,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 10,
+              "company_name": "Standard Nuclear Inc",
+              "displayed_price": "$13.46",
+              "displayed_percentage_change": "11.33%",
+              "ocr_confidence": {
+                "ticker": 45.3,
+                "price": 96.74,
+                "percentage_change": 79.04
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "VERA",
+          "resolved_company_name": "Vera Therapeutics",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 31.35,
+            "raw": "$31.35"
+          },
+          "resolved_percentage_points": 8.51,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_03-1000069931",
+              "source_filename": "03-1000069931.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 5,
+              "company_name": "Vera Therapeutics",
+              "displayed_price": "$31.35",
+              "displayed_percentage_change": "8.51%",
+              "ocr_confidence": {
+                "ticker": 93.3,
+                "price": 95.69,
+                "percentage_change": 73.77
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "VWAV",
+          "resolved_company_name": "VisionWave Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.37,
+            "raw": "$1.37"
+          },
+          "resolved_percentage_points": 11.38,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1443_02-1000069930",
+              "source_filename": "02-1000069930.png",
+              "actual_uk_screenshot_time": "14:43",
+              "visible_position": 9,
+              "company_name": "VisionWave Holdings Inc",
+              "displayed_price": "$1.37",
+              "displayed_percentage_change": "11.38%",
+              "ocr_confidence": {
+                "ticker": 91.72,
+                "price": 95.62,
+                "percentage_change": 88.36
+              }
+            }
+          ]
+        }
+      ],
+      "unreadable_ticker_rows": [
+        {
+          "screenshot_id": "2026-08-14_1443_01-1000069929",
+          "source_filename": "01-1000069929.png",
+          "actual_uk_screenshot_time": "14:43",
+          "visible_position": 3,
+          "company_name": "Digital Asset Acquisition",
+          "displayed_price": "$10.41",
+          "displayed_percentage_change": "43.38%",
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 96.19,
+            "percentage_change": 85.46
+          }
+        }
+      ],
+      "global_rank_policy": "Not inferred. visible_position is preserved per scrolling capture."
+    },
+    {
+      "checkpoint_id": "2026-08-14_1459_post_open",
+      "market_phase": "post_open",
+      "actual_uk_time_start": "14:59",
+      "actual_uk_time_end": "14:59",
+      "intended_checkpoint_time": null,
+      "source_images": [
+        {
+          "screenshot_id": "2026-08-14_1459_01-1000069932",
+          "source_filename": "01-1000069932.png",
+          "actual_uk_screenshot_time": "14:59",
+          "visible_rows_extracted": 8
+        },
+        {
+          "screenshot_id": "2026-08-14_1459_02-1000069933",
+          "source_filename": "02-1000069933.png",
+          "actual_uk_screenshot_time": "14:59",
+          "visible_rows_extracted": 11
+        },
+        {
+          "screenshot_id": "2026-08-14_1459_03-1000069934",
+          "source_filename": "03-1000069934.png",
+          "actual_uk_screenshot_time": "14:59",
+          "visible_rows_extracted": 8
+        }
+      ],
+      "symbols": [
+        {
+          "ticker": "3LTP",
+          "resolved_company_name": "GraniteShares 3x Long Tesla Daily ETP",
+          "resolved_price": {
+            "currency": "GBP",
+            "value": 0.97,
+            "raw": "£0.97"
+          },
+          "resolved_percentage_points": 14.0,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 8,
+              "company_name": "GraniteShares 3x Long Tesla Daily ETP",
+              "displayed_price": "£0.97",
+              "displayed_percentage_change": "14.00%",
+              "ocr_confidence": {
+                "ticker": 92.31,
+                "price": 96.63,
+                "percentage_change": 78.74
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "3TSL",
+          "resolved_company_name": "Leverage Shares 3x Long Tesla ETP",
+          "resolved_price": {
+            "currency": "GBP",
+            "value": 4.43,
+            "raw": "£4.43"
+          },
+          "resolved_percentage_points": 14.8,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 6,
+              "company_name": "Leverage Shares 3x Long Tesla ETP",
+              "displayed_price": "£4.43",
+              "displayed_percentage_change": "14.80%",
+              "ocr_confidence": {
+                "ticker": 72.91,
+                "price": 95.16,
+                "percentage_change": 77.88
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "A",
+          "resolved_company_name": "NU - Financial Services",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 10,
+              "company_name": "NU - Financial Services",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 44.47,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AAOI",
+          "resolved_company_name": "Applied Optoelectronics Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 145.85,
+            "raw": "$145.85"
+          },
+          "resolved_percentage_points": 12.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 2,
+              "company_name": "Applied Optoelectronics Inc",
+              "displayed_price": "$145.85",
+              "displayed_percentage_change": "12.12%",
+              "ocr_confidence": {
+                "ticker": 32.2,
+                "price": 85.9,
+                "percentage_change": 14.87
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ABX",
+          "resolved_company_name": "Abacus Life Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 11.26,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 4,
+              "company_name": "Abacus Life Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "11.26%",
+              "ocr_confidence": {
+                "ticker": 90.46,
+                "price": null,
+                "percentage_change": 44.85
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AEHR",
+          "resolved_company_name": "Aehr Test Systems",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 137.49,
+            "raw": "$137.49"
+          },
+          "resolved_percentage_points": 11.5,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 3,
+              "company_name": "Aehr Test Systems",
+              "displayed_price": "$137.49",
+              "displayed_percentage_change": "11.50%",
+              "ocr_confidence": {
+                "ticker": 75.55,
+                "price": 89.64,
+                "percentage_change": 76.23
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AEYE",
+          "resolved_company_name": "AudioEye",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 7.52,
+            "raw": "$7.52"
+          },
+          "resolved_percentage_points": 29.43,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 5,
+              "company_name": "AudioEye",
+              "displayed_price": "$7.52",
+              "displayed_percentage_change": "29.43%",
+              "ocr_confidence": {
+                "ticker": 90.07,
+                "price": 89.8,
+                "percentage_change": 67.92
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CAPR",
+          "resolved_company_name": "Capricor Therapeutics",
+          "resolved_price": null,
+          "resolved_percentage_points": 61.99,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 1,
+              "company_name": "Capricor Therapeutics",
+              "displayed_price": null,
+              "displayed_percentage_change": "61.99%",
+              "ocr_confidence": {
+                "ticker": 92.47,
+                "price": null,
+                "percentage_change": 95.82
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "DAAQ",
+          "resolved_company_name": "Digital Asset Acquisition Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 10.41,
+            "raw": "$10.41"
+          },
+          "resolved_percentage_points": 43.38,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 3,
+              "company_name": "Digital Asset Acquisition Corp",
+              "displayed_price": "$10.41",
+              "displayed_percentage_change": "43.38%",
+              "ocr_confidence": {
+                "ticker": 90.81,
+                "price": 96.65,
+                "percentage_change": 90.21
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ETON",
+          "resolved_company_name": "Eton Pharmaceuticals Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 57.0,
+            "raw": "$57"
+          },
+          "resolved_percentage_points": 39.7,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 4,
+              "company_name": "Eton Pharmaceuticals Inc",
+              "displayed_price": "$57",
+              "displayed_percentage_change": "39.70%",
+              "ocr_confidence": {
+                "ticker": 92.96,
+                "price": 96.95,
+                "percentage_change": 92.25
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "GRSD",
+          "resolved_company_name": "Grandstand Limited",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.2,
+            "raw": "$2.20"
+          },
+          "resolved_percentage_points": 15.18,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 5,
+              "company_name": "Grandstand Limited",
+              "displayed_price": "$2.20",
+              "displayed_percentage_change": "15.18%",
+              "ocr_confidence": {
+                "ticker": 92.21,
+                "price": 96.52,
+                "percentage_change": 65.88
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HHS",
+          "resolved_company_name": "Harte Hanks Inc",
+          "resolved_price": null,
+          "resolved_percentage_points": 52.66,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 2,
+              "company_name": "Harte Hanks Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": "52.66%",
+              "ocr_confidence": {
+                "ticker": 93.18,
+                "price": null,
+                "percentage_change": 73.24
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HTFL",
+          "resolved_company_name": "Heartflow, Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 39.52,
+            "raw": "$39.52"
+          },
+          "resolved_percentage_points": 27.44,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 6,
+              "company_name": "Heartflow, Inc.",
+              "displayed_price": "$39.52",
+              "displayed_percentage_change": "27.44%",
+              "ocr_confidence": {
+                "ticker": 9.65,
+                "price": 96.44,
+                "percentage_change": 43.22
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "IMXI",
+          "resolved_company_name": "International Money Express",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 13.85,
+            "raw": "$13.85"
+          },
+          "resolved_percentage_points": 18.37,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 8,
+              "company_name": "International Money Express",
+              "displayed_price": "$13.85",
+              "displayed_percentage_change": "18.37%",
+              "ocr_confidence": {
+                "ticker": 67.79,
+                "price": 95.98,
+                "percentage_change": 86.79
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LPTH",
+          "resolved_company_name": "LightPath Technologies Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 14.81,
+            "raw": "$14.81"
+          },
+          "resolved_percentage_points": 12.88,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 1,
+              "company_name": "LightPath Technologies Inc",
+              "displayed_price": "$14.81",
+              "displayed_percentage_change": "12.88%",
+              "ocr_confidence": {
+                "ticker": 91.66,
+                "price": 96.59,
+                "percentage_change": 69.52
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LUNR",
+          "resolved_company_name": "Intuitive Machines Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 19.53,
+            "raw": "$19.53"
+          },
+          "resolved_percentage_points": 11.21,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 6,
+              "company_name": "Intuitive Machines Inc",
+              "displayed_price": "$19.53",
+              "displayed_percentage_change": "11.21%",
+              "ocr_confidence": {
+                "ticker": 83.38,
+                "price": 96.34,
+                "percentage_change": 80.81
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LVWR",
+          "resolved_company_name": "Livewire Group Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.38,
+            "raw": "$1.38"
+          },
+          "resolved_percentage_points": 10.4,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 8,
+              "company_name": "Livewire Group Inc",
+              "displayed_price": "$1.38",
+              "displayed_percentage_change": "10.40%",
+              "ocr_confidence": {
+                "ticker": 89.83,
+                "price": 96.87,
+                "percentage_change": 68.86
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NERV",
+          "resolved_company_name": "Minerva Neurosciences Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.48,
+            "raw": "$4.48"
+          },
+          "resolved_percentage_points": 14.28,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 7,
+              "company_name": "Minerva Neurosciences Inc",
+              "displayed_price": "$4.48",
+              "displayed_percentage_change": "14.28%",
+              "ocr_confidence": {
+                "ticker": 93.28,
+                "price": 96.18,
+                "percentage_change": 21.92
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NMAX",
+          "resolved_company_name": "Newsmax Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 11.02,
+            "raw": "$11.02"
+          },
+          "resolved_percentage_points": 16.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 2,
+              "company_name": "Newsmax Inc.",
+              "displayed_price": "$11.02",
+              "displayed_percentage_change": "16.12%",
+              "ocr_confidence": {
+                "ticker": 90.33,
+                "price": 95.59,
+                "percentage_change": 64.46
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NPWR",
+          "resolved_company_name": "NET Power",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.79,
+            "raw": "$1.79"
+          },
+          "resolved_percentage_points": 10.49,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 7,
+              "company_name": "NET Power",
+              "displayed_price": "$1.79",
+              "displayed_percentage_change": "10.49%",
+              "ocr_confidence": {
+                "ticker": 84.68,
+                "price": 94.3,
+                "percentage_change": 61.11
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NTHI",
+          "resolved_company_name": "Neonc Technologies Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 3.74,
+            "raw": "$3.74"
+          },
+          "resolved_percentage_points": 16.51,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 1,
+              "company_name": "Neonc Technologies Holdings Inc",
+              "displayed_price": "$3.74",
+              "displayed_percentage_change": "16.51%",
+              "ocr_confidence": {
+                "ticker": 91.41,
+                "price": 95.95,
+                "percentage_change": 82.15
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NU",
+          "resolved_company_name": "Nu Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.82,
+            "raw": "$15.82"
+          },
+          "resolved_percentage_points": 13.53,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 9,
+              "company_name": "Nu Holdings",
+              "displayed_price": "$15.82",
+              "displayed_percentage_change": "13.53%",
+              "ocr_confidence": {
+                "ticker": 92.99,
+                "price": 96.53,
+                "percentage_change": 56.07
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RCMT",
+          "resolved_company_name": "R C M Technologies Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 34.48,
+            "raw": "$34.48"
+          },
+          "resolved_percentage_points": 19.22,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_01-1000069932",
+              "source_filename": "01-1000069932.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 7,
+              "company_name": "R C M Technologies Inc",
+              "displayed_price": "$34.48",
+              "displayed_percentage_change": "19.22%",
+              "ocr_confidence": {
+                "ticker": 92.22,
+                "price": 95.4,
+                "percentage_change": 67.41
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RDDT",
+          "resolved_company_name": "Reddit",
+          "resolved_price": null,
+          "resolved_percentage_points": 15.8,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 3,
+              "company_name": "Reddit",
+              "displayed_price": null,
+              "displayed_percentage_change": "15.8%",
+              "ocr_confidence": {
+                "ticker": 91.66,
+                "price": null,
+                "percentage_change": 71.58
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "TE",
+          "resolved_company_name": "T1 Energy Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 5.31,
+            "raw": "$5.31"
+          },
+          "resolved_percentage_points": 10.85,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_03-1000069934",
+              "source_filename": "03-1000069934.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 5,
+              "company_name": "T1 Energy Inc.",
+              "displayed_price": "$5.31",
+              "displayed_percentage_change": "10.85%",
+              "ocr_confidence": {
+                "ticker": 83.14,
+                "price": 95.62,
+                "percentage_change": 71.69
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "VWAV",
+          "resolved_company_name": "VisionWave Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.44,
+            "raw": "$1.44"
+          },
+          "resolved_percentage_points": 17.07,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1459_02-1000069933",
+              "source_filename": "02-1000069933.png",
+              "actual_uk_screenshot_time": "14:59",
+              "visible_position": 4,
+              "company_name": "VisionWave Holdings Inc",
+              "displayed_price": "$1.44",
+              "displayed_percentage_change": "17.07%",
+              "ocr_confidence": {
+                "ticker": 90.28,
+                "price": 96.69,
+                "percentage_change": 68.53
+              }
+            }
+          ]
+        }
+      ],
+      "unreadable_ticker_rows": [
+        {
+          "screenshot_id": "2026-08-14_1459_02-1000069933",
+          "source_filename": "02-1000069933.png",
+          "actual_uk_screenshot_time": "14:59",
+          "visible_position": 11,
+          "company_name": "LightPath-Feernetegies Inc",
+          "displayed_price": "$14.80",
+          "displayed_percentage_change": null,
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 7.44,
+            "percentage_change": null
+          }
+        }
+      ],
+      "global_rank_policy": "Not inferred. visible_position is preserved per scrolling capture."
+    },
+    {
+      "checkpoint_id": "2026-08-14_1854_post_open",
+      "market_phase": "post_open",
+      "actual_uk_time_start": "18:54",
+      "actual_uk_time_end": "18:55",
+      "intended_checkpoint_time": null,
+      "source_images": [
+        {
+          "screenshot_id": "2026-08-14_1854_01-1000069944",
+          "source_filename": "01-1000069944.png",
+          "actual_uk_screenshot_time": "18:54",
+          "visible_rows_extracted": 8
+        },
+        {
+          "screenshot_id": "2026-08-14_1855_02-1000069945",
+          "source_filename": "02-1000069945.png",
+          "actual_uk_screenshot_time": "18:55",
+          "visible_rows_extracted": 10
+        },
+        {
+          "screenshot_id": "2026-08-14_1855_03-1000069946",
+          "source_filename": "03-1000069946.png",
+          "actual_uk_screenshot_time": "18:55",
+          "visible_rows_extracted": 8
+        }
+      ],
+      "symbols": [
+        {
+          "ticker": "AAOI",
+          "resolved_company_name": "Applied Optoelectronics Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 146.73,
+            "raw": "$146.73"
+          },
+          "resolved_percentage_points": 12.8,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 3,
+              "company_name": "Applied Optoelectronics Inc",
+              "displayed_price": "$146.73",
+              "displayed_percentage_change": "12.80%",
+              "ocr_confidence": {
+                "ticker": 24.67,
+                "price": 88.72,
+                "percentage_change": 24.35
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "AEYE",
+          "resolved_company_name": "AudioEye",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 7.94,
+            "raw": "$7.94"
+          },
+          "resolved_percentage_points": 36.66,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 6,
+              "company_name": "AudioEye",
+              "displayed_price": "$7.94",
+              "displayed_percentage_change": "36.66%",
+              "ocr_confidence": {
+                "ticker": 85.87,
+                "price": 89.11,
+                "percentage_change": 82.45
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "BW",
+          "resolved_company_name": "Babcock & Wilcox Enterprises Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 10.43,
+            "raw": "$10.43"
+          },
+          "resolved_percentage_points": 11.55,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 6,
+              "company_name": "Babcock & Wilcox Enterprises Inc",
+              "displayed_price": "$10.43",
+              "displayed_percentage_change": "11.55%",
+              "ocr_confidence": {
+                "ticker": 96.21,
+                "price": 96.78,
+                "percentage_change": 64.59
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CAPR",
+          "resolved_company_name": "Capricor Therapeutics",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 6.39,
+            "raw": "$6.39"
+          },
+          "resolved_percentage_points": 51.78,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 2,
+              "company_name": "Capricor Therapeutics",
+              "displayed_price": "$6.39",
+              "displayed_percentage_change": "51.78%",
+              "ocr_confidence": {
+                "ticker": 93.1,
+                "price": 96.73,
+                "percentage_change": 16.26
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "CLYM",
+          "resolved_company_name": "Climb Bio",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 16.6,
+            "raw": "$16.60"
+          },
+          "resolved_percentage_points": 12.69,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 4,
+              "company_name": "Climb Bio",
+              "displayed_price": "$16.60",
+              "displayed_percentage_change": "12.69%",
+              "ocr_confidence": {
+                "ticker": 92.52,
+                "price": 96.48,
+                "percentage_change": 76.47
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "ETON",
+          "resolved_company_name": "Eton Pharmaceuticals Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 57.58,
+            "raw": "$57.58"
+          },
+          "resolved_percentage_points": 41.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 5,
+              "company_name": "Eton Pharmaceuticals Inc",
+              "displayed_price": "$57.58",
+              "displayed_percentage_change": "41.12%",
+              "ocr_confidence": {
+                "ticker": 92.96,
+                "price": 96.49,
+                "percentage_change": 85.78
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "FCEL",
+          "resolved_company_name": "FuelCell Energy",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 22.63,
+            "raw": "$22.63"
+          },
+          "resolved_percentage_points": 11.25,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 8,
+              "company_name": "FuelCell Energy",
+              "displayed_price": "$22.63",
+              "displayed_percentage_change": "11.25%",
+              "ocr_confidence": {
+                "ticker": 92.11,
+                "price": 96.46,
+                "percentage_change": 67.45
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "GRSD",
+          "resolved_company_name": "Grandstand Limited",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.19,
+            "raw": "$2.19"
+          },
+          "resolved_percentage_points": 14.66,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 9,
+              "company_name": "Grandstand Limited",
+              "displayed_price": "$2.19",
+              "displayed_percentage_change": "14.66%",
+              "ocr_confidence": {
+                "ticker": 91.47,
+                "price": 93.14,
+                "percentage_change": 67.02
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HHS",
+          "resolved_company_name": "Harte Hanks Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.26,
+            "raw": "$4.26"
+          },
+          "resolved_percentage_points": 51.6,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 3,
+              "company_name": "Harte Hanks Inc",
+              "displayed_price": "$4.26",
+              "displayed_percentage_change": "51.60%",
+              "ocr_confidence": {
+                "ticker": 88.09,
+                "price": 96.66,
+                "percentage_change": 54.05
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "HTFL",
+          "resolved_company_name": "Heartflow, Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 41.79,
+            "raw": "$41.79"
+          },
+          "resolved_percentage_points": 34.76,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 7,
+              "company_name": "Heartflow, Inc.",
+              "displayed_price": "$41.79",
+              "displayed_percentage_change": "34.76%",
+              "ocr_confidence": {
+                "ticker": 47.08,
+                "price": 96.33,
+                "percentage_change": 71.1
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "IMXI",
+          "resolved_company_name": "International Money Express",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 14.28,
+            "raw": "$14.28"
+          },
+          "resolved_percentage_points": 22.05,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 3,
+              "company_name": "International Money Express",
+              "displayed_price": "$14.28",
+              "displayed_percentage_change": "22.05%",
+              "ocr_confidence": {
+                "ticker": 70.99,
+                "price": 95.98,
+                "percentage_change": 81.57
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "IPWR",
+          "resolved_company_name": "Ideal Power Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.87,
+            "raw": "$4.87"
+          },
+          "resolved_percentage_points": 14.31,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 10,
+              "company_name": "Ideal Power Inc",
+              "displayed_price": "$4.87",
+              "displayed_percentage_change": "14.31%",
+              "ocr_confidence": {
+                "ticker": 82.62,
+                "price": 96.41,
+                "percentage_change": 47.83
+              }
+            },
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 1,
+              "company_name": "Ideal Power Inc",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 50.58,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "JFB",
+          "resolved_company_name": "JFB Construction Holdings",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.88,
+            "raw": "$4.88"
+          },
+          "resolved_percentage_points": 11.92,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 5,
+              "company_name": "JFB Construction Holdings",
+              "displayed_price": "$4.88",
+              "displayed_percentage_change": "11.92%",
+              "ocr_confidence": {
+                "ticker": 92.09,
+                "price": 96.65,
+                "percentage_change": 22.43
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "LPTH",
+          "resolved_company_name": "LightPath Technologies Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 15.12,
+            "raw": "$15.12"
+          },
+          "resolved_percentage_points": 15.24,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 7,
+              "company_name": "LightPath Technologies Inc",
+              "displayed_price": "$15.12",
+              "displayed_percentage_change": "15.24%",
+              "ocr_confidence": {
+                "ticker": 92.55,
+                "price": 95.35,
+                "percentage_change": 57.69
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NERV",
+          "resolved_company_name": "Minerva Neurosciences Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.46,
+            "raw": "$4.46"
+          },
+          "resolved_percentage_points": 13.64,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 2,
+              "company_name": "Minerva Neurosciences Inc",
+              "displayed_price": "$4.46",
+              "displayed_percentage_change": "13.64%",
+              "ocr_confidence": {
+                "ticker": 91.46,
+                "price": 94.76,
+                "percentage_change": 0.0
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NMAX",
+          "resolved_company_name": "Newsmax Inc.",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 11.25,
+            "raw": "$11.25"
+          },
+          "resolved_percentage_points": 18.54,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 6,
+              "company_name": "Newsmax Inc.",
+              "displayed_price": "$11.25",
+              "displayed_percentage_change": "18.54%",
+              "ocr_confidence": {
+                "ticker": 90.79,
+                "price": 96.21,
+                "percentage_change": 81.96
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NPWR",
+          "resolved_company_name": "NET Power",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.94,
+            "raw": "$1.94"
+          },
+          "resolved_percentage_points": 19.75,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 5,
+              "company_name": "NET Power",
+              "displayed_price": "$1.94",
+              "displayed_percentage_change": "19.75%",
+              "ocr_confidence": {
+                "ticker": 90.65,
+                "price": 96.35,
+                "percentage_change": 86.35
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "NTHI",
+          "resolved_company_name": "Neonc Technologies Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 4.19,
+            "raw": "$4.19"
+          },
+          "resolved_percentage_points": 30.53,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 8,
+              "company_name": "Neonc Technologies Holdings Inc",
+              "displayed_price": "$4.19",
+              "displayed_percentage_change": "30.53%",
+              "ocr_confidence": {
+                "ticker": 92.48,
+                "price": 87.97,
+                "percentage_change": 89.15
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "QRHC",
+          "resolved_company_name": "Quest Resource Holding Corp",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 1.62,
+            "raw": "$1.62"
+          },
+          "resolved_percentage_points": 11.3,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_03-1000069946",
+              "source_filename": "03-1000069946.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 7,
+              "company_name": "Quest Resource Holding Corp",
+              "displayed_price": "$1.62",
+              "displayed_percentage_change": "11.30%",
+              "ocr_confidence": {
+                "ticker": 90.79,
+                "price": 96.57,
+                "percentage_change": 86.91
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "RCMT",
+          "resolved_company_name": "RCM Technologies Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 34.95,
+            "raw": "$34.95"
+          },
+          "resolved_percentage_points": 20.85,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 4,
+              "company_name": "RCM Technologies Inc",
+              "displayed_price": "$34.95",
+              "displayed_percentage_change": "20.85%",
+              "ocr_confidence": {
+                "ticker": 91.07,
+                "price": 96.75,
+                "percentage_change": 90.55
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SLNG",
+          "resolved_company_name": "Stabilis Solutions Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 6.46,
+            "raw": "$6.46"
+          },
+          "resolved_percentage_points": 15.15,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 8,
+              "company_name": "Stabilis Solutions Inc",
+              "displayed_price": "$6.46",
+              "displayed_percentage_change": "15.15%",
+              "ocr_confidence": {
+                "ticker": 91.69,
+                "price": 96.73,
+                "percentage_change": 77.76
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SPAI",
+          "resolved_company_name": "Safe Pro Group Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 5.7,
+            "raw": "$5.70"
+          },
+          "resolved_percentage_points": 27.12,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 2,
+              "company_name": "Safe Pro Group Inc",
+              "displayed_price": "$5.70",
+              "displayed_percentage_change": "27.12%",
+              "ocr_confidence": {
+                "ticker": 91.39,
+                "price": 96.22,
+                "percentage_change": 19.9
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "SST",
+          "resolved_company_name": "System1",
+          "resolved_price": null,
+          "resolved_percentage_points": null,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "missing",
+            "percentage_change": "missing"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1855_02-1000069945",
+              "source_filename": "02-1000069945.png",
+              "actual_uk_screenshot_time": "18:55",
+              "visible_position": 1,
+              "company_name": "System1",
+              "displayed_price": null,
+              "displayed_percentage_change": null,
+              "ocr_confidence": {
+                "ticker": 92.91,
+                "price": null,
+                "percentage_change": null
+              }
+            }
+          ]
+        },
+        {
+          "ticker": "VWAV",
+          "resolved_company_name": "VisionWave Holdings Inc",
+          "resolved_price": {
+            "currency": "USD",
+            "value": 2.12,
+            "raw": "$2.12"
+          },
+          "resolved_percentage_points": 72.35,
+          "field_status": {
+            "company_name": "resolved",
+            "price": "resolved",
+            "percentage_change": "resolved"
+          },
+          "appearances": [
+            {
+              "screenshot_id": "2026-08-14_1854_01-1000069944",
+              "source_filename": "01-1000069944.png",
+              "actual_uk_screenshot_time": "18:54",
+              "visible_position": 1,
+              "company_name": "VisionWave Holdings Inc",
+              "displayed_price": "$2.12",
+              "displayed_percentage_change": "72.35%",
+              "ocr_confidence": {
+                "ticker": 91.08,
+                "price": 91.96,
+                "percentage_change": 1.78
+              }
+            }
+          ]
+        }
+      ],
+      "unreadable_ticker_rows": [
+        {
+          "screenshot_id": "2026-08-14_1854_01-1000069944",
+          "source_filename": "01-1000069944.png",
+          "actual_uk_screenshot_time": "18:54",
+          "visible_position": 4,
+          "company_name": "Digital Asset Acquisition",
+          "displayed_price": "$10.42",
+          "displayed_percentage_change": "43.52%",
+          "ocr_confidence": {
+            "ticker": null,
+            "price": 96.47,
+            "percentage_change": 84.68
+          }
+        }
+      ],
+      "global_rank_policy": "Not inferred. visible_position is preserved per scrolling capture."
+    }
+  ],
+  "symbol_classification": {
+    "3LTP": "unresolved_invalid_ticker_format",
+    "3TSL": "unresolved_invalid_ticker_format",
+    "7EVB": "unresolved_invalid_ticker_format",
+    "A": "unresolved_no_currency_evidence",
+    "A2Z": "unresolved_no_currency_evidence",
+    "AAOI": "verified_existing_research_universe",
+    "ABX": "provisional_usd_displayed",
+    "AEHR": "verified_existing_research_universe",
+    "AEYE": "provisional_usd_displayed",
+    "AIRO": "provisional_usd_displayed",
+    "ANG": "provisional_usd_displayed",
+    "ARX": "provisional_usd_displayed",
+    "ATRO": "unresolved_no_currency_evidence",
+    "AVAH": "provisional_usd_displayed",
+    "BRUN": "verified_existing_research_universe",
+    "BW": "provisional_usd_displayed",
+    "CANG": "provisional_usd_displayed",
+    "CAPR": "provisional_usd_displayed",
+    "CLYM": "verified_existing_research_universe",
+    "CRWV": "verified_existing_research_universe",
+    "CTEV": "provisional_usd_displayed",
+    "CURI": "provisional_usd_displayed",
+    "DAAQ": "verified_existing_research_universe",
+    "EROC": "provisional_usd_displayed",
+    "ETON": "verified_existing_research_universe",
+    "FCEL": "verified_existing_research_universe",
+    "GRSD": "verified_existing_research_universe",
+    "GRWG": "provisional_usd_displayed",
+    "HHS": "provisional_usd_displayed",
+    "HLIT": "provisional_usd_displayed",
+    "HQ": "verified_existing_research_universe",
+    "HTFL": "provisional_usd_displayed",
+    "IMXI": "provisional_usd_displayed",
+    "IPWR": "provisional_usd_displayed",
+    "JACK": "verified_existing_research_universe",
+    "JFB": "verified_existing_research_universe",
+    "KOPN": "provisional_usd_displayed",
+    "LNSR": "provisional_usd_displayed",
+    "LPTH": "provisional_usd_displayed",
+    "LUNR": "provisional_usd_displayed",
+    "LVWR": "verified_existing_research_universe",
+    "MH": "provisional_usd_displayed",
+    "MVIS": "provisional_usd_displayed",
+    "NBIS": "verified_existing_research_universe",
+    "NCMI": "provisional_usd_displayed",
+    "NERV": "provisional_usd_displayed",
+    "NMAX": "provisional_usd_displayed",
+    "NPWR": "provisional_usd_displayed",
+    "NTHI": "provisional_usd_displayed",
+    "NU": "provisional_usd_displayed",
+    "OMER": "verified_existing_research_universe",
+    "OPRX": "provisional_usd_displayed",
+    "PESI": "provisional_usd_displayed",
+    "QNT": "provisional_usd_displayed",
+    "QRHC": "provisional_usd_displayed",
+    "R": "unresolved_no_currency_evidence",
+    "RCMT": "provisional_usd_displayed",
+    "RDDT": "provisional_usd_displayed",
+    "RRGB": "provisional_usd_displayed",
+    "RSKD": "provisional_usd_displayed",
+    "S": "provisional_usd_displayed",
+    "SION": "provisional_usd_displayed",
+    "SLGL": "unresolved_no_currency_evidence",
+    "SLNG": "provisional_usd_displayed",
+    "SMCI": "unresolved_no_currency_evidence",
+    "SMWB": "unresolved_no_currency_evidence",
+    "SNDK": "verified_existing_research_universe",
+    "SO": "unresolved_no_currency_evidence",
+    "SPAI": "provisional_usd_displayed",
+    "SPCE": "provisional_usd_displayed",
+    "SST": "unresolved_no_currency_evidence",
+    "STO": "provisional_usd_displayed",
+    "TE": "provisional_usd_displayed",
+    "VERA": "provisional_usd_displayed",
+    "VWAV": "provisional_usd_displayed",
+    "WA": "unresolved_no_currency_evidence",
+    "WDAY": "provisional_usd_displayed",
+    "WYFI": "verified_existing_research_universe",
+    "ZENA": "provisional_usd_displayed"
+  },
+  "quality_summary": {
+    "source_images": 15,
+    "checkpoints": 5,
+    "unique_readable_tickers": 79,
+    "unreadable_ticker_rows": 6,
+    "unreadable_field_records": 42,
+    "intended_checkpoint_times_recovered": 0,
+    "global_numeric_ranks_available": false
+  }
+}

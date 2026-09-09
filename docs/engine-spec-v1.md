@@ -749,7 +749,10 @@ For every available screenshot date, the research shall:
 1. preserve the actual screenshot timestamp and intended checkpoint;
 2. transcribe the complete displayed list while separately identifying
    US-traded research symbols and excluded instruments;
-3. record rank, displayed price/change and first/last observed membership;
+3. record displayed rank when independently visible; otherwise retain only the
+   per-capture visible position and never infer a global rank across scrolling
+   captures; also retain displayed price/change and first/last observed
+   membership;
 4. construct the union of premarket-observed, post-open-only and selected
    control symbols without relabelling missing checkpoints;
 5. collect authoritative Alpaca one-minute bars for the previous close,
@@ -892,9 +895,10 @@ Implementation shall proceed incrementally:
 
 - approve this specification;
 - resolve stale documentation references to premarket entry;
-- inventory every available Revolut screenshot date and checkpoint;
+- inventory every available Revolut screenshot date and checkpoint (completed
+  for the recovered 2026-07-27 through 2026-08-14 archive);
 - identify which screenshot dates already have complete one-minute Alpaca data
-  and which still require transcription or collection;
+  and which still require collection or symbol validation;
 - run and preserve the screenshot-labelled behavioural reconstruction before
   treating its observed patterns as reusable hypotheses;
 - verify current Alpaca feed entitlements and timing behaviour;
