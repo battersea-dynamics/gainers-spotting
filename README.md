@@ -24,10 +24,11 @@ orders, and it is not integrated with `battersea-dynamics/trading-agent`.
 Initial work will:
 
 - collect reproducible premarket observations;
-- reconstruct historical one-minute premarket and post-open behaviour;
+- reconstruct screenshot-labelled top gainers and controls from the previous
+  close, after-hours, premarket and post-open one-minute behaviour;
 - compare eventual significant gainers, missed runners and candidates that faded;
 - investigate price, volume, acceleration, structure, liquidity and catalysts;
-- compare plausible premarket and opening entry assumptions without look-ahead bias;
+- compare fixed 09:30, 09:45 and 10:00 ET benchmarks without look-ahead bias;
 - measure detection time, remaining move, recall, precision, post-entry opportunity and API usage;
 - derive scanner and entry rules from evidence rather than preset weights or thresholds.
 
@@ -52,6 +53,7 @@ Initial work will:
 - [Open questions](docs/open-questions.md)
 - [Premarket and opening-entry research plan](docs/premarket-open-research-plan.md)
 - [Premarket ranking engine](docs/premarket-ranking-engine.md)
+- [Approved engine specification v1](docs/engine-spec-v1.md)
 - [Frozen research protocol v1](config/research-protocol-v1.json)
 - [Evidence-based improvements (external review)](docs/evidence-based-improvements.md)
 
