@@ -62,3 +62,19 @@ This document records agreed project direction. Candidate features and ideas are
 ## Background requiring independent verification
 
 A supplied project draft describes the existing `trading-agent` scanner and its filters. Those descriptions may inform future comparison but are not treated as verified facts in this repository unless its code is separately inspected with permission.
+
+## 9 September 2026
+
+### Engine specification v1
+
+- Approve `docs/engine-spec-v1.md` as the implementation blueprint for the next research phase.
+- Preserve the original Revolut screenshot study as a primary historical pattern-discovery track.
+- Use Alpaca one-minute bars, rather than screenshot percentages, to reconstruct the authoritative behaviour of screenshot-observed top gainers, controls, fades and missed runners.
+- Include previous official close and previous-session 16:00-20:00 ET after-hours context for retained symbols where reliable data are available.
+- Use patterns observed in screenshot-labelled cases as hypotheses, then test them against independent failures, controls and whole-market outcomes.
+- Keep Revolut membership, rank and displayed percentage outside the future engine's candidate and ranking inputs.
+- Limit v1 entry research to the fixed 09:30, 09:45 and 10:00 ET benchmarks; premarket order entry is outside the current engine phase.
+- Use a two-stage, API-efficient market-wide discovery funnel with multiple candidate channels rather than one `gap x volume` gateway.
+- Record explicit feed, delay, completed-bar boundaries and information cutoffs for every historical or observation-mode ranking.
+- Keep emergence evidence, momentum quality and execution risk separately observable.
+- Do not choose final channel budgets, feature weights or trading thresholds until later-date evidence supports them.
