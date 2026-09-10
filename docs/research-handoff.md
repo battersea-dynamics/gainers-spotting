@@ -2,7 +2,7 @@
 
 Read this document first when resuming the project in a new chat. It is the durable source of truth for the research scope, decisions, data status, and next actions. Update it whenever the methodology or project state materially changes.
 
-Last updated: 2026-09-09
+Last updated: 2026-09-10
 
 ## Mission
 
@@ -29,6 +29,7 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 
 - `.github/workflows/collect-historical-alpaca.yml`
 - `.github/workflows/collect-observed-week.yml`
+- `.github/workflows/collect-recovered-august.yml`
 - `scripts/collect_alpaca_bars.py`
 - `scripts/analyze_historical_session.py`
 - `scripts/analyze_premarket_open_week.py`
@@ -106,6 +107,9 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
   New August universe manifests are provisional collection inputs. Dollar-price
   display is not proof of Alpaca eligibility; validate against dated assets and
   the collector's successful-symbol/failure metadata before analysis.
+- The manual August matrix workflow covers 2026-08-03 through 2026-08-14,
+  limits concurrency to three jobs, validates completed pagination and usable
+  bars, and uploads one 30-day artifact per date.
 
 ## Research question
 
@@ -176,8 +180,8 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 1. Validate the provisional August symbols with a dated Alpaca asset snapshot
    where available and historical one-minute bar success/failure metadata.
-2. Collect the missing Alpaca one-minute datasets for 2026-08-03 through
-   2026-08-14 and retain their metadata locally.
+2. Run the manual `Collect recovered August observations` workflow, download
+   all nine artifacts, and retain their metadata locally.
 3. Run the approved screenshot-labelled behavioural reconstruction across all
    dates with usable bars, preserving controls and missing observations.
 4. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.

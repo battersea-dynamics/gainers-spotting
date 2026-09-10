@@ -1,0 +1,75 @@
+name: Collect recovered August observations
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        research_date:
+          - "2026-08-03"
+          - "2026-08-04"
+          - "2026-08-05"
+          - "2026-08-06"
+          - "2026-08-07"
+          - "2026-08-10"
+          - "2026-08-11"
+          - "2026-08-12"
+          - "2026-08-14"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Collect SIP minute bars
+        run: |
+          python scripts/collect_alpaca_bars.py \
+            --date "${{ matrix.research_date }}" \
+            --universe-file "config/research-universes/${{ matrix.research_date }}.json"
+
+      - name: Validate collection metadata
+        env:
+          RESEARCH_DATE: ${{ matrix.research_date }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          research_date = os.environ["RESEARCH_DATE"]
+          path = Path("data/research") / research_date / "metadata.json"
+          metadata = json.loads(path.read_text(encoding="utf-8"))
+          if not metadata.get("pagination", {}).get("completed"):
+              raise SystemExit("Collection pagination did not complete")
+          successful = metadata.get("successful_symbols", [])
+          if not successful or metadata.get("total_bars", 0) < 1:
+              raise SystemExit("Collection returned no usable bars")
+          print(json.dumps({
+              "research_date": research_date,
+              "requested_symbols": len(metadata.get("requested_symbols", [])),
+              "successful_symbols": len(successful),
+              "failed_symbols": len(metadata.get("failures", {})),
+              "total_bars": metadata.get("total_bars", 0),
+              "pages": metadata.get("pagination", {}).get("pages", 0),
+          }, indent=2))
+          PY
+
+      - name: Upload research dataset
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpaca-research-${{ matrix.research_date }}
+          path: data/research/${{ matrix.research_date }}/
+          if-no-files-found: error
+          retention-days: 30

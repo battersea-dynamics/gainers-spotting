@@ -110,6 +110,11 @@ The manual GitHub Actions workflow `Collect observed research week` collects
 27–31 July in parallel using the repository's existing Alpaca secrets. It does
 not submit orders and does not expose secret values.
 
+The manual `Collect recovered August observations` workflow collects the nine
+recovered screenshot dates from 3–14 August in batches of three parallel jobs.
+Each job checks that pagination completed and at least one requested symbol
+returned usable bars before uploading its dated artifact.
+
 Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
 written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
 
