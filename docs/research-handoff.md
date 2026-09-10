@@ -112,10 +112,13 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
   bars, and uploads one 30-day artifact per date.
 - The first two August workflow attempts on 2026-09-10 exposed a batch-level
   failure mode: one Alpaca-rejected provisional ticker caused HTTP 400 for its
-  whole date. Only 2026-08-06, 2026-08-11 and 2026-08-12 completed. The
-  collector now adaptively splits rejected batches, records an isolated
-  symbol failure, and preserves all valid symbols. A corrected full matrix run
-  must replace those partial attempts before analysis.
+  whole date. The collector now adaptively splits rejected batches, records an
+  isolated symbol failure, and preserves all valid symbols.
+- Corrected workflow run `34449938688` completed all nine August jobs. Its nine
+  artifact checksums match GitHub's recorded SHA-256 digests. Metadata and gzip
+  validation account for 521 requested symbol-date cases: 509 returned 198,105
+  bars; `BLZE-IT` was rejected on three dates; nine other cases returned no
+  bars. All date windows and pagination-complete flags passed verification.
 
 ## Research question
 
@@ -184,10 +187,10 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Validate the provisional August symbols with a dated Alpaca asset snapshot
-   where available and historical one-minute bar success/failure metadata.
-2. Run the manual `Collect recovered August observations` workflow, download
-   all nine artifacts, and retain their metadata locally.
+1. Retain the nine corrected August artifacts and their metadata in the local
+   Windows research-data directory; do not use the two earlier partial runs.
+2. Validate the provisional August symbols with a dated Alpaca asset snapshot
+   where available and the collected success/failure metadata.
 3. Run the approved screenshot-labelled behavioural reconstruction across all
    dates with usable bars, preserving controls and missing observations.
 4. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.
