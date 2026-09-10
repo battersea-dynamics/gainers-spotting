@@ -110,6 +110,12 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
 - The manual August matrix workflow covers 2026-08-03 through 2026-08-14,
   limits concurrency to three jobs, validates completed pagination and usable
   bars, and uploads one 30-day artifact per date.
+- The first two August workflow attempts on 2026-09-10 exposed a batch-level
+  failure mode: one Alpaca-rejected provisional ticker caused HTTP 400 for its
+  whole date. Only 2026-08-06, 2026-08-11 and 2026-08-12 completed. The
+  collector now adaptively splits rejected batches, records an isolated
+  symbol failure, and preserves all valid symbols. A corrected full matrix run
+  must replace those partial attempts before analysis.
 
 ## Research question
 

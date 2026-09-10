@@ -2,6 +2,11 @@ name: Collect recovered August observations
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/collect_alpaca_bars.py
 
 permissions:
   contents: read

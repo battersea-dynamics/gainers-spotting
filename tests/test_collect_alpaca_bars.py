@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from datetime import timezone
 from pathlib import Path
+from unittest import mock
 
 
 MODULE_PATH = (
@@ -126,6 +127,67 @@ class CollectorTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(ValueError, "duplicate"):
                 collector.load_universe("2026-07-27", path)
+
+    def test_bad_symbol_is_isolated_without_losing_valid_batches(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            universe_path = root / "universe.json"
+            universe_path.write_text(
+                json.dumps(
+                    {
+                        "research_date": "2026-08-03",
+                        "symbol_groups": {
+                            "screenshot_observed": ["GOOD1", "BAD", "GOOD2"]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def fake_request(params, *_args):
+                symbols = str(params["symbols"]).split(",")
+                if "BAD" in symbols:
+                    raise collector.CollectionError("Alpaca HTTP 400")
+                bars = {
+                    symbol: [
+                        {
+                            "t": "2026-08-03T08:00:00Z",
+                            "o": 1,
+                            "h": 2,
+                            "l": 0.5,
+                            "c": 1.5,
+                            "v": 100,
+                            "n": 3,
+                            "vw": 1.2,
+                        }
+                    ]
+                    for symbol in symbols
+                }
+                return {"bars": bars, "next_page_token": None}, 200, {}, 1
+
+            with mock.patch.object(
+                collector, "get_credentials", return_value=("key", "secret")
+            ), mock.patch.object(
+                collector, "request_page_with_retry", side_effect=fake_request
+            ):
+                _output_dir, metadata = collector.collect(
+                    requested_date="2026-08-03",
+                    output_root=root / "output",
+                    limit=10_000,
+                    timeout=1,
+                    max_attempts=1,
+                    universe_file=universe_path,
+                    batch_size=3,
+                )
+
+        self.assertTrue(metadata["pagination"]["completed"])
+        self.assertEqual(["GOOD1", "GOOD2"], metadata["successful_symbols"])
+        self.assertEqual({"BAD": "Alpaca HTTP 400"}, metadata["failures"])
+        self.assertEqual(2, metadata["total_bars"])
+        self.assertGreater(metadata["batching"]["split_batches"], 0)
+        self.assertEqual(
+            1, metadata["batching"]["rejected_single_symbol_batches"]
+        )
 
 
 if __name__ == "__main__":

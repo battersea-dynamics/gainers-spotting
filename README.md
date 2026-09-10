@@ -115,6 +115,11 @@ recovered screenshot dates from 3–14 August in batches of three parallel jobs.
 Each job checks that pagination completed and at least one requested symbol
 returned usable bars before uploading its dated artifact.
 
+If Alpaca rejects a multi-symbol request with HTTP 400, the collector
+recursively splits that batch to isolate the rejected symbol. It records the
+individual failure in `metadata.json` and retains the bars for every valid
+symbol instead of discarding the whole date.
+
 Generated raw pages, clean gzip-compressed CSV/JSONL files, and metadata are
 written under `data/research/YYYY-MM-DD/`, which is excluded from Git.
 
