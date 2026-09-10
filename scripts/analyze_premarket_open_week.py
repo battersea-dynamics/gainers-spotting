@@ -26,7 +26,7 @@ OUTCOMES = (
     "ret_5m", "ret_15m", "ret_30m", "ret_60m", "ret_120m",
     "ret_noon", "ret_close", "mfe", "mae", "high_to_close_giveback",
 )
-FEATURES = (
+BAR_FEATURES = (
     "price_at_decision", "pm_bar_count", "pm_return", "pm_range_pct",
     "pm_close_location", "pm_drawdown_from_high", "pm_volume", "pm_trades",
     "pm_dollar_volume", "pm_late_return_0800", "pm_late_return_0900",
@@ -36,6 +36,44 @@ FEATURES = (
     "open_dollar_volume", "open_last_vs_vwap", "open_drawdown_from_high",
     "open_recovery_from_low", "open_new_high_count", "decision_vs_pm_high",
 )
+CONTEXT_FEATURES = (
+    "previous_close_raw",
+    "true_overnight_gap_raw",
+    "true_overnight_gap",
+    "decision_vs_previous_close_raw",
+    "decision_vs_previous_close",
+    "previous_close_to_pm_high_raw",
+    "after_hours_active_bars",
+    "after_hours_return",
+    "after_hours_range_pct",
+    "after_hours_volume",
+    "after_hours_trades",
+    "after_hours_dollar_volume",
+    "after_hours_close_location",
+    "after_hours_fade_from_high",
+    "after_hours_first_vs_previous_close_raw",
+    "after_hours_last_vs_previous_close_raw",
+    "premarket_first_vs_after_hours_last",
+    "decision_vs_after_hours_last",
+    "decision_vs_after_hours_high",
+    "after_hours_move_retention_at_decision",
+    "pm_return_latest_30m",
+    "pm_return_previous_30m",
+    "premarket_reacceleration_30m",
+    *(
+        feature
+        for window in (20, 60, 120)
+        for feature in (
+            f"dormancy_median_daily_volume_{window}",
+            f"dormancy_median_daily_dollar_volume_{window}",
+            f"dormancy_median_daily_range_pct_{window}",
+            f"dormancy_close_return_volatility_{window}",
+            f"dormancy_max_abs_close_return_{window}",
+            f"pm_volume_to_median_daily_volume_{window}",
+        )
+    ),
+)
+FEATURES = (*BAR_FEATURES, *CONTEXT_FEATURES)
 
 
 def _premarket_selection(rows: pd.DataFrame) -> pd.DataFrame:
@@ -88,6 +126,48 @@ def load_bars(date_dir: Path) -> tuple[pd.DataFrame, str]:
     return bars.sort_values(["symbol", "timestamp_et"]).reset_index(drop=True), source
 
 
+def load_context(
+    date_dir: Path,
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object], str]:
+    """Load optional prior-session context without weakening old datasets."""
+    context_dir = date_dir / "context"
+    metadata_path = context_dir / "context-metadata.json"
+    daily_path = context_dir / "daily-bars.csv.gz"
+    after_hours_path = context_dir / "after-hours-bars.csv.gz"
+    if not (metadata_path.exists() and daily_path.exists() and after_hours_path.exists()):
+        return pd.DataFrame(), pd.DataFrame(), {}, "absent"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if metadata.get("research_date") != date_dir.name:
+        raise ValueError(f"Context research_date mismatch in {metadata_path}")
+    if metadata.get("context_version") != "prior-session-context-v1":
+        raise ValueError(f"Unsupported context version in {metadata_path}")
+
+    def read(path: Path) -> pd.DataFrame:
+        frame = pd.read_csv(path, compression="gzip")
+        if frame.empty:
+            return frame
+        frame["timestamp_et"] = pd.to_datetime(
+            frame["timestamp_et"], utc=True
+        ).dt.tz_convert("America/New_York")
+        for column in (
+            "open", "high", "low", "close", "volume", "trade_count", "vwap"
+        ):
+            frame[column] = pd.to_numeric(frame[column], errors="coerce")
+        return frame.sort_values(["symbol", "timestamp_et"]).reset_index(drop=True)
+
+    daily = read(daily_path)
+    after_hours = read(after_hours_path)
+    previous_session = str(metadata.get("previous_session_date") or "")
+    if previous_session and not daily.empty:
+        if previous_session not in set(daily.session_date.astype(str)):
+            raise ValueError(f"Previous session missing from {daily_path}")
+    if not after_hours.empty:
+        observed_sessions = set(after_hours.session_date.astype(str))
+        if observed_sessions != {previous_session}:
+            raise ValueError(f"After-hours session mismatch in {after_hours_path}")
+    return daily, after_hours, metadata, "context-v1"
+
+
 def _gzip_ok(path: Path) -> bool:
     try:
         with gzip.open(path, "rb") as handle:
@@ -117,7 +197,176 @@ def _window_return(frame: pd.DataFrame, start: pd.Timestamp) -> float:
     return _ret(float(part.iloc[-1]["close"]), float(part.iloc[0]["open"])) if not part.empty else math.nan
 
 
-def _base_features(day: str, symbol: str, group: str, bars: pd.DataFrame, decision: str) -> dict[str, object]:
+def _context_feature_values(
+    day: str,
+    pm: pd.DataFrame,
+    known: pd.DataFrame,
+    daily_history: pd.DataFrame,
+    after_hours: pd.DataFrame,
+    metadata: dict[str, object],
+) -> dict[str, object]:
+    values: dict[str, object] = {name: math.nan for name in CONTEXT_FEATURES}
+    corporate = metadata.get("corporate_actions", {})
+    adjustment = metadata.get("price_adjustment", {})
+    if not isinstance(corporate, dict):
+        corporate = {}
+    if not isinstance(adjustment, dict):
+        adjustment = {}
+    status = str(corporate.get("status") or "unavailable")
+    affected = {
+        str(symbol) for symbol in (corporate.get("affected_symbols") or [])
+    }
+    symbol = str(known.symbol.iloc[0]) if not known.empty and "symbol" in known else None
+    corporate_safe = (
+        status in {"checked_no_actions", "verified"}
+        and symbol not in affected
+        and adjustment.get("comparable_basis") is True
+    )
+    values["corporate_action_status"] = status
+    values["true_gap_verified"] = corporate_safe
+    values["context_available"] = bool(metadata)
+
+    history = daily_history.copy()
+    if not history.empty:
+        history = history[history["session_date"].astype(str) < day]
+        history = (
+            history.sort_values("session_date")
+            .drop_duplicates("session_date", keep="last")
+        )
+    previous_close = (
+        _finite(history.iloc[-1]["close"]) if not history.empty else math.nan
+    )
+    values["previous_close_raw"] = previous_close
+    pm_first = _finite(pm.iloc[0]["open"]) if not pm.empty else math.nan
+    pm_high = _finite(pm["high"].max()) if not pm.empty else math.nan
+    decision_price = _finite(known.iloc[-1]["close"]) if not known.empty else math.nan
+    raw_overnight_gap = _ret(pm_first, previous_close)
+    raw_decision_gap = _ret(decision_price, previous_close)
+    values["true_overnight_gap_raw"] = raw_overnight_gap
+    values["decision_vs_previous_close_raw"] = raw_decision_gap
+    values["previous_close_to_pm_high_raw"] = _ret(pm_high, previous_close)
+    values["true_overnight_gap"] = raw_overnight_gap if corporate_safe else math.nan
+    values["decision_vs_previous_close"] = raw_decision_gap if corporate_safe else math.nan
+
+    after_hours_summary = metadata.get("after_hours", {})
+    after_hours_failures = (
+        after_hours_summary.get("failures", {})
+        if isinstance(after_hours_summary, dict) else {}
+    )
+    if (
+        after_hours.empty
+        and isinstance(after_hours_summary, dict)
+        and after_hours_summary.get("completed") is True
+        and symbol not in after_hours_failures
+    ):
+        values.update({
+            "after_hours_active_bars": 0,
+            "after_hours_volume": 0.0,
+            "after_hours_trades": 0.0,
+            "after_hours_dollar_volume": 0.0,
+        })
+    if not after_hours.empty:
+        ah = after_hours.sort_values("timestamp_et")
+        first, last = ah.iloc[0], ah.iloc[-1]
+        high = _finite(ah.high.max())
+        low = _finite(ah.low.min())
+        volume = float(ah.volume.sum())
+        dollar_volume = float((ah.vwap.fillna(ah.close) * ah.volume).sum())
+        first_price = _finite(first.open)
+        last_price = _finite(last.close)
+        values.update({
+            "after_hours_active_bars": int(len(ah)),
+            "after_hours_return": _ret(last_price, first_price),
+            "after_hours_range_pct": _ret(high, low),
+            "after_hours_volume": volume,
+            "after_hours_trades": float(ah.trade_count.sum()),
+            "after_hours_dollar_volume": dollar_volume,
+            "after_hours_close_location": (
+                (last_price - low) / (high - low) if high > low else 0.5
+            ),
+            "after_hours_fade_from_high": _ret(last_price, high),
+            "after_hours_first_vs_previous_close_raw": _ret(
+                first_price, previous_close
+            ),
+            "after_hours_last_vs_previous_close_raw": _ret(
+                last_price, previous_close
+            ),
+            "premarket_first_vs_after_hours_last": _ret(pm_first, last_price),
+            "decision_vs_after_hours_last": _ret(decision_price, last_price),
+            "decision_vs_after_hours_high": _ret(decision_price, high),
+        })
+        high_move = _ret(high, previous_close)
+        decision_move = _ret(decision_price, previous_close)
+        values["after_hours_move_retention_at_decision"] = (
+            decision_move / high_move
+            if math.isfinite(high_move) and high_move > 0 and math.isfinite(decision_move)
+            else math.nan
+        )
+
+    if not pm.empty:
+        d = pd.Timestamp(day, tz="America/New_York")
+        latest = pm[pm.timestamp_et >= d + pd.Timedelta(hours=9)]
+        previous = pm[
+            (pm.timestamp_et >= d + pd.Timedelta(hours=8, minutes=30))
+            & (pm.timestamp_et < d + pd.Timedelta(hours=9))
+        ]
+        latest_return = (
+            _ret(_finite(latest.iloc[-1].close), _finite(latest.iloc[0].open))
+            if not latest.empty else math.nan
+        )
+        previous_return = (
+            _ret(_finite(previous.iloc[-1].close), _finite(previous.iloc[0].open))
+            if not previous.empty else math.nan
+        )
+        values["pm_return_latest_30m"] = latest_return
+        values["pm_return_previous_30m"] = previous_return
+        values["premarket_reacceleration_30m"] = (
+            latest_return - previous_return
+            if math.isfinite(latest_return) and math.isfinite(previous_return)
+            else math.nan
+        )
+
+    for window in (20, 60, 120):
+        values[f"dormancy_sessions_available_{window}"] = min(len(history), window)
+        if len(history) < window:
+            continue
+        baseline = history.tail(window).copy()
+        daily_volume = pd.to_numeric(baseline.volume, errors="coerce")
+        daily_dollar = baseline.vwap.fillna(baseline.close) * daily_volume
+        daily_range = baseline.high / baseline.low - 1.0
+        close_returns = baseline.close.pct_change(fill_method=None).dropna()
+        median_volume = float(daily_volume.median())
+        values[f"dormancy_median_daily_volume_{window}"] = median_volume
+        values[f"dormancy_median_daily_dollar_volume_{window}"] = float(
+            daily_dollar.median()
+        )
+        values[f"dormancy_median_daily_range_pct_{window}"] = float(
+            daily_range.median()
+        )
+        values[f"dormancy_close_return_volatility_{window}"] = (
+            float(close_returns.std(ddof=0)) if not close_returns.empty else math.nan
+        )
+        values[f"dormancy_max_abs_close_return_{window}"] = (
+            float(close_returns.abs().max()) if not close_returns.empty else math.nan
+        )
+        pm_volume = float(pm.volume.sum()) if not pm.empty else math.nan
+        values[f"pm_volume_to_median_daily_volume_{window}"] = (
+            pm_volume / median_volume
+            if math.isfinite(pm_volume) and median_volume > 0 else math.nan
+        )
+    return values
+
+
+def _base_features(
+    day: str,
+    symbol: str,
+    group: str,
+    bars: pd.DataFrame,
+    decision: str,
+    daily_history: pd.DataFrame | None = None,
+    after_hours: pd.DataFrame | None = None,
+    context_metadata: dict[str, object] | None = None,
+) -> dict[str, object]:
     tz = "America/New_York"
     d = pd.Timestamp(day, tz=tz)
     dec = pd.Timestamp(f"{day} {decision}", tz=tz)
@@ -127,7 +376,7 @@ def _base_features(day: str, symbol: str, group: str, bars: pd.DataFrame, decisi
     row: dict[str, object] = {"date": day, "symbol": symbol, "group": group, "decision_et": decision}
 
     if pm.empty:
-        row.update({name: math.nan for name in FEATURES})
+        row.update({name: math.nan for name in BAR_FEATURES})
         row["pm_bar_count"] = 0
         row["pm_observable"] = False
     else:
@@ -158,7 +407,7 @@ def _base_features(day: str, symbol: str, group: str, bars: pd.DataFrame, decisi
         })
 
     if opening.empty:
-        row.update({name: math.nan for name in FEATURES if name.startswith("open_") or name == "decision_vs_pm_high"})
+        row.update({name: math.nan for name in BAR_FEATURES if name.startswith("open_") or name == "decision_vs_pm_high"})
     else:
         first, last = opening.iloc[0], opening.iloc[-1]
         high, low = float(opening.high.max()), float(opening.low.min())
@@ -178,6 +427,14 @@ def _base_features(day: str, symbol: str, group: str, bars: pd.DataFrame, decisi
             "decision_vs_pm_high": _ret(float(last.close), _finite(row.get("pm_high"))),
         })
     row["price_at_decision"] = float(known.iloc[-1].close) if not known.empty else math.nan
+    row.update(_context_feature_values(
+        day,
+        pm,
+        known,
+        daily_history if daily_history is not None else pd.DataFrame(),
+        after_hours if after_hours is not None else pd.DataFrame(),
+        context_metadata or {},
+    ))
     return row
 
 
@@ -229,6 +486,9 @@ def build_dataset(root: Path, dates: Iterable[str]) -> tuple[pd.DataFrame, list[
         date_dir = root / day
         metadata = json.loads((date_dir / "metadata.json").read_text(encoding="utf-8"))
         bars, source = load_bars(date_dir)
+        daily_context, after_hours_context, context_metadata, context_source = (
+            load_context(date_dir)
+        )
         requested = list(metadata.get("requested_symbols", []))
         failures = metadata.get("failures", {})
         actual_symbols = sorted(bars.symbol.unique())
@@ -247,11 +507,45 @@ def build_dataset(root: Path, dates: Iterable[str]) -> tuple[pd.DataFrame, list[
             "raw_pages_integrity": all(_gzip_ok(path) for path in raw_files),
             "window_start_utc": metadata.get("request", {}).get("start_utc") or metadata.get("requested_time_window", {}).get("start_utc"),
             "window_end_utc": metadata.get("request", {}).get("end_utc") or metadata.get("requested_time_window", {}).get("end_utc"),
+            "context_source": context_source,
+            "context_daily_bars": len(daily_context),
+            "context_after_hours_bars": len(after_hours_context),
+            "context_previous_session_date": context_metadata.get("previous_session_date"),
+            "context_daily_gzip_integrity": (
+                _gzip_ok(date_dir / "context" / "daily-bars.csv.gz")
+                if context_source != "absent" else None
+            ),
+            "context_after_hours_gzip_integrity": (
+                _gzip_ok(date_dir / "context" / "after-hours-bars.csv.gz")
+                if context_source != "absent" else None
+            ),
+            "corporate_action_status": (
+                context_metadata.get("corporate_actions", {}).get("status")
+                if isinstance(context_metadata.get("corporate_actions"), dict)
+                else None
+            ),
         })
         for symbol, sbars in bars.groupby("symbol", sort=True):
             group = str(sbars.group.iloc[0])
+            symbol_daily = (
+                daily_context[daily_context.symbol == symbol]
+                if not daily_context.empty else pd.DataFrame()
+            )
+            symbol_after_hours = (
+                after_hours_context[after_hours_context.symbol == symbol]
+                if not after_hours_context.empty else pd.DataFrame()
+            )
             for decision in DECISIONS:
-                row = _base_features(day, symbol, group, sbars, decision)
+                row = _base_features(
+                    day,
+                    symbol,
+                    group,
+                    sbars,
+                    decision,
+                    daily_history=symbol_daily,
+                    after_hours=symbol_after_hours,
+                    context_metadata=context_metadata,
+                )
                 row.update(_outcomes(day, sbars, decision))
                 known_high = _finite(row.get("pm_high"))
                 if decision != "09:30":
@@ -540,6 +834,20 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
         and item["raw_pages_integrity"]
         for item in quality
     )
+    context_dates = [
+        str(item["date"]) for item in quality if item.get("context_source") != "absent"
+    ]
+    corporate_statuses = sorted({
+        str(item.get("corporate_action_status"))
+        for item in quality
+        if item.get("corporate_action_status")
+    })
+    verified_gaps = int(
+        _premarket_selection(rows[rows.decision_et == "09:30"])
+        .get("true_gap_verified", pd.Series(dtype=bool))
+        .fillna(False)
+        .sum()
+    )
     lines = [
         "# Collective premarket/open research findings", "",
         "Research-only descriptive analysis. This report does not define a buy rule or an order instruction.",
@@ -558,7 +866,17 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
             if integrity_ok
             else "- At least one gzip integrity check failed; inspect data-quality.json."
         ),
-        "- Previous official close, quote spread, auction imbalance and market-wide non-candidates are absent. Exact gap, execution cost, precision and recall cannot be measured.", "",
+        (
+            f"- Prior-session context loaded for {len(context_dates)}/{len(quality)} "
+            f"sessions; corporate-action status: {', '.join(corporate_statuses) or 'unavailable'}; "
+            f"corporate-action-safe true gaps: {verified_gaps}."
+            if context_dates
+            else "- Previous official close and after-hours context are absent. Exact gap features cannot be measured."
+        ),
+        "- Quote spread, auction imbalance and market-wide non-candidates remain absent. Execution cost, whole-market precision and recall cannot yet be measured.", "",
+        "## Closure-to-premarket context", "",
+        "Raw daily and after-hours prices are retained on the same adjustment basis. Raw gaps remain descriptive until corporate-action reconciliation marks a symbol safe.",
+        "Dormancy windows require 20, 60 or 120 prior sessions respectively; insufficient histories remain missing instead of being filled or shortened.", "",
         "## Entry benchmark comparison", "",
         "| Decision ET | Median 30m return | Median 60m return | Median MFE | Median MAE | Median close return |",
         "|---|---:|---:|---:|---:|---:|",

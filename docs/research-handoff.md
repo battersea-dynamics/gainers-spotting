@@ -30,7 +30,9 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `.github/workflows/collect-historical-alpaca.yml`
 - `.github/workflows/collect-observed-week.yml`
 - `.github/workflows/collect-recovered-august.yml`
+- `.github/workflows/collect-prior-session-context.yml`
 - `scripts/collect_alpaca_bars.py`
+- `scripts/collect_prior_session_context.py`
 - `scripts/analyze_historical_session.py`
 - `scripts/analyze_premarket_open_week.py`
 - `scripts/analyze_screenshot_behavior.py`
@@ -38,6 +40,7 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `scripts/build_alpaca_universe.py`
 - `scripts/normalize_screenshot_recovery.py`
 - `tests/test_collect_alpaca_bars.py`
+- `tests/test_collect_prior_session_context.py`
 - `tests/test_analyze_historical_session.py`
 - `tests/test_analyze_premarket_open_week.py`
 - `tests/test_analyze_screenshot_behavior.py`
@@ -130,6 +133,16 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
   premarket range predicted more MFE but also worse MAE; repeated screenshot
   appearance did not predict continuation; holding or recovering toward the
   premarket high after the open is a provisional directional-quality feature.
+- The prior-session context implementation is ready but has not yet been run
+  with authenticated Alpaca access. It will collect raw daily history and the
+  preceding session's 16:00-20:00 ET bars under each date's `context/`
+  directory. Corporate actions are explicitly marked unavailable; raw gap
+  fields are descriptive and verified true-gap fields stay missing until that
+  limitation is resolved.
+- The pooled analyser now supports after-hours initiation/fade/persistence,
+  premarket reacceleration, price relative to the after-hours close/high, and
+  exact 20-, 60- and 120-session dormancy features. No new ranking weight or
+  buy threshold has been approved.
 
 ## Research question
 
@@ -198,14 +211,14 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Retain the nine corrected August artifacts and pooled analysis outputs in
-   the local Windows research-data directory; do not use the two earlier
-   partial runs.
-2. Collect previous official close and previous-session 16:00–20:00 ET bars
-   for the 14 sessions so the closure-to-premarket hypothesis can be tested.
+1. Run the manual `Collect prior-session context` workflow and validate all 14
+   artifacts before rerunning the pooled analysis.
+2. Reanalyse the 14 sessions with context present and report closure-to-
+   premarket associations without selecting a buy rule from the same dates.
 3. Validate the provisional August symbols with a dated Alpaca asset snapshot
    where available and the collected success/failure metadata.
-4. Add corporate-action checks for retained symbols.
+4. Integrate a verified corporate-action source or preserve the current
+   explicit unavailable warning and keep true-gap features missing.
 5. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
 6. Consolidate the duplicated feature calculations before extending the ranking models.
 7. Build historical, time-normalised activity baselines using only earlier sessions.

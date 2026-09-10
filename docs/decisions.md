@@ -78,3 +78,18 @@ A supplied project draft describes the existing `trading-agent` scanner and its 
 - Record explicit feed, delay, completed-bar boundaries and information cutoffs for every historical or observation-mode ranking.
 - Keep emergence evidence, momentum quality and execution risk separately observable.
 - Do not choose final channel budgets, feature weights or trading thresholds until later-date evidence supports them.
+
+## 10 September 2026
+
+### Prior-session context implementation
+
+- Collect raw-adjusted daily history ending before each research date and the
+  immediately preceding US session's 16:00-20:00 ET one-minute bars.
+- Derive the previous session from returned daily market data instead of
+  guessing around weekends and exchange holidays.
+- Preserve descriptive raw gaps but leave verified true-gap fields missing
+  while corporate-action information is unavailable or a symbol is affected.
+- Add exact 20-, 60- and 120-session dormancy windows. Do not silently shorten
+  a window when history is insufficient.
+- Keep all new context features outside ranking weights until the authenticated
+  collection has completed and later-date validation supports their use.

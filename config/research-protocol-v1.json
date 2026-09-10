@@ -1,6 +1,6 @@
 {
   "protocol_version": "premarket-research-v1",
-  "feature_set_version": "point-in-time-bars-v1",
+  "feature_set_version": "point-in-time-bars-with-prior-context-v2",
   "outcome_set_version": "continuous-outcomes-v1",
   "ranking_models": {
     "composite_v1": {
@@ -49,6 +49,14 @@
   "mfe_sensitivity_thresholds": [0.10, 0.20, 0.30],
   "top_k": [5, 10, 20],
   "minimum_training_dates": 3,
+  "prior_session_context": {
+    "context_version": "prior-session-context-v1",
+    "daily_adjustment": "raw",
+    "after_hours_adjustment": "raw",
+    "dormancy_windows_sessions": [20, 60, 120],
+    "true_gap_policy": "A descriptive raw gap is retained, but the verified true gap remains missing unless corporate actions are checked and the price bases are comparable.",
+    "insufficient_history_policy": "Do not shorten a requested dormancy window or fill it with future sessions; leave its features missing and record available-session counts."
+  },
   "failure_modes": {
     "faded_by_30m": "30-minute forward return is below zero",
     "closed_below_entry": "regular-session close is below the benchmark entry",

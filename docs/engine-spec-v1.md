@@ -346,6 +346,12 @@ The initial configuration shall expose, rather than hard-code invisibly:
 - time buckets and cumulative cutoff definitions;
 - feed and adjustment mode.
 
+The closure-to-premarket case study shall additionally retain exact 20-, 60-
+and 120-session daily dormancy windows. These longer descriptive windows test
+whether a stock was quiet for weeks or months before becoming active. They do
+not replace the time-of-day premarket baselines below, and a requested window
+must remain missing when the full earlier-session history is unavailable.
+
 For every symbol and comparable premarket cutoff, retain historical
 distributions for:
 

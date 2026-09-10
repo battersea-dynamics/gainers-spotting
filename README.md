@@ -115,6 +115,28 @@ recovered screenshot dates from 3–14 August in batches of three parallel jobs.
 Each job checks that pagination completed and at least one requested symbol
 returned usable bars before uploading its dated artifact.
 
+The manual `Collect prior-session context` workflow covers all 14 recovered
+research dates. For each date it reads the same historical case-study universe,
+collects up to 220 calendar days of raw-adjusted daily bars, derives the actual
+previous US session from returned market data, and then collects that session's
+16:00-20:00 ET one-minute after-hours bars. Generated context is written under
+`data/research/YYYY-MM-DD/context/` and uploaded as one artifact per date.
+
+To reproduce one context collection locally with existing environment
+credentials:
+
+```bash
+python scripts/collect_prior_session_context.py \
+  --date 2026-07-27 \
+  --universe-file config/research-universes/2026-07-27.json
+```
+
+Daily, after-hours and current-session bars all declare `adjustment=raw`.
+Because no verified corporate-action source is currently connected, metadata
+contains an explicit warning: raw gaps are preserved descriptively, while the
+corporate-action-safe true-gap fields remain missing. A split must therefore
+never be interpreted as a verified overnight gap.
+
 If Alpaca rejects a multi-symbol request with HTTP 400, the collector
 recursively splits that batch to isolate the rejected symbol. It records the
 individual failure in `metadata.json` and retains the bars for every valid
@@ -179,6 +201,19 @@ baselines, top-5/10/20 evaluation, candidate burden, failure labels, and
 chronological walk-forward folds. The MFE thresholds in
 `config/research-protocol-v1.json` are evaluation-only sensitivity labels;
 continuous outcomes remain primary and the thresholds are not buy rules.
+
+When a dated `context/` directory is present, the same command also calculates:
+
+- raw and corporate-action-safe previous-close gap fields;
+- after-hours initiation, range, activity, fade and persistence measurements;
+- premarket price relative to the prior after-hours close and high;
+- late-premarket 30-minute reacceleration; and
+- 20-, 60- and 120-session dormancy measurements.
+
+Each dormancy window uses only sessions preceding the research date. If a
+symbol lacks the complete requested history, that window remains missing and
+its available-session count is retained. None of these new features has an
+approved weight or trading threshold.
 
 To compare the recovered screenshot checkpoints with the pooled one-minute-bar
 outcomes, run:

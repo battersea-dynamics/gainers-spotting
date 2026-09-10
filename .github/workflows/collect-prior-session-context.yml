@@ -1,0 +1,91 @@
+name: Collect prior-session context
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        research_date:
+          - "2026-07-27"
+          - "2026-07-28"
+          - "2026-07-29"
+          - "2026-07-30"
+          - "2026-07-31"
+          - "2026-08-03"
+          - "2026-08-04"
+          - "2026-08-05"
+          - "2026-08-06"
+          - "2026-08-07"
+          - "2026-08-10"
+          - "2026-08-11"
+          - "2026-08-12"
+          - "2026-08-14"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Collect daily and prior after-hours context
+        run: |
+          python scripts/collect_prior_session_context.py \
+            --date "${{ matrix.research_date }}" \
+            --universe-file "config/research-universes/${{ matrix.research_date }}.json"
+
+      - name: Validate context metadata
+        env:
+          RESEARCH_DATE: ${{ matrix.research_date }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          research_date = os.environ["RESEARCH_DATE"]
+          context = Path("data/research") / research_date / "context"
+          metadata = json.loads(
+              (context / "context-metadata.json").read_text(encoding="utf-8")
+          )
+          if metadata.get("error"):
+              raise SystemExit(f"Context collection failed: {metadata['error']}")
+          if not metadata.get("daily_history", {}).get("completed"):
+              raise SystemExit("Daily-history pagination did not complete")
+          if metadata.get("daily_history", {}).get("total_bars", 0) < 1:
+              raise SystemExit("Daily-history collection returned no bars")
+          if not metadata.get("after_hours", {}).get("completed"):
+              raise SystemExit("After-hours pagination did not complete")
+          if not metadata.get("previous_session_date"):
+              raise SystemExit("Previous US session was not identified")
+          if metadata.get("corporate_actions", {}).get("status") != "unavailable_not_collected":
+              raise SystemExit("Unexpected corporate-action status")
+          for filename in ("daily-bars.csv.gz", "after-hours-bars.csv.gz"):
+              if not (context / filename).exists():
+                  raise SystemExit(f"Missing context file: {filename}")
+          print(json.dumps({
+              "research_date": research_date,
+              "previous_session_date": metadata["previous_session_date"],
+              "daily_bars": metadata["daily_history"]["total_bars"],
+              "after_hours_bars": metadata["after_hours"]["total_bars"],
+              "corporate_action_status": metadata["corporate_actions"]["status"],
+          }, indent=2))
+          PY
+
+      - name: Upload prior-session context
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpaca-prior-context-${{ matrix.research_date }}
+          path: data/research/${{ matrix.research_date }}/context/
+          if-no-files-found: error
+          retention-days: 30
