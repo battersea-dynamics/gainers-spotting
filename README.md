@@ -180,6 +180,23 @@ chronological walk-forward folds. The MFE thresholds in
 `config/research-protocol-v1.json` are evaluation-only sensitivity labels;
 continuous outcomes remain primary and the thresholds are not buy rules.
 
+To compare the recovered screenshot checkpoints with the pooled one-minute-bar
+outcomes, run:
+
+```bash
+python scripts/analyze_screenshot_behavior.py \
+  --features-outcomes data/research/collective/analysis/features-outcomes.csv \
+  --dates 2026-07-27 2026-07-28 2026-07-29 2026-07-30 2026-07-31 \
+          2026-08-03 2026-08-04 2026-08-05 2026-08-06 2026-08-07 \
+          2026-08-10 2026-08-11 2026-08-12 2026-08-14 \
+  --output-dir data/research/collective/analysis
+```
+
+This converts actual UK phone times to New York time, corrects phase labels,
+and measures first appearance and persistence. Its screenshot values remain
+historical labels and never become scanner-universe inputs. Preliminary pooled
+results are documented in `docs/preliminary-14-session-findings.md`.
+
 ## Point-in-time candidate rankings
 
 To rank every symbol present in one collected session at the open, +15 minutes,

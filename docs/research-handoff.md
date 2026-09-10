@@ -33,18 +33,21 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `scripts/collect_alpaca_bars.py`
 - `scripts/analyze_historical_session.py`
 - `scripts/analyze_premarket_open_week.py`
+- `scripts/analyze_screenshot_behavior.py`
 - `scripts/rank_premarket_candidates.py`
 - `scripts/build_alpaca_universe.py`
 - `scripts/normalize_screenshot_recovery.py`
 - `tests/test_collect_alpaca_bars.py`
 - `tests/test_analyze_historical_session.py`
 - `tests/test_analyze_premarket_open_week.py`
+- `tests/test_analyze_screenshot_behavior.py`
 - `tests/test_rank_premarket_candidates.py`
 - `tests/test_build_alpaca_universe.py`
 - `tests/test_normalize_screenshot_recovery.py`
 - `docs/premarket-open-research-plan.md`
 - `docs/engine-spec-v1.md`
 - `docs/preliminary-week-findings.md`
+- `docs/preliminary-14-session-findings.md`
 - date-specific universes under `config/research-universes/`
 - normalized Revolut observations under `config/research-observations/`
 - frozen evaluation definitions under `config/research-protocol-v1.json`
@@ -119,6 +122,14 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
   validation account for 521 requested symbol-date cases: 509 returned 198,105
   bars; `BLZE-IT` was rejected on three dates; nine other cases returned no
   bars. All date windows and pagination-complete flags passed verification.
+- The pooled 14-session analysis covers 297,388 bars and 796 usable collected
+  symbol-date cases. It joins 420 cases to corrected same-session premarket
+  screenshot checkpoints. Detailed provisional results are in
+  `docs/preliminary-14-session-findings.md`.
+- The clearest result is a risk/reward split rather than a buy signal. Wider
+  premarket range predicted more MFE but also worse MAE; repeated screenshot
+  appearance did not predict continuation; holding or recovering toward the
+  premarket high after the open is a provisional directional-quality feature.
 
 ## Research question
 
@@ -187,13 +198,14 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Retain the nine corrected August artifacts and their metadata in the local
-   Windows research-data directory; do not use the two earlier partial runs.
-2. Validate the provisional August symbols with a dated Alpaca asset snapshot
+1. Retain the nine corrected August artifacts and pooled analysis outputs in
+   the local Windows research-data directory; do not use the two earlier
+   partial runs.
+2. Collect previous official close and previous-session 16:00–20:00 ET bars
+   for the 14 sessions so the closure-to-premarket hypothesis can be tested.
+3. Validate the provisional August symbols with a dated Alpaca asset snapshot
    where available and the collected success/failure metadata.
-3. Run the approved screenshot-labelled behavioural reconstruction across all
-   dates with usable bars, preserving controls and missing observations.
-4. Add previous official close, corporate-action checks and previous-session 16:00-20:00 ET after-hours context for retained symbols.
+4. Add corporate-action checks for retained symbols.
 5. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
 6. Consolidate the duplicated feature calculations before extending the ranking models.
 7. Build historical, time-normalised activity baselines using only earlier sessions.

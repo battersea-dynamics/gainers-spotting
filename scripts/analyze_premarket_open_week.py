@@ -529,6 +529,17 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
                    protocol: dict[str, object], burden: pd.DataFrame,
                    walk_forward: pd.DataFrame) -> None:
     primary = corr[(corr.outcome == "mfe") & (corr.decision_et == "09:30")].sort_values("abs_rho", ascending=False).head(8)
+    fallback_dates = [
+        str(item["date"])
+        for item in quality
+        if item["clean_source"] != "bars.csv.gz"
+    ]
+    integrity_ok = all(
+        item["csv_gzip_integrity"]
+        and item["jsonl_gzip_integrity"]
+        and item["raw_pages_integrity"]
+        for item in quality
+    )
     lines = [
         "# Collective premarket/open research findings", "",
         "Research-only descriptive analysis. This report does not define a buy rule or an order instruction.",
@@ -537,7 +548,16 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
         f"- Sessions: {', '.join(q['date'] for q in quality)}.",
         f"- Collected symbol-date observations: {len(rows) // len(DECISIONS)}; premarket-selection cohort: {len(_premarket_selection(rows)) // len(DECISIONS)}; fixed entry benchmarks: {', '.join(DECISIONS)} ET.",
         f"- Alpaca feed: SIP; one-minute bars; 04:00–16:00 ET.",
-        "- The 24 July CSV gzip was truncated; the intact machine-readable JSONL copy was used. Raw pages also passed gzip integrity checks.",
+        (
+            "- CSV fallback dates: " + ", ".join(fallback_dates) + "."
+            if fallback_dates
+            else "- All sessions loaded from bars.csv.gz without fallback."
+        ),
+        (
+            "- CSV, JSONL and raw-page gzip integrity checks passed for every session."
+            if integrity_ok
+            else "- At least one gzip integrity check failed; inspect data-quality.json."
+        ),
         "- Previous official close, quote spread, auction imbalance and market-wide non-candidates are absent. Exact gap, execution cost, precision and recall cannot be measured.", "",
         "## Entry benchmark comparison", "",
         "| Decision ET | Median 30m return | Median 60m return | Median MFE | Median MAE | Median close return |",
@@ -557,7 +577,7 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
     for row in primary.itertuples():
         q = "n/a" if pd.isna(row.q_value_bh) else f"{row.q_value_bh:.3f}"
         lines.append(f"| {row.feature} | {row.n} | {row.spearman_rho:.3f} | {row.dates_same_sign}/{row.dates_with_estimate} | {row.lodo_same_sign}/{row.lodo_folds} | {q} |")
-    lines += ["", "Interpret recurrent direction and effect size before significance. Six selected sessions are hypothesis generation only.", "",
+    lines += ["", f"Interpret recurrent direction and effect size before significance. These {len(quality)} selected sessions are hypothesis generation only.", "",
               "## Leakage controls", "",
               "- 09:30 features use bars strictly before 09:30 ET.",
               "- 09:45 and 10:00 features add only completed bars strictly before their decision time.",
@@ -569,14 +589,14 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
     for row in burden.itertuples():
         lines.append(f"| {row.date} | {row.decision_et} | {row.candidate_count} | {row.median_feature_coverage:.1%} |")
     lines += ["", "## Chronological walk-forward", "",
-              "At each fold, model choice uses earlier dates only and is evaluated on the next date. The present six-session, screenshot-selected sample is pipeline validation, not predictive proof.", "",
+              f"At each fold, model choice uses earlier dates only and is evaluated on the next date. The present {len(quality)}-session, screenshot-selected sample is pipeline validation, not predictive proof.", "",
               "| Decision ET | Test date | Earlier dates | Selected model | Train rho | Test rho | Top-k median MFE |",
               "|---|---|---:|---|---:|---:|---:|"]
     for row in walk_forward.itertuples():
         test_rho = "n/a" if pd.isna(row.test_spearman_mfe) else f"{row.test_spearman_mfe:.3f}"
         lines.append(f"| {row.decision_et} | {row.test_date} | {len(row.train_dates.split(','))} | {row.selected_model} | {row.train_mean_per_date_spearman_mfe:.3f} | {test_rho} | {row.test_top_k_median_mfe:.2%} |")
     lines += ["", "## Selection-bias warning", "",
-              "The post-open-only cohort was defined by later Top Movers appearances. Its superior realized outcomes are therefore expected by construction and cannot be used as a predictive benchmark. Main feature correlations and entry summaries exclude that cohort and the 24 July retrospective controls.", "",
+              "The post-open-only cohort was defined by later Top Movers appearances. Its superior realized outcomes are therefore expected by construction and cannot be used as a predictive benchmark. Main feature correlations and entry summaries exclude that cohort and any retrospective controls.", "",
               "## Next research step", "",
               "Repeat the same frozen calculations on additional dates and validate any candidate feature or cutoff on dates not used to choose it. Add official previous close and quote/auction data before evaluating gap or execution quality."]
     (out_dir / "research-findings.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
