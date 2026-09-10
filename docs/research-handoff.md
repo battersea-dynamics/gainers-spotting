@@ -51,6 +51,7 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `docs/engine-spec-v1.md`
 - `docs/preliminary-week-findings.md`
 - `docs/preliminary-14-session-findings.md`
+- `docs/preliminary-closure-context-findings.md`
 - date-specific universes under `config/research-universes/`
 - normalized Revolut observations under `config/research-observations/`
 - frozen evaluation definitions under `config/research-protocol-v1.json`
@@ -133,16 +134,22 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
   premarket range predicted more MFE but also worse MAE; repeated screenshot
   appearance did not predict continuation; holding or recovering toward the
   premarket high after the open is a provisional directional-quality feature.
-- The prior-session context implementation is ready but has not yet been run
-  with authenticated Alpaca access. It will collect raw daily history and the
-  preceding session's 16:00-20:00 ET bars under each date's `context/`
-  directory. Corporate actions are explicitly marked unavailable; raw gap
-  fields are descriptive and verified true-gap fields stay missing until that
-  limitation is resolved.
-- The pooled analyser now supports after-hours initiation/fade/persistence,
-  premarket reacceleration, price relative to the after-hours close/high, and
-  exact 20-, 60- and 120-session dormancy features. No new ranking weight or
-  buy threshold has been approved.
+- Prior-session workflow run `34502633197` completed all 14 date jobs. Validated
+  artifacts contain 117,947 raw-adjusted daily bars and 35,366 after-hours
+  one-minute bars. All context metadata and gzip integrity checks passed.
+- The enriched pooled analysis covers the same 796 symbol-date cases and 2,388
+  decision rows. Context is available for all 464 premarket-observed cases;
+  exact 20-, 60-, and 120-session dormancy features cover 463, 456, and 450
+  cases respectively. Detailed results are in
+  `docs/preliminary-closure-context-findings.md`.
+- Lower recent 20-session close volatility and absence of large prior daily
+  jumps were associated with better 30- and 60-minute direction in the selected
+  sample. Limited after-hours fade was a modest confirmation feature. Large
+  after-hours range and extreme premarket activity primarily predicted both
+  opportunity and downside rather than directional continuation.
+- Corporate actions remain explicitly unavailable. Raw gap fields are
+  descriptive and all verified true-gap fields stay missing. No new ranking
+  weight or buy threshold has been approved.
 
 ## Research question
 
@@ -211,20 +218,24 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Run the manual `Collect prior-session context` workflow and validate all 14
-   artifacts before rerunning the pooled analysis.
-2. Reanalyse the 14 sessions with context present and report closure-to-
-   premarket associations without selecting a buy rule from the same dates.
-3. Validate the provisional August symbols with a dated Alpaca asset snapshot
+1. Validate the provisional August symbols with a dated Alpaca asset snapshot
    where available and the collected success/failure metadata.
-4. Integrate a verified corporate-action source or preserve the current
+2. Integrate a verified corporate-action source or preserve the current
    explicit unavailable warning and keep true-gap features missing.
-5. Verify current Alpaca feed entitlements and run a one-session broad-universe five-minute data-volume pilot.
-6. Consolidate the duplicated feature calculations before extending the ranking models.
-7. Build historical, time-normalised activity baselines using only earlier sessions.
-8. Implement the independent multi-channel discovery funnel and retain whole-market controls.
-9. Expand historical validation beyond the selected screenshot sessions before choosing thresholds or weights.
-10. Add quote-derived spread, catalyst tagging, float data and regime analysis only when reliable data justify them; keep the project order-free.
+3. Verify current Alpaca feed entitlements and run a one-session broad-universe
+   five-minute data-volume pilot.
+4. Consolidate the duplicated feature calculations before extending the
+   ranking models.
+5. Build historical, time-normalised activity baselines using only earlier
+   sessions.
+6. Freeze candidate dormancy, activation, persistence, movement-potential and
+   risk features before evaluating them on new dates.
+7. Implement the independent multi-channel discovery funnel and retain
+   whole-market controls.
+8. Expand historical validation beyond the selected screenshot sessions before
+   choosing thresholds or weights.
+9. Add quote-derived spread, catalyst tagging, float data and regime analysis
+   only when reliable data justify them; keep the project order-free.
 
 ## New-chat bootstrap prompt
 

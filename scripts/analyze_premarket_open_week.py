@@ -916,7 +916,7 @@ def write_findings(out_dir: Path, rows: pd.DataFrame, corr: pd.DataFrame, entry:
     lines += ["", "## Selection-bias warning", "",
               "The post-open-only cohort was defined by later Top Movers appearances. Its superior realized outcomes are therefore expected by construction and cannot be used as a predictive benchmark. Main feature correlations and entry summaries exclude that cohort and any retrospective controls.", "",
               "## Next research step", "",
-              "Repeat the same frozen calculations on additional dates and validate any candidate feature or cutoff on dates not used to choose it. Add official previous close and quote/auction data before evaluating gap or execution quality."]
+              "Repeat the same frozen calculations on additional dates and validate any candidate feature or cutoff on dates not used to choose it. Add verified corporate-action reconciliation and quote/auction data before treating gap or execution quality as reliable."]
     (out_dir / "research-findings.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

@@ -54,6 +54,8 @@ Initial work will:
 - [Premarket and opening-entry research plan](docs/premarket-open-research-plan.md)
 - [Premarket ranking engine](docs/premarket-ranking-engine.md)
 - [Approved engine specification v1](docs/engine-spec-v1.md)
+- [Preliminary 14-session findings](docs/preliminary-14-session-findings.md)
+- [Preliminary closure-to-open context findings](docs/preliminary-closure-context-findings.md)
 - [Frozen research protocol v1](config/research-protocol-v1.json)
 - [Evidence-based improvements (external review)](docs/evidence-based-improvements.md)
 
