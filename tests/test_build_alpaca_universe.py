@@ -1,6 +1,8 @@
 import importlib.util
+import os
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 SCRIPT = Path(__file__).parents[1] / "scripts" / "build_alpaca_universe.py"
@@ -11,6 +13,17 @@ SPEC.loader.exec_module(universe)
 
 
 class UniverseTests(unittest.TestCase):
+    def test_paper_account_endpoint_is_the_safe_default(self):
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(
+                "https://paper-api.alpaca.markets/v2/assets",
+                universe.resolve_assets_url(),
+            )
+
+    def test_rejects_non_alpaca_account_endpoint(self):
+        with self.assertRaises(universe.UniverseError):
+            universe.resolve_assets_url("https://example.com")
+
     def test_broad_universe_has_no_price_or_volume_floor(self):
         assets = [
             {"symbol": "CHEAP", "asset_class": "us_equity", "status": "active", "tradable": True, "exchange": "NASDAQ", "name": "Cheap Co"},

@@ -22,13 +22,30 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 
-ASSETS_URL = "https://api.alpaca.markets/v2/assets"
+PAPER_API_BASE_URL = "https://paper-api.alpaca.markets"
+LIVE_API_BASE_URL = "https://api.alpaca.markets"
+ALLOWED_API_BASE_URLS = {PAPER_API_BASE_URL, LIVE_API_BASE_URL}
 ALLOWED_EXCHANGES = {"AMEX", "ARCA", "BATS", "NASDAQ", "NYSE"}
 RULE_VERSION = "broad-us-equity-v1"
 
 
 class UniverseError(RuntimeError):
     pass
+
+
+def resolve_assets_url(api_base_url: str | None = None) -> str:
+    """Resolve an allow-listed Alpaca account endpoint, defaulting to paper."""
+    base_url = (
+        api_base_url
+        or os.getenv("APCA_API_BASE_URL")
+        or os.getenv("ALPACA_API_BASE_URL")
+        or PAPER_API_BASE_URL
+    ).rstrip("/")
+    if base_url not in ALLOWED_API_BASE_URLS:
+        raise UniverseError(
+            "Unsupported Alpaca API base URL; use the paper or live Alpaca endpoint"
+        )
+    return f"{base_url}/v2/assets"
 
 
 def get_credentials() -> tuple[str, str]:
@@ -39,10 +56,16 @@ def get_credentials() -> tuple[str, str]:
     return key, secret
 
 
-def fetch_assets(key: str, secret: str, timeout: int) -> list[dict[str, Any]]:
+def fetch_assets(
+    key: str,
+    secret: str,
+    timeout: int,
+    api_base_url: str | None = None,
+) -> list[dict[str, Any]]:
     query = urlencode({"status": "active", "asset_class": "us_equity"})
+    assets_url = resolve_assets_url(api_base_url)
     request = Request(
-        f"{ASSETS_URL}?{query}",
+        f"{assets_url}?{query}",
         headers={
             "APCA-API-KEY-ID": key,
             "APCA-API-SECRET-KEY": secret,
@@ -109,7 +132,7 @@ def build_payload(research_date: str, assets: list[dict[str, Any]], rejected: di
         "created_at_utc": snapshot,
         "universe_snapshot_at_utc": snapshot,
         "universe_rule_version": RULE_VERSION,
-        "source": ASSETS_URL,
+        "source": resolve_assets_url(),
         "research_only": True,
         "orders_supported": False,
         "historical_reproducibility": (
