@@ -1,0 +1,130 @@
+name: Whole-market five-minute pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      research_date:
+        description: Completed U.S. market session (YYYY-MM-DD)
+        required: true
+        default: "2026-09-11"
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      APCA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY || secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY || secrets.APCA_API_SECRET_KEY }}
+      RESEARCH_DATE: ${{ inputs.research_date }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+
+      - name: Install research dependencies
+        run: python -m pip install -r requirements-research.txt
+
+      - name: Capture broad US-equity universe
+        run: |
+          python scripts/build_alpaca_universe.py \
+            --date "$RESEARCH_DATE" \
+            --output "data/research/universes/$RESEARCH_DATE.json"
+
+      - name: Collect daily and broad five-minute data
+        run: |
+          python scripts/collect_whole_market_pilot.py \
+            --date "$RESEARCH_DATE" \
+            --universe-file "data/research/universes/$RESEARCH_DATE.json"
+
+      - name: Validate collection
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          date = os.environ["RESEARCH_DATE"]
+          root = Path("data/research/whole-market-pilot") / date
+          metadata = json.loads(
+              (root / "collection-metadata.json").read_text(encoding="utf-8")
+          )
+          if metadata.get("error"):
+              raise SystemExit(metadata["error"])
+          for section in ("daily_history", "broad_five_minute"):
+              details = metadata.get(section, {})
+              if details.get("completed") is not True:
+                  raise SystemExit(f"Incomplete collection section: {section}")
+              if details.get("total_bars", 0) < 1:
+                  raise SystemExit(f"No bars in collection section: {section}")
+          for filename in (
+              "universe.json", "daily-bars.csv.gz",
+              "broad-five-minute-bars.csv.gz",
+          ):
+              if not (root / filename).exists():
+                  raise SystemExit(f"Missing pilot file: {filename}")
+          print(json.dumps({
+              "requested_symbols": metadata["requested_symbol_count"],
+              "previous_session_date": metadata["previous_session_date"],
+              "daily_bars": metadata["daily_history"]["total_bars"],
+              "broad_five_minute_bars": metadata["broad_five_minute"]["total_bars"],
+              "daily_requests": len(metadata["daily_history"]["page_requests"]),
+              "broad_requests": len(metadata["broad_five_minute"]["page_requests"]),
+          }, indent=2))
+          PY
+
+      - name: Analyse channel budgets and outcomes
+        run: |
+          python scripts/analyze_whole_market_pilot.py \
+            --pilot-dir "data/research/whole-market-pilot/$RESEARCH_DATE"
+
+      - name: Validate research boundaries
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import pandas as pd
+
+          date = os.environ["RESEARCH_DATE"]
+          analysis = Path("data/research/whole-market-pilot") / date / "analysis"
+          manifest = json.loads(
+              (analysis / "run-manifest.json").read_text(encoding="utf-8")
+          )
+          if manifest.get("research_only") is not True:
+              raise SystemExit("Pilot is not marked research-only")
+          if manifest.get("orders_supported") is not False:
+              raise SystemExit("Unexpected order support")
+          if manifest.get("ranking_outcome_separation") is not True:
+              raise SystemExit("Ranking/outcome separation missing")
+          future = {
+              "entry_price", "ret_5m", "ret_15m", "ret_30m", "ret_60m",
+              "ret_120m", "ret_close", "mfe", "mae", "regular_high",
+              "raw_previous_close_to_regular_high",
+              "true_previous_close_to_regular_high",
+          }
+          for path in analysis.glob("rankings-*.csv.gz"):
+              columns = set(pd.read_csv(path, nrows=0).columns)
+              leaked = sorted(columns & future)
+              if leaked:
+                  raise SystemExit(f"Future fields leaked into {path}: {leaked}")
+          print(json.dumps(manifest, indent=2))
+          PY
+
+      - name: Upload complete pilot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: whole-market-five-minute-pilot-${{ env.RESEARCH_DATE }}
+          path: data/research/whole-market-pilot/${{ env.RESEARCH_DATE }}/
+          if-no-files-found: error
+          retention-days: 30

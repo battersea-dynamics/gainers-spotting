@@ -10,6 +10,7 @@ universe for dates before the snapshot was taken.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -100,6 +101,9 @@ def eligible_assets(assets: Iterable[dict[str, Any]]) -> tuple[list[dict[str, An
 
 def build_payload(research_date: str, assets: list[dict[str, Any]], rejected: dict[str, int]) -> dict[str, Any]:
     snapshot = datetime.now(timezone.utc).isoformat()
+    canonical_assets = json.dumps(
+        assets, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
     return {
         "research_date": research_date,
         "created_at_utc": snapshot,
@@ -123,6 +127,7 @@ def build_payload(research_date: str, assets: list[dict[str, Any]], rejected: di
             "note": "Instrument type is not inferred from company names; downstream research may annotate ETFs/ETPs separately.",
         },
         "asset_count": len(assets),
+        "universe_content_sha256": hashlib.sha256(canonical_assets).hexdigest(),
         "rejected_counts": rejected,
         "symbol_groups": {"dynamic_discovery_universe": [row["symbol"] for row in assets]},
         "assets": assets,

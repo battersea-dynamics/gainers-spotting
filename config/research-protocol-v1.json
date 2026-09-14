@@ -57,6 +57,18 @@
     "true_gap_policy": "A descriptive raw gap is retained, but the verified true gap remains missing unless corporate actions are checked and the price bases are comparable.",
     "insufficient_history_policy": "Do not shorten a requested dormancy window or fill it with future sessions; leave its features missing and record available-session counts."
   },
+  "whole_market_five_minute_pilot": {
+    "pilot_version": "whole-market-five-minute-pilot-v1",
+    "timeframe": "5Min",
+    "data_mode": "historical_sip_zero_delay_assumption",
+    "channel_budgets": [20, 50, 100],
+    "request_interval_seconds": 0.5,
+    "daily_baseline_sessions": 20,
+    "candidate_budget_policy": "Budgets generate burden-versus-recall curves only; no operational budget is approved.",
+    "gap_policy": "Raw gap is a descriptive disabled channel until corporate actions are reconciled.",
+    "historical_premarket_baseline_status": "Not collected in the initial five-minute data-volume pilot.",
+    "ranking_outcome_policy": "Point-in-time ranking files must not contain future outcomes."
+  },
   "failure_modes": {
     "faded_by_30m": "30-minute forward return is below zero",
     "closed_below_entry": "regular-session close is below the benchmark entry",

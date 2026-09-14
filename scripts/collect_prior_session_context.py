@@ -20,6 +20,7 @@ import csv
 import gzip
 import json
 import sys
+import time
 from datetime import date, datetime, time as datetime_time, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -115,6 +116,7 @@ def _collect_dataset(
     limit: int,
     timeout: int,
     max_attempts: int,
+    request_interval_seconds: float = 0.0,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     all_bars: dict[str, list[dict[str, Any]]] = {symbol: [] for symbol in symbols}
     pending_batches = list(chunked(symbols, batch_size))
@@ -141,7 +143,9 @@ def _collect_dataset(
         "successful_symbols": [],
         "failures": {},
         "total_bars": 0,
+        "request_interval_seconds": request_interval_seconds,
     }
+    last_request_started: float | None = None
     while pending_batches:
         batch_symbols = pending_batches.pop(0)
         summary["attempted_batches"] += 1
@@ -165,6 +169,10 @@ def _collect_dataset(
                     params["page_token"] = next_page_token
                 else:
                     params.pop("page_token", None)
+                if last_request_started is not None and request_interval_seconds > 0:
+                    elapsed = time.monotonic() - last_request_started
+                    time.sleep(max(0.0, request_interval_seconds - elapsed))
+                last_request_started = time.monotonic()
                 requested_at = utc_now_iso()
                 payload, status, safe_headers, attempts = request_page_with_retry(
                     params, key, secret, timeout, max_attempts

@@ -2,7 +2,7 @@
 
 Read this document first when resuming the project in a new chat. It is the durable source of truth for the research scope, decisions, data status, and next actions. Update it whenever the methodology or project state materially changes.
 
-Last updated: 2026-09-10
+Last updated: 2026-09-14
 
 ## Mission
 
@@ -17,7 +17,9 @@ This repository covers candidate discovery and the premarket-to-open research on
 - Do not implement, simulate through a broker, or submit orders.
 - Read Alpaca credentials only from existing environment variables or GitHub secrets.
 - Never print, expose, save, or commit credentials.
-- Historical collection uses paginated 1-minute SIP bars for 04:00–16:00 America/New_York time.
+- Detailed retained-case collection uses paginated 1-minute SIP bars. The
+  separately versioned whole-market pilot uses five-minute bars as an explicit
+  cost/coverage experiment.
 - Preserve raw responses, cleaned machine-readable data, and collection metadata.
 - Do not invent scanner thresholds or trading rules. Treat all proposed signals as hypotheses to test.
 - Do not automatically exclude very low-priced stocks. Price and liquidity may be features or risk flags, but a hard price floor would have hidden cases such as LVWR.
@@ -31,19 +33,24 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `.github/workflows/collect-observed-week.yml`
 - `.github/workflows/collect-recovered-august.yml`
 - `.github/workflows/collect-prior-session-context.yml`
+- `.github/workflows/whole-market-five-minute-pilot.yml`
 - `scripts/collect_alpaca_bars.py`
 - `scripts/collect_prior_session_context.py`
+- `scripts/collect_whole_market_pilot.py`
 - `scripts/analyze_historical_session.py`
 - `scripts/analyze_premarket_open_week.py`
 - `scripts/analyze_screenshot_behavior.py`
+- `scripts/analyze_whole_market_pilot.py`
 - `scripts/rank_premarket_candidates.py`
 - `scripts/build_alpaca_universe.py`
 - `scripts/normalize_screenshot_recovery.py`
 - `tests/test_collect_alpaca_bars.py`
 - `tests/test_collect_prior_session_context.py`
+- `tests/test_collect_whole_market_pilot.py`
 - `tests/test_analyze_historical_session.py`
 - `tests/test_analyze_premarket_open_week.py`
 - `tests/test_analyze_screenshot_behavior.py`
+- `tests/test_analyze_whole_market_pilot.py`
 - `tests/test_rank_premarket_candidates.py`
 - `tests/test_build_alpaca_universe.py`
 - `tests/test_normalize_screenshot_recovery.py`
@@ -52,6 +59,7 @@ The repository contains a reusable historical Alpaca collector and analysis pipe
 - `docs/preliminary-week-findings.md`
 - `docs/preliminary-14-session-findings.md`
 - `docs/preliminary-closure-context-findings.md`
+- `docs/whole-market-five-minute-pilot.md`
 - date-specific universes under `config/research-universes/`
 - normalized Revolut observations under `config/research-observations/`
 - frozen evaluation definitions under `config/research-protocol-v1.json`
@@ -150,6 +158,15 @@ emergence/momentum/risk profiles, and unambiguous numeric units.
 - Corporate actions remain explicitly unavailable. Raw gap fields are
   descriptive and all verified true-gap fields stay missing. No new ranking
   weight or buy threshold has been approved.
+- The whole-market five-minute pilot is implemented but has not yet been run
+  with authenticated Alpaca access. It builds a dynamic broad universe without
+  price or volume floors, collects 20-session daily context plus broad
+  after-hours/premarket/regular five-minute bars, and evaluates independent
+  channel unions at budgets 20, 50, and 100. Revolut is absent from this path.
+- Pilot rankings and future outcomes are stored separately. Raw gap is disabled
+  from candidate selection, no-bar symbols remain zero-activity controls, and
+  API requests are paced and counted. The initial historical run will carry a
+  post-session universe-snapshot warning and is pipeline validation only.
 
 ## Research question
 
@@ -218,12 +235,13 @@ Phone timestamps are authoritative. If the screenshot is late, store the real ti
 
 ## Next actions
 
-1. Validate the provisional August symbols with a dated Alpaca asset snapshot
-   where available and the collected success/failure metadata.
-2. Integrate a verified corporate-action source or preserve the current
+1. Run and validate the manual `Whole-market five-minute pilot` workflow for
+   the completed 2026-09-11 US session. Record universe size, request count,
+   runtime, artifact size, coverage, candidate burden, and provisional recall.
+2. Decide whether five-minute broad discovery preserves sufficient coverage or
+   requires a narrower interval, different cadence, or staged collection.
+3. Integrate a verified corporate-action source or preserve the current
    explicit unavailable warning and keep true-gap features missing.
-3. Verify current Alpaca feed entitlements and run a one-session broad-universe
-   five-minute data-volume pilot.
 4. Consolidate the duplicated feature calculations before extending the
    ranking models.
 5. Build historical, time-normalised activity baselines using only earlier

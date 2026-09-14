@@ -56,6 +56,7 @@ Initial work will:
 - [Approved engine specification v1](docs/engine-spec-v1.md)
 - [Preliminary 14-session findings](docs/preliminary-14-session-findings.md)
 - [Preliminary closure-to-open context findings](docs/preliminary-closure-context-findings.md)
+- [Whole-market five-minute pilot](docs/whole-market-five-minute-pilot.md)
 - [Frozen research protocol v1](config/research-protocol-v1.json)
 - [Evidence-based improvements (external review)](docs/evidence-based-improvements.md)
 
@@ -251,6 +252,20 @@ ranking files and retrospective outcome files are written separately under
 This command ranks the supplied bar universe. Market-wide recall and precision
 become measurable only after the independently generated broad universe has
 been collected; screenshot-derived universes cannot support those claims.
+
+## Whole-market five-minute pilot
+
+The manual `Whole-market five-minute pilot` workflow performs the first
+independent broad-market discovery experiment. It captures a fresh Alpaca
+US-equity universe without a price or historical-volume floor, collects prior
+daily context and broad five-minute bars, evaluates independent discovery
+channels at 09:30, 09:45 and 10:00 ET, and stores future outcomes separately.
+
+The initial workflow default is the completed US session `2026-09-11`. Because
+its universe snapshot is captured after that date, the run is an API/data-volume
+and pipeline pilot with an explicit survivorship warning—not held-out predictive
+proof. See [`docs/whole-market-five-minute-pilot.md`](docs/whole-market-five-minute-pilot.md)
+for the output contract, safeguards, and local commands.
 
 ## What is not running
 

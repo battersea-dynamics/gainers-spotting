@@ -93,3 +93,25 @@ A supplied project draft describes the existing `trading-agent` scanner and its 
   a window when history is insufficient.
 - Keep all new context features outside ranking weights until the authenticated
   collection has completed and later-date validation supports their use.
+
+## 14 September 2026
+
+### Whole-market five-minute pilot
+
+- Implement the first independently constructed broad-US-equity pilot without
+  Revolut or fixed screenshot tickers in candidate discovery.
+- Use a current active/tradable Alpaca asset snapshot with no price or
+  historical-volume floor and preserve its deterministic content hash.
+- Treat a snapshot captured after a historical research session as pipeline
+  validation with survivorship risk, not as a historically complete universe.
+- Use raw daily history and a broad five-minute pass from the preceding
+  session's after-hours window through the research-session close.
+- Space pilot requests at 0.5 seconds by default and record request/page usage.
+- Evaluate independent channel-union budgets of 20, 50, and 100 as burden and
+  recall curves. Do not approve one as an operational threshold from this run.
+- Disable raw gap from candidate selection while corporate actions are
+  unavailable; retain it only as an explicitly unverified descriptive baseline.
+- Keep point-in-time rankings and future outcomes in separate files, and retain
+  no-trade symbols as zero-activity controls rather than data failures.
+- Defer one-minute candidate-detail collection until broad coverage, API use,
+  artifact size, and candidate burden have been measured.

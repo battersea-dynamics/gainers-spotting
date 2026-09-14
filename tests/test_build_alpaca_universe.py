@@ -27,6 +27,16 @@ class UniverseTests(unittest.TestCase):
         self.assertEqual(["ABC"], payload["symbol_groups"]["dynamic_discovery_universe"])
         self.assertIsNone(payload["eligibility"]["minimum_price"])
         self.assertFalse(payload["orders_supported"])
+        self.assertEqual(64, len(payload["universe_content_sha256"]))
+
+    def test_universe_hash_is_independent_of_snapshot_time(self):
+        assets = [{"symbol": "ABC"}, {"symbol": "XYZ"}]
+        first = universe.build_payload("2026-09-03", assets, {})
+        second = universe.build_payload("2026-09-03", assets, {})
+        self.assertEqual(
+            first["universe_content_sha256"],
+            second["universe_content_sha256"],
+        )
 
 
 if __name__ == "__main__":
