@@ -96,9 +96,12 @@ def eligible_assets(assets: Iterable[dict[str, Any]]) -> tuple[list[dict[str, An
         reason = None
         symbol = str(asset.get("symbol") or "").strip().upper()
         exchange = str(asset.get("exchange") or "").strip().upper()
+        asset_class = str(
+            asset.get("class") or asset.get("asset_class") or ""
+        ).strip().lower()
         if not symbol:
             reason = "blank_symbol"
-        elif asset.get("asset_class") != "us_equity":
+        elif asset_class != "us_equity":
             reason = "not_us_equity"
         elif asset.get("status") != "active":
             reason = "not_active"
@@ -168,7 +171,10 @@ def main() -> int:
     try:
         assets, rejected = eligible_assets(fetch_assets(*get_credentials(), args.timeout))
         if not assets:
-            raise UniverseError("No eligible Alpaca US equities were returned")
+            raise UniverseError(
+                "No eligible Alpaca US equities were returned; rejection counts: "
+                + json.dumps(rejected, sort_keys=True)
+            )
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(build_payload(args.date, assets, rejected), indent=2) + "\n", encoding="utf-8")
     except (OSError, UniverseError) as exc:

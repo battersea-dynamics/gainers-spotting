@@ -24,6 +24,18 @@ class UniverseTests(unittest.TestCase):
         with self.assertRaises(universe.UniverseError):
             universe.resolve_assets_url("https://example.com")
 
+    def test_accepts_asset_class_from_real_api_class_field(self):
+        accepted, rejected = universe.eligible_assets([{
+            "symbol": "REAL",
+            "class": "us_equity",
+            "status": "active",
+            "tradable": True,
+            "exchange": "NASDAQ",
+            "name": "Real API Shape",
+        }])
+        self.assertEqual(["REAL"], [row["symbol"] for row in accepted])
+        self.assertEqual({}, rejected)
+
     def test_broad_universe_has_no_price_or_volume_floor(self):
         assets = [
             {"symbol": "CHEAP", "asset_class": "us_equity", "status": "active", "tradable": True, "exchange": "NASDAQ", "name": "Cheap Co"},
