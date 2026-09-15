@@ -115,3 +115,34 @@ A supplied project draft describes the existing `trading-agent` scanner and its 
   no-trade symbols as zero-activity controls rather than data failures.
 - Defer one-minute candidate-detail collection until broad coverage, API use,
   artifact size, and candidate burden have been measured.
+
+## 15 September 2026
+
+### Engine specification v2
+
+- Approve `docs/engine-spec-v2.md` for phased research implementation.
+- Make the primary dynamic universe stock-only: common shares, ordinary
+  shares, and ADRs/ADSs representing operating companies.
+- Exclude ETFs, ETNs, pooled funds, warrants, rights, preferred shares, debt
+  securities, and SPAC units from the primary ranking.
+- Keep SPAC common shares eligible but identify them with a separate risk and
+  instrument-type flag.
+- Keep unresolved instrument types outside the primary ranking until a
+  versioned security-master process resolves them.
+- Do not use historical dormancy as an eligibility gate or primary ranking
+  channel. Retain it only as descriptive research context.
+- Use current after-hours, premarket, and early-opening price-volume activation
+  as the primary discovery evidence.
+- Keep activation, momentum quality, catalyst confidence, and execution risk
+  as separately observable profiles; do not average all channels into the
+  pilot consensus score.
+- Measure timestamped catalyst tags before allowing them to change the
+  quantitative ranking. A catalyst adjustment requires later-date,
+  chronological held-out evidence.
+- Treat options and institutional information as supporting context only. Do
+  not claim that anonymous options activity proves a named large firm expects
+  a price increase.
+- Continue to exclude Revolut membership, rank, and displayed gain from
+  universe construction and ranking inputs.
+- Preserve the research-only boundary: no live or paper orders, account access,
+  or changes to `trading-agent`.
