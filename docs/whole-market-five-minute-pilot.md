@@ -120,6 +120,17 @@ python scripts/collect_whole_market_pilot.py \
 
 python scripts/analyze_whole_market_pilot.py \
   --pilot-dir data/research/whole-market-pilot/2026-09-11
+
+python scripts/build_stock_security_master.py \
+  --output data/research/whole-market-pilot/2026-09-11/security-master.json
+
+python scripts/analyze_engine_v2_phase1.py \
+  --pilot-dir data/research/whole-market-pilot/2026-09-11 \
+  --security-master data/research/whole-market-pilot/2026-09-11/security-master.json
 ```
+
+The final two commands run the experimental stock-only Phase 1 comparison and
+write it to `analysis-v2-phase1/`; they do not replace or mutate the v1
+`analysis/` directory.
 
 Generated data remain excluded from Git.

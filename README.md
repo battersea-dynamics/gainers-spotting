@@ -265,7 +265,9 @@ The initial workflow default is the completed US session `2026-09-11`. Because
 its universe snapshot is captured after that date, the run is an API/data-volume
 and pipeline pilot with an explicit survivorship warning—not held-out predictive
 proof. See [`docs/whole-market-five-minute-pilot.md`](docs/whole-market-five-minute-pilot.md)
-for the output contract, safeguards, and local commands.
+for the output contract and local commands. The experimental branch also runs
+the stock-only Engine v2 Phase 1 comparison described in
+[`docs/engine-v2-phase1-pilot-results.md`](docs/engine-v2-phase1-pilot-results.md).
 
 ## What is not running
 

@@ -88,6 +88,17 @@ jobs:
           python scripts/analyze_whole_market_pilot.py \
             --pilot-dir "data/research/whole-market-pilot/$RESEARCH_DATE"
 
+      - name: Build dated stock security master
+        run: |
+          python scripts/build_stock_security_master.py \
+            --output "data/research/whole-market-pilot/$RESEARCH_DATE/security-master.json"
+
+      - name: Run Engine v2 Phase 1 stock-only experiment
+        run: |
+          python scripts/analyze_engine_v2_phase1.py \
+            --pilot-dir "data/research/whole-market-pilot/$RESEARCH_DATE" \
+            --security-master "data/research/whole-market-pilot/$RESEARCH_DATE/security-master.json"
+
       - name: Validate research boundaries
         run: |
           python - <<'PY'
@@ -118,7 +129,29 @@ jobs:
               leaked = sorted(columns & future)
               if leaked:
                   raise SystemExit(f"Future fields leaked into {path}: {leaked}")
-          print(json.dumps(manifest, indent=2))
+          v2_analysis = analysis.parent / "analysis-v2-phase1"
+          v2_manifest = json.loads(
+              (v2_analysis / "run-manifest.json").read_text(encoding="utf-8")
+          )
+          if v2_manifest.get("research_only") is not True:
+              raise SystemExit("Engine v2 experiment is not marked research-only")
+          if v2_manifest.get("orders_supported") is not False:
+              raise SystemExit("Unexpected Engine v2 order support")
+          if v2_manifest.get("stock_only_primary_universe") is not True:
+              raise SystemExit("Engine v2 stock-only policy missing")
+          if v2_manifest.get("dormant_activation_enabled") is not False:
+              raise SystemExit("Dormancy unexpectedly enabled in Engine v2")
+          if v2_manifest.get("ranking_outcome_separation") is not True:
+              raise SystemExit("Engine v2 ranking/outcome separation missing")
+          for path in list(v2_analysis.glob("rankings-*.csv")) + [
+              v2_analysis / "model-rankings.csv.gz",
+              v2_analysis / "candidate-unions.csv.gz",
+          ]:
+              columns = set(pd.read_csv(path, nrows=0).columns)
+              leaked = sorted(columns & future)
+              if leaked:
+                  raise SystemExit(f"Future fields leaked into {path}: {leaked}")
+          print(json.dumps({"v1": manifest, "v2_phase1": v2_manifest}, indent=2))
           PY
 
       - name: Upload complete pilot artifact
