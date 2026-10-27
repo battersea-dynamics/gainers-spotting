@@ -1,0 +1,70 @@
+{
+  "api": [
+    {
+      "batches": 27,
+      "dataset": "daily",
+      "end_utc": "2026-10-26T04:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-08-27T04:00:00Z",
+      "symbols_requested": 5386,
+      "symbols_with_bars": 5383,
+      "timeframe": "1Day",
+      "total_bars": 225033
+    },
+    {
+      "batches": 27,
+      "dataset": "after-hours",
+      "end_utc": "2026-10-24T00:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-10-23T20:00:00Z",
+      "symbols_requested": 5386,
+      "symbols_with_bars": 4836,
+      "timeframe": "5Min",
+      "total_bars": 23450
+    }
+  ],
+  "cutoff": null,
+  "day": "2026-10-26",
+  "details": {
+    "asset_count": 13193,
+    "instrument_type_counts": {
+      "adr_ads": 282,
+      "common_shares": 250,
+      "common_stock": 3966,
+      "debt": 155,
+      "ordinary_shares": 888,
+      "pooled_product": 6063,
+      "preferred": 448,
+      "right": 120,
+      "unit": 295,
+      "unknown": 309,
+      "warrant": 417
+    },
+    "master_record_count": 13289,
+    "master_source_sha256": "e205c39049dd04afa6236f9dcfc52f0157e3a349f7a698f8bf0a11258e98deb6",
+    "possible_spac_common": 218,
+    "previous_session_calendar": "2026-10-23",
+    "previous_session_match": true,
+    "previous_session_observed": "2026-10-23",
+    "primary_stock_symbols": 5386,
+    "survivorship_note": "Asset/master snapshot is CURRENT metadata; for a past date this is a backfill with survivorship bias.",
+    "universe_content_sha256": "807fd50edaded1c5dcdb545c04d907c561971ae140cf35bcd64a5e512d6452df"
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-10-27T11:52:43.747779+00:00",
+  "flags": [],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "universe",
+  "limit": null,
+  "mode": "backfill",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "40499259191-1-115149",
+  "started_utc": "2026-10-27T11:51:49.281584+00:00",
+  "status": "ok"
+}
