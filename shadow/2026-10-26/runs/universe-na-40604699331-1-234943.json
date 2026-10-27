@@ -1,0 +1,21 @@
+{
+  "api": [],
+  "cutoff": null,
+  "day": "2026-10-26",
+  "details": {
+    "skipped": "universe already frozen for this date (append-only)"
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-10-27T23:49:43.911653+00:00",
+  "flags": [],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "universe",
+  "limit": null,
+  "mode": "backfill",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "40604699331-1-234943",
+  "started_utc": "2026-10-27T23:49:43.911595+00:00",
+  "status": "skipped"
+}
