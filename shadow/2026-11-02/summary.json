@@ -1,0 +1,32 @@
+{
+  "day": "2026-11-02",
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "limit": null,
+  "mode": "live",
+  "open_plus_30_mean_ret_close": {
+    "control:gap_top": 0.02427253114031161,
+    "control:random_liquid": -0.013721855757127352,
+    "control:rel_vol_top": 0.09003833259456331,
+    "engine:v2_absolute_activity_baseline": -0.02026846741108692,
+    "engine:v2_activation": 0.02668737180231026,
+    "engine:v2_momentum_quality": -0.022896491829135744,
+    "engine:v2_opening_confirmation": -0.00673152353638434
+  },
+  "orders_supported": false,
+  "research_only": true,
+  "rows": 44,
+  "run_id": "41531206101-1-214542",
+  "run_logs": [
+    "outcomes-na-41528916601-1-213047.json",
+    "rank-0930-41464935304-1-144549.json",
+    "rank-0945-41467299720-1-150055.json",
+    "rank-1000-41469749889-1-151544.json",
+    "snapshot-0700-41443163817-1-121547.json",
+    "snapshot-0800-41451366386-1-131545.json",
+    "snapshot-0900-41460163439-1-141605.json",
+    "snapshot-0915-41462557278-1-143039.json",
+    "universe-na-41417164364-1-090044.json"
+  ]
+}
