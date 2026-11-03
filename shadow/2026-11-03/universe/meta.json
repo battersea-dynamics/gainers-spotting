@@ -1,0 +1,25 @@
+{
+  "asset_count": 13175,
+  "instrument_type_counts": {
+    "adr_ads": 282,
+    "common_shares": 250,
+    "common_stock": 3962,
+    "debt": 154,
+    "ordinary_shares": 885,
+    "pooled_product": 6063,
+    "preferred": 447,
+    "right": 119,
+    "unit": 295,
+    "unknown": 307,
+    "warrant": 411
+  },
+  "master_record_count": 13276,
+  "master_source_sha256": "193422dc6d1d6ecda36b9dc467ecc1cebade09a07aff1e9fcfff7a55e0b1024d",
+  "possible_spac_common": 218,
+  "previous_session_calendar": "2026-11-02",
+  "previous_session_match": true,
+  "previous_session_observed": "2026-11-02",
+  "primary_stock_symbols": 5379,
+  "survivorship_note": null,
+  "universe_content_sha256": "1f48260b176ec94c8cb7c67b4559a03103b6835a517b15d2876366bfc8863c4b"
+}
