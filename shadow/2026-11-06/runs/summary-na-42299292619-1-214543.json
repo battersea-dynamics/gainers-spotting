@@ -1,0 +1,42 @@
+{
+  "api": [],
+  "cutoff": null,
+  "day": "2026-11-06",
+  "details": {
+    "day": "2026-11-06",
+    "open_plus_30_mean_ret_close": {
+      "control:gap_top": 0.04537271142710032,
+      "control:random_liquid": -0.0024919391969040403,
+      "control:rel_vol_top": -0.02683624666128669,
+      "engine:v2_absolute_activity_baseline": -0.028587891166438773,
+      "engine:v2_activation": -0.02039962309182819,
+      "engine:v2_momentum_quality": 0.01357000472261087,
+      "engine:v2_opening_confirmation": -0.004418507129773491
+    },
+    "rows": 44,
+    "run_logs": [
+      "outcomes-na-42297244745-1-213044.json",
+      "rank-0930-42236726379-1-144540.json",
+      "rank-0945-42238963264-1-150042.json",
+      "rank-1000-42241301307-1-151548.json",
+      "snapshot-0700-42216245709-1-121546.json",
+      "snapshot-0800-42224001155-1-131547.json",
+      "snapshot-0900-42232265894-1-141545.json",
+      "snapshot-0915-42234478489-1-143048.json",
+      "universe-na-42191722033-1-090046.json"
+    ]
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-11-06T21:45:43.695811+00:00",
+  "flags": [],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "summary",
+  "limit": null,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "42299292619-1-214543",
+  "started_utc": "2026-11-06T21:45:43.632346+00:00",
+  "status": "ok"
+}
