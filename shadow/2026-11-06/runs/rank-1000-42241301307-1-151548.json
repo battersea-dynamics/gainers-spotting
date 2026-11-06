@@ -1,0 +1,60 @@
+{
+  "api": [
+    {
+      "batches": 27,
+      "dataset": "pm-open-plus-30",
+      "end_utc": "2026-11-06T15:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-11-06T09:00:00Z",
+      "symbols_requested": 5378,
+      "symbols_with_bars": 4993,
+      "timeframe": "5Min",
+      "total_bars": 68338
+    }
+  ],
+  "cutoff": "10:00",
+  "day": "2026-11-06",
+  "details": {
+    "bar_policy": "5-minute SIP bars with bar_start + 5m <= cutoff",
+    "bar_request_end_utc": "2026-11-06T15:00:00+00:00",
+    "computed_at_utc": "2026-11-06T15:17:45.890111+00:00",
+    "cutoff_et": "2026-11-06T10:00:00-05:00",
+    "decision": "open+30",
+    "eligible_ranked": 3401,
+    "feature_rows_primary_active": 3401,
+    "fetch_seconds": 67.0,
+    "latency_minutes_after_cutoff": 17.8,
+    "liquid_rule": "primary stock, dormancy_median_daily_dollar_volume_20 >= 1000000, has a price before cutoff",
+    "list_sha256": {
+      "control:gap_top": "dfb35f34ac5a0d1809ea9f846601b499e8a5ffb0c6a6d6514ae66be74d992338",
+      "control:random_liquid": "e4e0b08e3600899c8a1062edb81e663473a1b6cbe94d3e082839285c8e99a8cd",
+      "control:rel_vol_top": "35814064de3b66d8b3e239daade6a2cd3106021dd63a4240ee5c6d46404d6324",
+      "engine:v2_absolute_activity_baseline": "4b1843e228805a5317a3d02e7f8c18f50ef78f4f405f8807c69f25c97f07aa21",
+      "engine:v2_activation": "3bc8254fe3c97ebbea1cce877a3eedb203dbfc08203bd4477d2c395dfef7a9d2",
+      "engine:v2_momentum_quality": "264a918d6b388be306803de1dd483442fa90043d39f558431c120011f99473a0",
+      "engine:v2_opening_confirmation": "64704496d041baafcb2f5dbefc178f573a8d1959f89d7f8978e05c2823c9b462"
+    },
+    "random_liquid_pool": 3443,
+    "random_n": 20,
+    "random_seed": 612825685,
+    "top_n": 20,
+    "universe_symbols": 5378
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-11-06T15:17:45.896776+00:00",
+  "flags": [
+    "WAITED_11S_FOR_SIP_DELAY"
+  ],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "rank",
+  "limit": null,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "42241301307-1-151548",
+  "started_utc": "2026-11-06T15:15:48.421098+00:00",
+  "status": "ok"
+}
