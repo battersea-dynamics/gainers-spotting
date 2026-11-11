@@ -1,0 +1,70 @@
+{
+  "api": [
+    {
+      "batches": 27,
+      "dataset": "daily",
+      "end_utc": "2026-11-11T05:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-09-12T04:00:00Z",
+      "symbols_requested": 5375,
+      "symbols_with_bars": 5374,
+      "timeframe": "1Day",
+      "total_bars": 224701
+    },
+    {
+      "batches": 27,
+      "dataset": "after-hours",
+      "end_utc": "2026-11-11T01:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-11-10T21:00:00Z",
+      "symbols_requested": 5375,
+      "symbols_with_bars": 4865,
+      "timeframe": "5Min",
+      "total_bars": 25284
+    }
+  ],
+  "cutoff": null,
+  "day": "2026-11-11",
+  "details": {
+    "asset_count": 13184,
+    "instrument_type_counts": {
+      "adr_ads": 281,
+      "common_shares": 249,
+      "common_stock": 3958,
+      "debt": 154,
+      "ordinary_shares": 887,
+      "pooled_product": 6076,
+      "preferred": 448,
+      "right": 121,
+      "unit": 293,
+      "unknown": 306,
+      "warrant": 411
+    },
+    "master_record_count": 13282,
+    "master_source_sha256": "b79b75dbf0584a2818dfd7f31e31bc08206cb1964ffda089a39a6501c9718ef9",
+    "possible_spac_common": 220,
+    "previous_session_calendar": "2026-11-10",
+    "previous_session_match": true,
+    "previous_session_observed": "2026-11-10",
+    "primary_stock_symbols": 5375,
+    "survivorship_note": null,
+    "universe_content_sha256": "d4a2a2764e253dbb6c2b62d2291bc0a37ddaa89af9ea686b65c7b60c296af4a0"
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-11-11T09:02:37.428445+00:00",
+  "flags": [],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "universe",
+  "limit": null,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "42991495466-1-090048",
+  "started_utc": "2026-11-11T09:00:48.632545+00:00",
+  "status": "ok"
+}
