@@ -1,0 +1,59 @@
+{
+  "api": [
+    {
+      "batches": 27,
+      "dataset": "pm-open",
+      "end_utc": "2026-11-12T14:30:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-11-12T09:00:00Z",
+      "symbols_requested": 5372,
+      "symbols_with_bars": 4837,
+      "timeframe": "5Min",
+      "total_bars": 40160
+    }
+  ],
+  "cutoff": "09:30",
+  "day": "2026-11-12",
+  "details": {
+    "bar_policy": "5-minute SIP bars with bar_start + 5m <= cutoff",
+    "bar_request_end_utc": "2026-11-12T14:30:00+00:00",
+    "computed_at_utc": "2026-11-12T14:47:28.531248+00:00",
+    "cutoff_et": "2026-11-12T09:30:00-05:00",
+    "decision": "open",
+    "eligible_ranked": 3259,
+    "feature_rows_primary_active": 3259,
+    "fetch_seconds": 56.4,
+    "latency_minutes_after_cutoff": 17.5,
+    "liquid_rule": "primary stock, dormancy_median_daily_dollar_volume_20 >= 1000000, has a price before cutoff",
+    "list_sha256": {
+      "control:gap_top": "eb9bc3fb9932313b0a5c7c1c5314f6a4a92bb73e784feb0d6371c2ac9b6ce796",
+      "control:random_liquid": "3185058b22f75eebb3dd5b2d494e5a6ffbdfb4cfebb530324097a5b3a6a38d30",
+      "control:rel_vol_top": "a60331987aba046e95df59c03147a96b7074e5abd79ce16432dceb9866ddd78a",
+      "engine:v2_absolute_activity_baseline": "e7543bc20fba2684d1614b99a9e49179b3f5528d73e5e191e912d03423ff0bfe",
+      "engine:v2_activation": "2654e3084508c2ee8e12dc3cdef7478dc1bcf58bea82153b9decf6b7c45ad5ac",
+      "engine:v2_momentum_quality": "28130c2e9de2c73201618a724716588c22f5c49d621ea6e45fd53072763fcff8"
+    },
+    "random_liquid_pool": 2339,
+    "random_n": 20,
+    "random_seed": 787488240,
+    "top_n": 20,
+    "universe_symbols": 5372
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-11-12T14:47:28.536054+00:00",
+  "flags": [
+    "WAITED_12S_FOR_SIP_DELAY"
+  ],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "rank",
+  "limit": null,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "43240457935-1-144547",
+  "started_utc": "2026-11-12T14:45:47.919535+00:00",
+  "status": "ok"
+}
