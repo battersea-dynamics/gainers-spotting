@@ -1,0 +1,59 @@
+{
+  "api": [
+    {
+      "batches": 27,
+      "dataset": "pm-snap-0700",
+      "end_utc": "2026-11-17T12:00:00Z",
+      "pages": 27,
+      "rejected_symbols": [],
+      "split_batches": 0,
+      "start_utc": "2026-11-17T09:00:00Z",
+      "symbols_requested": 5372,
+      "symbols_with_bars": 2122,
+      "timeframe": "5Min",
+      "total_bars": 13807
+    }
+  ],
+  "cutoff": "07:00",
+  "day": "2026-11-17",
+  "details": {
+    "bar_policy": "5-minute SIP bars with bar_start + 5m <= cutoff",
+    "bar_request_end_utc": "2026-11-17T12:00:00+00:00",
+    "computed_at_utc": "2026-11-17T12:16:26.396056+00:00",
+    "cutoff_et": "2026-11-17T07:00:00-05:00",
+    "decision": "snap-0700",
+    "eligible_ranked": 1962,
+    "feature_rows_primary_active": 1962,
+    "fetch_seconds": 9.5,
+    "latency_minutes_after_cutoff": 16.4,
+    "liquid_rule": "primary stock, dormancy_median_daily_dollar_volume_20 >= 1000000, has a price before cutoff",
+    "list_sha256": {
+      "control:gap_top": "4b701bb7175120140c2b1415277c154ea50d11205be3d3669abe8a903fd33cd5",
+      "control:random_liquid": "b677bca067b6eeb94bf642cd8f078b218df22ccebb7af1b98e0ff2850cc17ca7",
+      "control:rel_vol_top": "a13b191d0c2e4d66a5ce54e9a3a4e697f70405d402f00a06f146567c707bb56a",
+      "engine:v2_absolute_activity_baseline": "4f8ae6803bc613b8f744d42a8d16fd205d72620b4c4e48c6121eab64d309de8b",
+      "engine:v2_activation": "c67d2ed765ecb1cb6c9b237fff05f1c4dbfb51165bdc290c6e72e818be5d4e9e",
+      "engine:v2_momentum_quality": "4066b1e78e51c23cfd57eb85559d00df8b02accb9fcef8f3645f419243889a02"
+    },
+    "random_liquid_pool": 1382,
+    "random_n": 20,
+    "random_seed": 1780502606,
+    "top_n": 20,
+    "universe_symbols": 5372
+  },
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "finished_utc": "2026-11-17T12:16:26.398691+00:00",
+  "flags": [
+    "WAITED_8S_FOR_SIP_DELAY"
+  ],
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "job": "snapshot",
+  "limit": null,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "44081392740-1-121551",
+  "started_utc": "2026-11-17T12:15:51.190455+00:00",
+  "status": "ok"
+}
