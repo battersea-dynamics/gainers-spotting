@@ -1,0 +1,33 @@
+{
+  "bar_policy": "5-minute SIP bars with bar_start + 5m <= cutoff",
+  "bar_request_end_utc": "2026-11-25T14:15:00+00:00",
+  "computed_at_utc": "2026-11-25T14:31:38.768877+00:00",
+  "cutoff_et": "2026-11-25T09:15:00-05:00",
+  "decision": "snap-0915",
+  "eligible_ranked": 3040,
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feature_rows_primary_active": 3040,
+  "feed": "sip",
+  "fetch_seconds": 9.4,
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "latency_minutes_after_cutoff": 16.6,
+  "limit": null,
+  "liquid_rule": "primary stock, dormancy_median_daily_dollar_volume_20 >= 1000000, has a price before cutoff",
+  "list_sha256": {
+    "control:gap_top": "4b5e308dafe6656fadbc0ca5b1c1fb45d0545724bcc75839d7a38c01534856b6",
+    "control:random_liquid": "75eb0a200276a040c76d5150dc56111756562fbaae252bd716d5ed7cc7903d04",
+    "control:rel_vol_top": "0de479a2b4864ecaa807f73937f11a8e42d8bd62e33c7a13250cea815859fe59",
+    "engine:v2_absolute_activity_baseline": "fb3be41868904360b52909c1ddabd2167c03da2466a616a18b2b0555f2b1026e",
+    "engine:v2_activation": "b55702708f20002e727d243e904f96ae1ba51ad022dc0a0e2446a4288218d2e9",
+    "engine:v2_momentum_quality": "e76653784e37716692aa43bd650a9c2d68bbf630c44d34c57ba3dfe38bead1ed"
+  },
+  "mode": "live",
+  "orders_supported": false,
+  "random_liquid_pool": 2213,
+  "random_n": 20,
+  "random_seed": 531928872,
+  "research_only": true,
+  "run_id": "45634751792-1-143045",
+  "top_n": 20,
+  "universe_symbols": 5371
+}
