@@ -1,0 +1,105 @@
+{
+  "close_et": "2026-11-27T13:00:00-05:00",
+  "decisions": [
+    "open",
+    "open+15",
+    "open+30",
+    "snap-0700",
+    "snap-0800",
+    "snap-0900",
+    "snap-0915"
+  ],
+  "early_close": true,
+  "engine_version": "shadow-live-v1|engine-v2-phase1-v1|stock-only-separate-profiles-v1|broad-five-minute-features-v1|whole-market-five-minute-outcomes-v1|nasdaq-trader-stock-master-v1|explicit-security-description-v1|broad-us-equity-v1|controls:shadow-controls-v1",
+  "feed": "sip",
+  "git_sha": "8cd9d3eafc20af8864d944019d79b686e41ede95",
+  "limit": null,
+  "logged_symbols": 303,
+  "mode": "live",
+  "orders_supported": false,
+  "research_only": true,
+  "run_id": "46049945649-1-183043",
+  "universe_median_control": {
+    "open": {
+      "mae": {
+        "mean": -0.024686946721335368,
+        "median": -0.01296505073280707,
+        "n": 5159
+      },
+      "mfe": {
+        "mean": 0.03088108305387026,
+        "median": 0.01541850220264318,
+        "n": 5159
+      },
+      "ret_30m": {
+        "mean": -0.0038583525172584364,
+        "median": -0.0015625152589380242,
+        "n": 4910
+      },
+      "ret_60m": {
+        "mean": -0.0010645082708936912,
+        "median": 0.0,
+        "n": 5003
+      },
+      "ret_close": {
+        "mean": 0.008352914689446224,
+        "median": 0.00397407988659948,
+        "n": 5159
+      }
+    },
+    "open+15": {
+      "mae": {
+        "mean": -0.018853096552682892,
+        "median": -0.009775233114313386,
+        "n": 5124
+      },
+      "mfe": {
+        "mean": 0.027626456890885387,
+        "median": 0.014446832540554011,
+        "n": 5124
+      },
+      "ret_30m": {
+        "mean": -0.00012131130381598805,
+        "median": 0.0,
+        "n": 4729
+      },
+      "ret_60m": {
+        "mean": 0.003832626263043584,
+        "median": 0.0019029495718363432,
+        "n": 4895
+      },
+      "ret_close": {
+        "mean": 0.010015044320024886,
+        "median": 0.005137654118435808,
+        "n": 5124
+      }
+    },
+    "open+30": {
+      "mae": {
+        "mean": -0.014574903218227301,
+        "median": -0.006179682447174872,
+        "n": 5112
+      },
+      "mfe": {
+        "mean": 0.0283481276505052,
+        "median": 0.016014143511641654,
+        "n": 5112
+      },
+      "ret_30m": {
+        "mean": 0.0032899759874150687,
+        "median": 0.0018527876031666501,
+        "n": 4705
+      },
+      "ret_60m": {
+        "mean": 0.006967773218231043,
+        "median": 0.004100923989236227,
+        "n": 4892
+      },
+      "ret_close": {
+        "mean": 0.012295740349979389,
+        "median": 0.007352941176470562,
+        "n": 5112
+      }
+    }
+  }
+}
